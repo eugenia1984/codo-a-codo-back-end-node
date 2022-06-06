@@ -46,9 +46,55 @@ Si quisiera mostrar alguna *respuesta*:
 
 ```JavaScript
 const servidor = http.createServer( (request, response) => {
-  response.end('Hola Nosejs'); // para terminar la comunicacion
+  response.end('Hola Node.js'); // para terminar la comunicacion
 });
 ```
+-> para **volver a ejecutar el codigo** *Ctr+C* y lo vuelvo a ejecutar ``` node .\primer-servidor.js```
+
+
+-> Si quiero ver el **object request**:
+
+```JavaScript
+const servidor = http.createServer((request, response) => {
+  console.log(request);
+  response.end("Hola Nodejs"); // para terminar la comunicacion
+});
+```
+
+Y al ejecutar el csript por terminal veo todo el object request que es muy extenso.
+
+Si por ejemplo solo quiero ver dos cosas del object, como request.ur y request.method,  entonces:
+
+```JavaScript
+const servidor = http.createServer((request, response) => {
+  console.log(request.url, request.method);
+  response.end("Hola Nodejs"); // para terminar la comunicacion
+});
+```
+
+-> por consola veo:
+```
+/ GET
+/favicon.ico GET
+```
+
+
+- **Para manejar las rutas**, si quiero manejar las respuestas acorde a las URL, imaginando que tengo una web */contacto*:
+
+```JavaScript
+const servidor = http.createServer((request, response) => {
+  console.log(request.url, request.method);
+
+  if (request.url.includes('/contacto')) {   // si tengo la pagina (URL) /contacto.html
+    response.end('Contacto'); 
+  } else {
+    response.end('Hola Node.js') // para terminar la comunicacion
+  }
+});
+```
+
+Entonces si en la URL tengo **http://localhost:3001/contacto** voy a ver en el navegador *contacto*, para cualquier otra url veo *Hola Node.js*
+
 
 -> para asignarle un puerto, se utiliza el 3000 o el 5000
 ```JavaScript
