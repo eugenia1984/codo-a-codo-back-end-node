@@ -42,6 +42,8 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 ... el [servidor-html.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/servidor-html.js) que es un servidor que renderiza un archivo HTML y hau manejo de error en el caso de que la URL se escriba mal.
 
+... el [usuarios.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/usuarios.js) que es el primer modulo creado por nosotros, donde va a tener un array de nombres de los usuarios.
+
 ... la teoría asociada en el archivo [README.md](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/README.md) -> Web dinámica vs Web estática | ¿Qué es NodeJS? | Por qué usar Nodejs | Instalación de Node | Comenzando con Node | Conceptos de bloqueo | Crear comentario y manejo de módulos
 
 

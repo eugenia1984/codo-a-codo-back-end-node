@@ -121,6 +121,7 @@ servidor.listen(port, () => {
 
 ## :star: Mi segundo servidor con Node.js que renderiza HTML con el módulo FileSystem (FS)
 
+[En **servidor-html.js**](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/servidor-html.js)
 
 ```JavaScript
 const http = require("http"); 
@@ -268,6 +269,31 @@ const servidor = http.createServer((req, res) => {
 **400** ->> son los errores, el **403** forbiden para algo privado,, el **404** es cuando no encentra el archivo, **403** forbiden para algo privado, el **405** Method Not Allowed, el **406** Not Acceptable, el **407** Proxy Authentication Required, el **408** Request Timeout, el **409** Conflict, y hay muchos más
 
 **500** ->> errores, como el **500** error interno.
+
+---
+
+## :star: Modulos - creando el primer modulo
+
+[Creo mi primer modulo,  **usuarios.js**](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/usuarios.js)
+
+
+En **usuarios.js**:
+```JavaScript
+const nombres = ['Juan', 'Ana', 'Pedro', 'Maria'];
+
+module.export = nombres; // para poder exportar nombres
+```
+
+¿Cómo lo utilizo ?
+
+Requeriendolo, porque ya lo tengo exportado.
+
+```JavaScript
+const nombres = require('./usuarios');
+nombres.forEach(nombre => cosole.log(nombre));
+```
+
+Y asi voy a mostrar los nombres de los usuarios.
 
 ---
 ---
