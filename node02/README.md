@@ -2,6 +2,41 @@
 
 - **hola.js** que es un servidor con Node.js
 
+->> por convension la variable lleva el mismo nombre que la libreria, por eso tengo **http**
+
+->> con el **.end()** cierro el flujo de informacion
+
+->> con **.listen()** defino el puerto de escucha
+
+```JavaScript
+var http = require('http');  
+
+var mensajes = function(res, res) { // recibe el request (la solicitud) y da el response (la respuesta)
+  res.end('Hola Mundo'); 
+  console.log('Ejecutando servidor en el puerto 4000');
+}
+
+const servidor = http.createServer(mensajes);
+servidor.listen(4000);
+```
+
+- **hola_mundo.js** que es un servidor con Node.js que renderiza etqietas en html:
+
+```JavaScript
+var http = require("http");
+
+var mensajes = function(solicitud, respuesta){
+
+    respuesta.writeHead(200, {"Content-Type":"text/html; charset=utf-8"});
+    respuesta.write("<h1>Hola Ñandú</h1>");
+    respuesta.end("Fin");
+    console.log("Ejecutando servidor 2do mensaje en el puerto 4000...");
+
+}
+
+var servidor = http.createServer(mensajes);
+servidor.listen(4000);
+```
 
 ---
 ---
