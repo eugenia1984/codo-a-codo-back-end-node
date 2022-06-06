@@ -154,7 +154,7 @@ const servidor = http.createServer((req, res) => {
   ...@param: error - para chequear el error
   ...@param: html - el contenido del archivo
   */
-  fs.readFile(--dirname+ '/index.html', (err, html) =>  {
+  fs.readFile(__dirname+ '/index.html', (err, html) =>  {
     console.log(err); // para ver por consola el error
     res.end(err.message); // para renderizar el error en el navegador
   });
