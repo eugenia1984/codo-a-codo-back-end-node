@@ -351,23 +351,35 @@ Cuando se trata de desarrollar un sitio web lo primero que tenes que considerar 
 Te invito que me acompañes en este comparativo para que conozcas cómo distinguir las diferencias entre estos dos tipos de páginas web y que puedas decidir cuál es el que te conviene según tu necesidad.
 
 Pero antes de entrar en detalles de cada uno de estos tipos de sitios web, primero debes entender cómo funciona la comunicación en Internet cuando queremos ver una página web.
-Comunicación entre servidores y navegadores web
 
-Para entender la comunicación más básica que ocurre en Internet, debemos saber que en ella están involucrados un servidor web, como IIS, Apache o NGINX, que contiene los archivos HTML, CSS y JavaScript de las páginas web, y un cliente, el navegador (Chrome, Firefox, Edge).
-El servidor web y el cliente se comunican a través de los protocolos HTTP (Hypertext Transfer Protocol), el protocolo de Transferencia de Hipertexto y la versión segura HTTPS (HyperText Transfer Protocol Secure), una serie de reglas que permiten la transferencia de información a través de archivos en la Internet. La diferencia principal entre HTTP y HTTPS, es que, con este último, la comunicación entre el servidor y el cliente es cifrada permitiendo que la transmisión de los datos sea segura, brindando mayor integridad y confidencialidad a los mismos.
-La comunicación entre ellos inicia cuando el usuario, a través del navegador, ingresa la dirección de un sitio web (conocida como la URL del inglés Uniform Resource Locator ó LRU que se refiere al Localizador de Recursos Uniforme en español), generando una petición al servidor web para encontrar los archivos de dicha página en dónde están alojados (HTTP request). Luego, el servidor web responde a la petición y devuelve los archivos del sitio web (HTTP response). La respuesta llega al navegador como una copia en formato HTML de la página web, y es en este momento cuando el usuario puede verla en su pantalla.
+
+### Comunicación entre servidores y navegadores web
+
+Para entender la comunicación más básica que ocurre en Internet, debemos saber que en ella están involucrados un **servidor web**, como *IIS*, *Apache* o *NGINX*, que contiene los archivos **HTML**, **CSS** y **JavaScript** de las *páginas web*, y un **cliente**, el *navegador* (*Chrome*, *Firefox*, *Edge*).
+
+El servidor web y el cliente se comunican a través de los **protocolos HTTP** (**Hypertext Transfer Protocol**), el protocolo de Transferencia de Hipertexto y la versión segura **HTTPS** (**HyperText Transfer Protocol Secure**), una serie de reglas que permiten la transferencia de información a través de archivos en la Internet. La diferencia principal entre HTTP y HTTPS, es que, con este último, la comunicación entre el servidor y el cliente es **cifrada** permitiendo que la transmisión de los datos sea segura, brindando mayor integridad y confidencialidad a los mismos.
+
+->> La comunicación entre ellos inicia cuando el **usuario**, a través del **navegador**, ingresa la **dirección de un sitio web** (conocida como la **URL** del inglés *Uniform Resource Locator* ó LRU que se refiere al Localizador de Recursos Uniforme en español), generando una **petición al servidor web** para encontrar los archivos de dicha página en dónde están alojados (**HTTP request**). 
+
+->> Luego, el **servidor web** *responde a la petición* y *devuelve los archivos del sitio web* (**HTTP response**). La respuesta llega al navegador como una copia en formato HTML de la página web, y es en este momento cuando el usuario puede verla en su pantalla.
+
 
 #### Qué es una página web estática
 
-Lo primero que debemos entender es ¿a qué nos referimos con la palabra estática en el contexto de una página web?, y no es más que aquello que en el ámbito del código fuente del sitio web se encuentra fijo, no se mueve ni cambia de ninguna manera. Cuando hablamos de “estático” también podemos referirnos a que la página web tiene un número fijo de página, es decir, que tal como fue diseñada y almacenada en el servidor web, así mismo la recibe el navegador y la ve el usuario, como un número fijo de páginas HTML.
+Lo primero que debemos entender es ¿a qué nos referimos con la palabra **estática** en el contexto de una página web?, y no es más que *aquello que en el ámbito del código fuente del sitio web se encuentra fijo, no se mueve ni cambia de ninguna manera*.
 
-Una página web estática está compuesta por archivos HTML individuales por cada página que son pre-generados y presentados al usuario a través del navegador de la misma forma.
+Cuando hablamos de **estático** también podemos referirnos a que la página web tiene un número fijo de página, es decir, que tal como fue diseñada y almacenada en el servidor web, así mismo la recibe el navegador y la ve el usuario, como un número fijo de páginas HTML.
+
+Una página web estática está compuesta por* archivos HTML individuales por cada página que son pre-generados y presentados al usuario a través del navegador de la misma forma*.
 
 Como una página web estática básica está compuesta por elementos como títulos, cuadros de textos, etiquetas, imágenes y otros elementos multimedia, un usuario solo puede interactuar con una página web estática a través de lo que permiten los elementos HTML, por ejemplo haciendo clic en enlaces, botones o rellenando formularios como el clásico formulario de subscripción.
-No son tan complejos técnicamente como un sitio web dinámico, pero tampoco son tan versátiles y efectivos cuando se trata de entregar funcionalidad. En pocas palabras, en una página web estática, verás la misma información, diseño y contenido cada vez que la visites, a menos que alguien aplique cambios al código fuente de forma manual.
 
-Si quisieras crear una página web estática solo necesitas un editor de texto como el Bloc de notas y saber de HTML y CSS, no es necesario utilizar entornos de desarrollo complejos.
-Ventajas de una página web estática
+No son tan complejos técnicamente como un sitio web dinámico, pero tampoco son tan versátiles y efectivos cuando se trata de entregar funcionalidad. En pocas palabras, *en una página web estática, verás la misma información, diseño y contenido cada vez que la visites, a menos que alguien aplique cambios al código fuente de forma manual*.
+
+Si quisieras crear una página web estática solo necesitas un **editor de texto** como el Bloc de notas y saber de **HTML** y **CSS**, no es necesario utilizar entornos de desarrollo complejos.
+
+
+### Ventajas de una página web estática
 
 Entre las ventajas de una página web estática podemos mencionar:
 
