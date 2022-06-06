@@ -286,7 +286,19 @@ module.export = nombres; // para poder exportar nombres
 
 ¿Cómo lo utilizo ?
 
-Requeriendolo, porque ya lo tengo exportado.
+Requeriendolo, porque ya lo tengo exportado, entonces deja de ser privado y se puede utilizar por fuera.
+
+si tuviera otra constante, la cual no incluyo en module.constante, entocnes esa si va a seguir siendo privada.
+
+Entonces en **script-modulos.js**:
+
+```JavaScript
+const usuarios = require('./usuarios');
+
+console.log(usuarios);
+```
+
+Otro ejemplo sería:
 
 ```JavaScript
 const nombres = require('./usuarios');
