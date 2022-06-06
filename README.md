@@ -34,7 +34,7 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 ## ¿ Qué verás ?
 
-- [En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node01) podrás ver el primer script con Node.js y la teoría asociada en el archivo [README.md](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/README.md)
+- [En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node01) podrás ver el primer script con Node.js y la teoría asociada en el archivo [README.md](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/README.md) -> Web dinámica vs Web estática | ¿Qué es NodeJS? | Por qué usar Nodejs | Instalación de Node | Comenzando con Node | Conceptos de bloqueo | Crear comentario y manejo de módulos
 
 
 ---
