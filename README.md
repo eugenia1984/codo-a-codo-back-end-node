@@ -36,11 +36,11 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 - [En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node01) podrás ver...
 
-... el [primer-script.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-script.js) con Node.js (que simplemente muestra por terminal un console) 
+... el [primer-script.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-script.js) con Node.js, que simplemente muestra por terminal un consola.
 
-... el [primer-servidor.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-servidor.js) con un manejo de url, para que si tengo '/contacto' tenderise *Contacto* en el naveador y si es otra url renderizara *Hola Node.js*.
+... el [primer-servidor.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-servidor.js) con un manejo de url, para que si tengo '/contacto' renderise *Contacto* en el naveador y si es otra url renderizara *Hola Node.js*.
 
-... el [servidor-html.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/servidor-html.js) que es un servidor que renderiza un archivo HTML.
+... el [servidor-html.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/servidor-html.js) que es un servidor que renderiza un archivo HTML y hau manejo de error en el caso de que la URL se escriba mal.
 
 ... la teoría asociada en el archivo [README.md](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/README.md) -> Web dinámica vs Web estática | ¿Qué es NodeJS? | Por qué usar Nodejs | Instalación de Node | Comenzando con Node | Conceptos de bloqueo | Crear comentario y manejo de módulos
 
