@@ -4,6 +4,7 @@ const fs = require('fs'); // el modulo FILE SYSTEM, para poder leer un html con 
 const servidor = http.createServer((req, res) => {
   fs.readFile(__dirname+ '/index.html', (err, html) =>  {
     if (err) {
+      res.writeHead(500);
       console.log(err.message);
       res.write('No se pudo leer el archivo.');
     } else {

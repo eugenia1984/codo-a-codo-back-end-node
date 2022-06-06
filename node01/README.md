@@ -199,6 +199,7 @@ y siempre debo cerrar la comunicacion
 const servidor = http.createServer((req, res) => {
   fs.readFile(__dirname+ '/indeex.html', (err, html) =>  {
     if (err) {
+      res.writeHead(500);
       console.log(err.message);
       res.write('No se pudo leer el archivo');
     } else {
@@ -209,6 +210,64 @@ const servidor = http.createServer((req, res) => {
   });
 });
 ```
+
+->> Otro ejemplo si quiero mandar más info del error si es un texto HTML:
+
+**res.writeHead(200, {'Content-Type':'text/html'});**
+
+**res.write(html);**
+
+```JavaScript
+const servidor = http.createServer((req, res) => {
+  fs.readFile(__dirname+ '/index.html', (err, html) =>  {
+    if (err) {
+      res.writeHead(500);
+      console.log(err.message);
+      res.write('No se pudo leer el archivo');
+    } else {
+      res.writeHead(200, {'Content-Type':'text/html'});
+      res.write(html);
+    }
+
+    res.end('Comunicacion finalizada');  // para cerrar la comunicacion
+  });
+});
+```
+
+->> Si fuera un error al querer leer un JSON, por ejemplo al comunicarme con una API:
+
+**res.writeHead(200, {'Content-Type':'application/json'});**
+
+**res.write(JSON.stringify({email: 'x@x.com', name: 'juan'}));**
+
+```JavaScript
+const servidor = http.createServer((req, res) => {
+  fs.readFile(__dirname+ '/index.html', (err, html) =>  {
+    if (err) {
+      res.writeHead(500);
+      console.log(err.message);
+      res.write('No se pudo leer el archivo');
+    } else {
+      res.writeHead(200, {'Content-Type':'application/json'});
+      res.write(JSON.stringify({email: 'x@x.com', name: 'juan'}));
+    }
+
+    res.end('Comunicacion finalizada');  // para cerrar la comunicacion
+  });
+});
+```
+
+### Codigos de estado
+
+**100**
+
+**200** ->> cuando esta ok, por ejemplo el **201** para enviar a crear un registro
+
+**300** para redireccionar paginas
+
+**400** ->> son los errores, el **403** forbiden para algo privado,, el **404** es cuando no encentra el archivo, **403** forbiden para algo privado, el **405** Method Not Allowed, el **406** Not Acceptable, el **407** Proxy Authentication Required, el **408** Request Timeout, el **409** Conflict, y hay muchos más
+
+**500** ->> errores, como el **500** error interno.
 
 ---
 ---
