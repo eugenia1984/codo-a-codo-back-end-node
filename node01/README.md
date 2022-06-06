@@ -21,6 +21,9 @@ Lo que si puedo hacer desde el servidor, que desde el front no es...
 
 ... acceder a base de datos.
 
+---
+
+## :star: Mi primer servidor 
 
 - Node trabaja con **modulos**, con el módulo HTTP vamos a crear nuestro servidor en el archivo [**primer-servidor.js**](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-servidor.js).
 
@@ -113,6 +116,99 @@ servidor.listen(port, () => {
 }); 
 ```
 
+
+---
+
+## :star: Mi segundo servidor con Node.js que renderiza HTML con el módulo FileSystem (FS)
+
+
+```JavaScript
+const http = require("http"); 
+const fs = require('fs'); // el modulo FILE SYSTEM, para poder leer un html con su metodo .readFile()
+
+const servidor = http.createServer((req, res) => {
+  res.end(__dirname+); // nombre del directorio actual
+});
+
+const port = 3000; 
+
+servidor.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
+```
+
+-> En el navegador veo el directorio actual, *muestra el path donde esta el script(el directorio)*: **C:\Users\juan\Desktop\copia2\codo_a_codo_node\node01**
+
+
+- Para levantar el **index.html**:
+
+```JavaScript
+const http = require("http"); 
+const fs = require('fs'); // el modulo FILE SYSTEM, para poder leer un html con su metodo .readFile()
+
+const servidor = http.createServer((req, res) => {
+  /*
+  .readFile() 
+  callbacj con ...
+  ...@param: error - para chequear el error
+  ...@param: html - el contenido del archivo
+  */
+  fs.readFile(--dirname+ '/index.html', (err, html) =>  {
+    console.log(err); // para ver por consola el error
+    res.end(err.message); // para renderizar el error en el navegador
+  });
+});
+
+const port = 3000; 
+
+servidor.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
+```
+-> Para crear un mensaje de error adrede en el path escribo mal **'/indeex.html'** y al ejecutarlo en el navegador veo:
+
+**ENOENT: no such file or directory, open 'C:\Users\juan\Desktop\copia2\codo_a_codo_node\node01\indeex.html'**
+
+
+Y con el ```console.log(err)``` por consola veo el error:
+
+```
+[Error: ENOENT: no such file or directory, open 'C:\Users\juan\Desktop\copia2\codo_a_codo_node\node01\indeex.html'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\juan\\Desktop\\copia2\\codo_a_codo_node\\node01\\indeex.html'      
+}
+```
+
+-> Lo ideal al renderizar le html es mostrar un mensaje mas generico al usuario, por ejemplo:
+
+```JavaScript
+ res.end('Error, no se puede mostar el archivo');
+```
+
+Algo más completo sería así...
+
+... si hay error por consola me lo muestra y al usuario le muestro el error generico
+
+... si no hya error me renderiza el html
+
+y siempre debo cerrar la comunicacion
+
+```JavaScript
+const servidor = http.createServer((req, res) => {
+  fs.readFile(__dirname+ '/indeex.html', (err, html) =>  {
+    if (err) {
+      console.log(err.message);
+      res.write('No se pudo leer el archivo');
+    } else {
+      res.write(html);
+    }
+
+    res.end('Comunicacion finalizada');  // para cerrar la comunicacion
+  });
+});
+```
 
 ---
 ---
