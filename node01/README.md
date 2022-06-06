@@ -1,12 +1,12 @@
 # :star: Mi primer Script en Node.js
 
-- En el archivo **primer-script.js** tengo un console: ```console.log("Hola Node.js");```.
+- En el archivo [**primer-script.js**](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-script.js) tengo un console: ```console.log("Hola Node.js");```.
 
 - ¿ Cómo lo veo ?
 
 Desde VSC, abro la termianl **powershell**, con cd ingreso en el directorio **node01** y ejecuto ``` node primer-script.js``` y por terminal veo: *Hola Node.js*.
 
-En vez de verlo en el navegador, inspeccionando desde el console, como hacíamso en el Front, ahora se hace en el Back con Node.
+En vez de verlo en el navegador, inspeccionando desde el console, como hacíamos en el Front, ahora se hace en el Back con Node.
 
 Pero ojo, no todo funciona...
 
@@ -22,7 +22,7 @@ Lo que si puedo hacer desde el servidor, que desde el front no es...
 ... acceder a base de datos.
 
 
-- Node trabaja con **modulos**, con el módulo HTTP vamos a crear nuestro servidor en el archivo **primer-servidor.js**.
+- Node trabaja con **modulos**, con el módulo HTTP vamos a crear nuestro servidor en el archivo [**primer-servidor.js**](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-servidor.js).
 
 ```JavaScript
 const http = require('http');
@@ -42,6 +42,13 @@ const servidor = http.createServer( (request, response) => {
 });
 ```
 
+Si quisiera mostrar alguna *respuesta*:
+
+```JavaScript
+const servidor = http.createServer( (request, response) => {
+  response.end('Hola Nosejs'); // para terminar la comunicacion
+});
+```
 
 -> para asignarle un puerto, se utiliza el 3000 o el 5000
 ```JavaScript

@@ -2,7 +2,7 @@ const http = require('http'); // para requerir el modulo HTTP
 
 // Para crear el servidor con .createServer() va a recibir una funcion anonima como parametro, dicha función va a recibir 2 params: request (peticion que va a recibir) y response (respuesta que va a enviar)
 const servidor = http.createServer( (request, response) => {
-  response.end(); // para terminar la comunicacion
+  response.end('Hola Nosejs'); // para terminar la comunicacion
 });
 
 
