@@ -502,7 +502,7 @@ Algunas desventajas de una página web dinámica son:
 - **2** - Dependiendo del CMS, puede resultar difícil crear varios diseños o plantillas que permitan mostrar diferentes tipos de contenido de diferentes formas.
 
 
-- **3** Puede involucrar altos costos de construcción iniciales.
+- **3** - Puede involucrar altos costos de construcción iniciales.
 Al coste del desarrollo de la página web se le suma el coste del desarrollo de las bases de datos donde se guardará el contenido a mostrar, etc. El desarrollo también puede costar más a medida que se agregan nuevas funcionalidades. Si bien los costos de mantenimiento pueden ser más bajos como fue mencionado en las ventajas, también puede involucrar costos de desarrollo iniciales mucho más altos que al desarrollar una página web estática.
  
 
@@ -552,10 +552,13 @@ La creciente popularidad de JavaScript ha traído consigo varios cambios, incluy
 Antes de indagar en Node.js, tenés que leer acerca de los beneficios de utilizar JavaScript a través del stack, que unifica el idioma y el formato de datos (JSON), lo que permite reutilizar de manera óptima los recursos del desarrollador. Como esto es más un beneficio de JavaScript que de Node.js específicamente, no hablaremos mucho de ello aquí. Sin embargo, es una ventaja clave para la incorporación de Node en su pila.
 
 
-La web de Node indica: “Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor (pero no limitándose a ello) basado en el lenguaje de programación ECMAScript, asíncrono, con I/O de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google.” Más allá de eso, vale la pena señalar que el creador de Node.js, Ryan Dahl fue encargado a crear sitios web en tiempo real con función de inserción, “inspirado por aplicaciones como Gmail”. En Node.js, dió a los desarrolladores una herramienta para trabajar en el paradigma no-bloqueante, event-driven I/O.
+La web de Node indica:**Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor (pero no limitándose a ello) basado en el lenguaje de programación ECMAScript, asíncrono, con I/O de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google** Más allá de eso, vale la pena señalar que el creador de Node.js, **Ryan Dahl** fue encargado a crear sitios web en tiempo real con función de inserción, *inspirado por aplicaciones como Gmail*. En Node.js, dió a los desarrolladores una herramienta para trabajar en el **paradigma no-bloqueante, event-driven I/O**.
 
+---
 
-En resumen: Node.js se destaca en aplicaciones web de tiempo real empleando la tecnología push a través de Websockets. ¿Qué es tan revolucionario acerca de eso? Bueno, después de más de 20 años de webs basadas en el paradigma de petición-respuesta, finalmente tenemos aplicaciones web en tiempo real, las conexiones bidireccionales, donde tanto el cliente como el servidor pueden iniciar la comunicación, lo que les permite intercambiar datos libremente. Esto está en contraste con el paradigma de respuesta web típica, donde el cliente siempre inicia la comunicación. Además, todo se basa en el Open Web Stack (HTML, CSS y JS) que se ejecuta en el puerto estándar 80.
+#### En resumen: Node.js se destaca en aplicaciones web de tiempo real empleando la tecnología push a través de Websockets. ¿Qué es tan revolucionario acerca de eso? Bueno, después de más de 20 años de webs basadas en el paradigma de petición-respuesta, finalmente tenemos aplicaciones web en tiempo real, las conexiones bidireccionales, donde tanto el cliente como el servidor pueden iniciar la comunicación, lo que les permite intercambiar datos libremente. Esto está en contraste con el paradigma de respuesta web típica, donde el cliente siempre inicia la comunicación. Además, todo se basa en el Open Web Stack (HTML, CSS y JS) que se ejecuta en el puerto estándar 80.
+
+---
 
 
 Podríamos argumentar que hemos tenido este formato durante años en forma de Flash y Applets de Java, pero en realidad, eran simplemente un entorno de Sandbox usando la web como un protocolo de transporte para ser entregado al cliente. Además, se ejecutan en aislamiento y a menudo operan a través de un puerto no estándar, el cual podía tener requisitos adicionales para su uso.
@@ -570,16 +573,20 @@ Vamos a analizar no sólo cómo estas ventajas son obtenidas, sino también por 
 ---
 ### ¿Cómo funciona?
 
-La idea principal de Node.js: uso no-bloqueante, event-driven I/O, permanecer ligero y eficiente en la superficie del uso intensivo de datos en tiempo real de las aplicaciones que se ejecutan en dispositivos distribuidos.
+La idea principal de Node.js: **uso no-bloqueante**, **event-driven I/O**, **permanecer ligero** y **eficiente** en la superficie del **uso intensivo de datos en tiempo real** de las aplicaciones que se ejecutan en dispositivos distribuidos.
 
 
-Y este entendimiento es absolutamente esencial. Definitivamente no tenés que usar Node.js para operaciones intensivas de CPU; de hecho, utilizándolo para el cálculo pesado anulará casi todas sus ventajas. Donde Node REALMENTE destaca es en la construcción rápida y escalable de aplicaciones de red, debido a que es capaz de manejar un gran número de conexiones simultáneas con alto rendimiento, lo que equivale a una alta escalabilidad.
+Y este entendimiento es absolutamente esencial. Definitivamente no tenés que usar Node.js para operaciones intensivas de CPU; de hecho, utilizándolo para el cálculo pesado anulará casi todas sus ventajas. Donde Node REALMENTE destaca es en la **construcción rápida y escalable de aplicaciones de red**, debido a que **es capaz de manejar un gran número de conexiones simultáneas con alto rendimiento**, lo que equivale a una **alta escalabilidad**.
 
 
-Cómo funciona internamente es bastante interesante. Frente a las tradicionales técnicas de servicio web donde cada conexión (solicitud) genera un nuevo subproceso, retomando la RAM del sistema y finalmente a tope a la cantidad de RAM disponible, Node.js opera en un solo subproceso, no utiliza el bloqueo de llamadas de E/S, lo que le permite admitir decenas de miles de conexiones simultáneas (celebrada en el caso de loop).
+### ¿ Cómo funciona internamente?
+
+Es bastante interesante. Frente a las tradicionales técnicas de servicio web donde cada conexión (solicitud) genera un nuevo subproceso, retomando la RAM del sistema y finalmente a tope a la cantidad de RAM disponible, **Node.js opera en un solo subproceso**, **no utiliza el bloqueo de llamadas de E/S**, lo que le permite admitir decenas de miles de conexiones simultáneas (celebrada en el caso de **loop**).
 
 
-Un cálculo rápido: suponiendo que cada subproceso tiene un potencial acompañado de 2 MB de memoria, el cual se ejecutará dentro de un sistema con 8 GB de RAM nos pone a un máximo teórico de 4.000 conexiones simultáneas, además del costo de cambio de contexto entre subprocesos. Ese es el escenario que se suelen tratar con técnicas de servicio web tradicional. Evitando todo eso, Node.js alcanza niveles de escalabilidad de más de 1M de conexiones simultáneas.
+Un cálculo rápido: suponiendo que cada subproceso tiene un potencial acompañado de 2 MB de memoria, el cual se ejecutará dentro de un sistema con 8 GB de RAM nos pone a un máximo teórico de 4.000 conexiones simultáneas, además del costo de cambio de contexto entre subprocesos. Ese es el escenario que se suelen tratar con técnicas de servicio web tradicional. 
+
+Evitando todo eso, Node.js alcanza niveles de escalabilidad de más de 1M de conexiones simultáneas.
 
 
 Existe por supuesto, la posibilidad de compartir un único subproceso entre todas las solicitudes de clientes, convirtiéndola en una falla potencial de escribir aplicaciones Node.js. En primer lugar, el cómputo pesado podría estancarse y provocar problemas para todos los clientes (más sobre esto más adelante) como las peticiones entrantes, las cuales serían bloqueadas hasta que dicho cálculo se haya completado. En segundo lugar, los desarrolladores necesitan ser muy cuidadosos en no permitir una excepción burbujeante hacia el núcleo (la superior), lo que provocaría que la instancia de Node.js se terminase.
@@ -592,10 +599,14 @@ La técnica utilizada para evitar excepciones transfiere los errores a la llamad
 ### NPM: El Node Package Manager
 
 
-Cuando hablamos de Node.js, una cosa que definitivamente no debe omitirse es integrarlo en el apoyo de la gestión de paquetes utilizando la herramienta NPM que viene por defecto con cada instalación de Node.js. La idea de los módulos NPM es muy similar a la de Ruby Gemas: un conjunto de componentes reutilizables disponibles públicamente a través de una fácil instalación a través de un repositorio en línea, con la versión y la dependencia de gestión.
+Cuando hablamos de Node.js, una cosa que definitivamente no debe omitirse es integrarlo en el apoyo de la **gestión de paquetes utilizando la herramienta NPM que viene por defecto con cada instalación de Node.js**. 
+
+La idea de los módulos NPM es muy similar a la de Ruby Gemas: **un conjunto de componentes reutilizables disponibles públicamente a través de una fácil instalación a través de un repositorio en línea, con la versión y la dependencia de gestión**.
 
 
-Una lista completa de los paquetes de módulos puede encontrarse en el sitio web de NPM [Https://npmjs.org/](Https://npmjs.org/) o acceder utilizando la herramienta de la CLI de NPM que automáticamente se instala con Node.js. El módulo es un ecosistema abierto a todos, y cualquiera puede publicar su propio módulo que será incluido en el repositorio de NPM. Una breve introducción a la NPM (un poco viejo, pero sigue siendo válido) se puede encontrar en [http://howtonode.org/introduction-to-npm](http://howtonode.org/introduction-to-npm).
+Una lista completa de los paquetes de módulos puede encontrarse en el sitio web de NPM [**Https://npmjs.org/**](Https://npmjs.org/) o acceder utilizando la **herramienta de la CLI de NPM** que automáticamente se instala con Node.js. 
+
+El módulo es un ecosistema abierto a todos, y cualquiera puede publicar su propio módulo que será incluido en el repositorio de NPM. Una breve introducción a la NPM (un poco viejo, pero sigue siendo válido) se puede encontrar en [http://howtonode.org/introduction-to-npm](http://howtonode.org/introduction-to-npm).
 
 
 Algunos de los más populares hoy en día son módulos de NPM:
@@ -628,7 +639,7 @@ Algunos de los más populares hoy en día son módulos de NPM:
 **forever** - Probablemente la utilidad más común para asegurar que un determinado Node script se ejecuta continuamente. Mantiene su proceso de Node.js en la producción y en el rostro de cualquier fallo inesperado.
 
 
-La lista es interminable. Hay toneladas de paquetes realmente útiles y disponible para todos (sin ofender a los que he omitido aquí).
+->> La lista es interminable. Hay toneladas de paquetes realmente útiles y disponible para todos (sin ofender a los que he omitido aquí).
  
 
 ---
@@ -636,55 +647,71 @@ La lista es interminable. Hay toneladas de paquetes realmente útiles y disponib
 
 
 **Chat**: Es la forma más típica en tiempo real y una multi-aplicación de usuario. Desde IRC , a través de muchos propietarios y protocolos abiertos girando en puertos no estándar, con la capacidad de instrumentar todo en Node.js con websockets corriendo sobre el puerto estándar 80.
-La aplicación de chat es realmente perfecta para Node.js: es ligera, tiene un alto tráfico de datos intensivos (pero baja/procesamiento de cómputo) y es una aplicación que funciona en dispositivos distribuidos. También es un gran caso de uso para el aprendizaje, ya que es demasiado simple, pero al mismo tiempo que cubre la mayoría de herramientas que podés utilizar en una típica aplicación Node.js.
+
+La aplicación de chat es realmente perfecta para Node.js: es ligera, tiene un alto tráfico de datos intensivos (pero baja/procesamiento de cómputo) y es una aplicación que funciona en dispositivos distribuidos. 
+
+También es un gran caso de uso para el aprendizaje, ya que es demasiado simple, pero al mismo tiempo que cubre la mayoría de herramientas que podés utilizar en una típica aplicación Node.js.
 
 
 Vamos a tratar de describir cómo funciona.
 
 
-En el ejemplo más sencillo, tenemos una sola sala de chat en nuestro sitio web donde la gente puede venir e intercambiar mensajes ya sea con una persona o con varias. Por ejemplo, supongamos que tenemos tres personas en el sitio todos los conectados a nuestro tablero de mensajes.
-En el lado del servidor, tenemos un simple Express.js que implementa dos cosas: 
+- En el ejemplo más sencillo, tenemos una sola sala de chat en nuestro sitio web donde la gente puede venir e intercambiar mensajes ya sea con una persona o con varias. 
 
+- Por ejemplo, supongamos que tenemos tres personas en el sitio todos los conectados a nuestro tablero de mensajes.
+
+- En el lado del servidor, tenemos un simple Express.js que implementa dos cosas: 
 
 1) Obtener un controlador de solicitudes ‘/’ que sirve la página web que contiene un tablero de mensajes y un botón ‘Enviar’ para inicializar el nuevo mensaje de entrada, y 
-
 
 2) un servidor websockets que escucha los mensajes emitidos por los clientes de websocket.
 
 
-En el cliente, tenemos una página HTML con un par de controladores, uno para el Send’ evento de clic de botón, que recoge el mensaje de entrada y lo envía hacia abajo el websocket, y otro que escucha los mensajes entrantes del nuevo cliente de websockets (es decir, los mensajes enviados por otros usuarios, que el servidor ahora quiere que el cliente muestre).
+- En el cliente, tenemos una página HTML con un par de controladores, uno para el *Send* evento de clic de botón, que recoge el mensaje de entrada y lo envía hacia abajo el websocket, y otro que *escucha los mensajes entrantes* del nuevo cliente de websockets (es decir, los mensajes enviados por otros usuarios, que el servidor ahora quiere que el cliente muestre).
 
 
-Cuando uno de los clientes envía un mensaje, lo que sucede es lo siguiente:
+- Cuando uno de los clientes envía un mensaje, lo que sucede es lo siguiente:
+
+1- El explorador atrapa el clic con el botón ‘Send’ a través de un controlador de JavaScript que recoge el valor del campo de entrada (es decir, el texto del mensaje), y emite un mensaje al websocket utilizando el cliente conectado a nuestro servidor (inicializado con la página web).
 
 
-El explorador atrapa el clic con el botón ‘Send’ a través de un controlador de JavaScript que recoge el valor del campo de entrada (es decir, el texto del mensaje), y emite un mensaje al websocket utilizando el cliente conectado a nuestro servidor (inicializado con la página web).
+2- El componente del servidor de la conexión websocket recibe el mensaje y lo reenvía a todos los demás clientes conectados mediante el método de difusión.
 
 
-El componente del servidor de la conexión websocket recibe el mensaje y lo reenvía a todos los demás clientes conectados mediante el método de difusión.
-
-
-Todos los clientes reciben el mensaje como un mensaje de inserción a través de un componente de cliente websockets que se ejecuta dentro de la página web. Ellos entonces recogen el contenido del mensaje y actualizan la página web en lugar de anexar el nuevo mensaje a la junta.
+3 - Todos los clientes reciben el mensaje como un mensaje de inserción a través de un componente de cliente websockets que se ejecuta dentro de la página web. Ellos entonces recogen el contenido del mensaje y actualizan la página web en lugar de anexar el nuevo mensaje a la junta.
 
 
 
-Este es el ejemplo más sencillo. Para una solución más robusta, podrías utilizar un caché simple basado en la Redis store. O incluso en una solución más avanzada, una cola de mensajes para gestionar el enrutamiento de mensajes a los clientes y un mecanismo de entrega más robusto que pueda cubrir pérdidas de conexión temporal o almacenar mensajes para clientes registrados mientras está desconectado. Pero independientemente de las mejoras que realices, Node.js todavía operará bajo los mismos principios básicos: reaccionar a eventos, manejo de muchas conexiones simultáneas, y mantenimiento en la fluidez de la experiencia del usuario.
+->> Este es el ejemplo más sencillo. Para una solución más robusta, podrías utilizar un caché simple basado en la **Redis store**. O incluso en una solución más avanzada, una **cola de mensajes para gestionar el enrutamiento de mensajes a los clientes** y un **mecanismo de entrega más robusto que pueda cubrir pérdidas de conexión temporal o almacenar mensajes para clientes registrados mientras está desconectado**. Pero independientemente de las mejoras que realices, Node.js todavía operará bajo los mismos principios básicos...
+
+...**reaccionar a eventos**
+
+... **manejo de muchas conexiones simultáneas**
+
+... **mantenimiento en la fluidez de la experiencia del usuario**.
  
 
-**API** en la parte superior de un OBJETO DB
-Aunque Node.js realmente destaca entre aplicaciones de tiempo real, es una adaptación natural para exponer los datos de objeto DBs (p. ej. MongoDB). El almacenamiento de datos JSON permite que Node.js funcione sin la desigualdad de impedancia y la conversión de datos.
-Por ejemplo, si estás utilizando Rails, tendrías que convertir los datos de JSON para modelos binarios y después exponer nuevamente como JSON sobre HTTP cuando el dato es consumido por el backbone.js, angulares, etc., o incluso llamadas AJAX jQuery normal. Con Node.js, simplemente podés exponer tus objetos JSON con una API REST para que el cliente consuma. Además, no necesitas preocuparte por la conversión entre JSON y cualquier otra cosa al leer o escribir desde su base de datos (si estás usando MongoDB). En conclusión, podés evitar la necesidad de realizar varias conversiones mediante un formato de la serialización de datos uniformes a través del cliente, servidor y base de datos.
+**API en la parte superior de un OBJETO DB:**
+
+Aunque Node.js realmente destaca entre aplicaciones de tiempo real, es una adaptación natural para exponer los datos de objeto DBs (p. ej. MongoDB). El **almacenamiento de datos JSON** permite que Node.js funcione sin la desigualdad de impedancia y la conversión de datos.
+
+Por ejemplo, si estás utilizando Rails, tendrías que convertir los datos de JSON para modelos binarios y después exponer nuevamente como JSON sobre HTTP cuando el dato es consumido por el backbone.js, angulares, etc., o incluso llamadas AJAX jQuery normal. **Con Node.js, simplemente podés exponer tus objetos JSON con una API REST para que el cliente consuma**. Además, **no necesitas preocuparte por la conversión entre JSON y cualquier otra cosa al leer o escribir desde su base de datos (si estás usando MongoDB)**. 
+
+#### -> En conclusión, podés evitar la necesidad de realizar varias conversiones mediante un formato de la serialización de datos uniformes a través del cliente, servidor y base de datos.
  
 
 ---
 ### Entradas en espera
 
 
-Si estás recibiendo una gran cantidad de datos concurrentes, tu base de datos puede ahogarse. Como se ha descrito más arriba, Node.js puede manejar fácilmente las conexiones simultáneas al mismo tiempo. Pero debido a que el acceso a la base de datos es una operación de bloqueo (en este caso), nos topamos con problemas. La solución es reconocer el comportamiento del cliente antes de que los datos se escriban en la verdadera base de datos.
+Si estás recibiendo una gran cantidad de datos concurrentes, tu base de datos puede ahogarse. Como se ha descrito más arriba, Node.js **puede manejar fácilmente las conexiones simultáneas al mismo tiempo**. Pero debido a que el acceso a la base de datos es una operación de bloqueo (en este caso), nos topamos con problemas. La solución es reconocer el comportamiento del cliente antes de que los datos se escriban en la verdadera base de datos.
 
 
 Con ese enfoque, el sistema mantiene su sensibilidad bajo una carga pesada, lo que es particularmente útil cuando el cliente no necesita una firme confirmación de la correcta escritura de datos. Ejemplos típicos incluyen: el registro o la escritura de datos de seguimiento de usuario, procesamiento en lotes que no se utilizan hasta un momento posterior, así como las operaciones que no necesitan ser reflejadas al instante (como actualizar el recuento de Likes en Facebook) donde la coherencia final (tan a menudo utilizadas en el mundo NoSQL) es aceptable.
-Los datos se ponen en cola a través de algún tipo de caché o de Message Queue Server (por ejemplo, infraestructura, RabbitMQ, ZeroMQ) y resumido por un proceso separado escrito en lote, cálculo o procesamiento intensivo servicios backend, escrito en un mejor desempeño de plataforma para tales tareas. Un comportamiento similar puede implementarse con otros lenguajes/frameworks, pero no con el mismo hardware o con el mismo alto, para mantener su rendimiento.
+
+**Los datos se ponen en cola a través de algún tipo de caché o de Message Queue Server** (por ejemplo, infraestructura, RabbitMQ, ZeroMQ) y resumido por un proceso separado escrito en lote, cálculo o procesamiento intensivo servicios backend, escrito en un mejor desempeño de plataforma para tales tareas.
+
+Un comportamiento similar puede implementarse con otros lenguajes/frameworks, pero no con el mismo hardware o con el mismo alto, para mantener su rendimiento.
 
 
 ---
@@ -697,7 +724,9 @@ Los datos se ponen en cola a través de algún tipo de caché o de Message Queue
 
 
 En plataformas web más tradicional, las peticiones y respuestas HTTP son tratadas como eventos aislados; de hecho, son realmente corrientes. Esta observación puede ser utilizada en Node.js para construir algunas características interesantes. Por ejemplo, es posible procesar archivos mientras están siendo cargados, ya que los datos entran a través de un arroyo, y pueden ser procesados en una línea de moda. Esto podría hacerse en tiempo real para la codificación de audio o vídeo, como proxy entre diferentes fuentes de datos (véase la sección siguiente).
-PROXY
+
+
+#### PROXY
 
 
 **Node PROXY.js** es empleado como un servidor proxy el cual puede manejar una gran cantidad de conexiones simultáneas en un modo de no-bloqueo. Es especialmente útil para proxy de diferentes servicios con distintos tiempos de respuesta, o para la recopilación de datos desde varios puntos de origen.
@@ -716,14 +745,14 @@ Aunque existen servidores de proxy dedicados, utilizando en su lugar Node podrí
 Volvamos al nivel de aplicación. Otro ejemplo donde domina el software de escritorio, sin embargo podría ser fácilmente reemplazado con una web en tiempo real es la solución comercial de los agentes de software; se utiliza para realizar el seguimiento de los precios de las existencias, realizar cálculos y análisis técnico y crear los gráficos y diagramas.
 
 
-Cambiar a tiempo real es una solución basada en la web que permitiría a los corredores cambiar fácilmente de estaciones de trabajo o lugares de trabajo. Pronto podríamos comenzar a verlos en la playa de Florida, Ibiza…o Bali.
+**Cambiar a tiempo real** es una solución basada en la web que permitiría a los corredores cambiar fácilmente de estaciones de trabajo o lugares de trabajo. Pronto podríamos comenzar a verlos en la playa de Florida, Ibiza … o Bali.
  
 
 ---
 ### Panel de Supervisión de Aplicaciones
 
 
-Otro caso de uso común en qué el Node-con-web-sockets encaja perfectamente es el siguiente: el seguimiento de los visitantes del sitio web y la visualización de sus interacciones a tiempo real. (Si estás interesado, esta idea ya se produjo por Colibrí).
+Otro caso de uso común en qué el Node-con-web-sockets encaja perfectamente es el siguiente: el **seguimiento de los visitantes del sitio web** y la **visualización de sus interacciones a tiempo real**. (Si estás interesado, esta idea ya se produjo por Colibrí).
 
 
 Podrías recopilar estadísticas a tiempo real desde tu usuario, o inclusive subir al siguiente nivel mediante la introducción de interacciones selectivas con tus visitantes abriendo un canal de comunicación cuando llegan a un punto específico en el embudo. (Si estás interesado, esta idea ya se produjo por CANDDi).
@@ -732,10 +761,13 @@ Podrías recopilar estadísticas a tiempo real desde tu usuario, o inclusive sub
 Imagina cómo podría mejorar tu negocio si supieras lo que estuvieran haciendo tus visitantes en tiempo real; si pudieras visualizar sus interacciones. Con el tiempo real, ahora podés tomar dos vías de Node.js.
 
 
-Ahora el panel de monitorización del sistema, vamos a conocer la perspectiva de la infraestructura de las cosas. Imagínate, por ejemplo, un proveedor de SaaS que le quiere ofrecer a sus usuarios un servicio de supervisión (por ejemplo, la página de GitHub). Con el evento Node.js-loop, podemos crear un poderoso tablero basado en la web que comprueba los servicios de los estados de manera asíncrona y envía datos a los clientes usando Websockets.
+Ahora el panel de monitorización del sistema, vamos a conocer la **perspectiva de la infraestructura de las cosas**. Imagínate, por ejemplo, un proveedor de SaaS que le quiere ofrecer a sus usuarios un servicio de supervisión (por ejemplo, la página de GitHub). Con el evento Node.js-loop, podemos crear un poderoso tablero basado en la web que comprueba los servicios de los estados de manera asíncrona y envía datos a los clientes usando Websockets.
 
 
-Tanto internos (intra-empresa) como también los de los servicios públicos de los Estados, pueden ser reportados en vivo y a tiempo real utilizando esta tecnología. Empuja esta idea un poco más lejos y trata de imaginar un centro de operaciones de red (NOC) en aplicaciones de supervisión de un operador de telecomunicaciones, cloud/red/proveedor de servicios de hosting, o alguna institución financiera, todos se ejecutan en el open web stack respaldado por Node.js y Websockets en lugar de Java y/o applets de Java.
+Tanto internos (intra-empresa) como también los de los servicios públicos de los Estados, pueden ser reportados en vivo y a tiempo real utilizando esta tecnología. 
+
+Empuja esta idea un poco más lejos y trata de imaginar un centro de operaciones de red (NOC) en aplicaciones de supervisión de un operador de telecomunicaciones, cloud/red/proveedor de servicios de hosting, o alguna institución financiera, todos se ejecutan en el open web stack respaldado por Node.js y Websockets en lugar de Java y/o applets de Java.
+
 Nota: No intentes construir sistemas a tiempo real duros en Node (es decir, sistemas que requieran tiempos de respuesta coherentes). Erlang es probablemente una mejor elección para esta clase de aplicación.
  
 
@@ -746,12 +778,13 @@ Nota: No intentes construir sistemas a tiempo real duros en Node (es decir, sist
 
 **1 - Aplicaciones Web del lado del Servidor**
 
-Node.js con Express.js también pueden ser utilizados para crear aplicaciones web clásicas en el servidor. Sin embargo, mientras sea posible, este paradigma en petición-respuesta de Node.js sería llevar alrededor de HTML, no es el más típico de los casos de uso. Hay argumentos para estar a favor y en contra de este enfoque. Aquí están algunos hechos a considerar:
+**Node.js** con **Express.js** también pueden ser utilizados para crear aplicaciones web clásicas en el servidor. Sin embargo, mientras sea posible, este paradigma en petición-respuesta de Node.js sería llevar alrededor de HTML, no es el más típico de los casos de uso. Hay argumentos para estar a favor y en contra de este enfoque. Aquí están algunos hechos a considerar:
 
 
 **PROS**:
 
 - Si tu aplicación no tiene ningún cálculo intensivo del CPU, podés construir en Javascript de arriba a abajo, inclusive a nivel de base de datos si utilizas el objeto de almacenamiento JSON como MongoDB DB. Esto facilita el desarrollo (incluyendo la contratación) significativamente.
+
 Los Crawlers reciben una respuesta totalmente HTML, que es mucho más SEO-friendly, digamos, una sola página o en una aplicación de Websockets app se ejecuta sobre Node.js.
 
 
@@ -760,7 +793,8 @@ Los Crawlers reciben una respuesta totalmente HTML, que es mucho más SEO-friend
 - Un CPU de cálculo intensivo bloqueará la receptividad del Node.js, por lo que una plataforma de roscado es un mejor enfoque. Alternativamente, podrías intentar escalar el cómputo [*].
 
 - Utilizando Node.js con una base de datos relacional es aún bastante doloroso (leer más abajo para ver más detalles). Hazte un favor y escoge cualquier otro entorno como Rails, Django, o ASP.NET MVC si estás intentando realizar operaciones relacionales.
-Donde Node.js no debe usarse
+
+#### Donde Node.js no debe usarse
 
 - En el lado del Servidor de Aplicaciones Web con una DB Relaciónal detrás
 
@@ -770,13 +804,13 @@ Donde Node.js no debe usarse
 
 - Cuando se trata de cómputo pesado, Node.js no es la mejor plataforma. Definitivamente no querés construir un servidor de cálculo Fibonacci en Node.js. En general, cualquier operación de uso intensivo de CPU anula todas las ventajas de rendimiento y bloquearía cualquier petición entrante de un subproceso.
 
-- Como se dijo anteriormente, Node.js es Single-threaded y utiliza un único núcleo del CPU. Cuando se trata de la adición de la concurrencia en un servidor multi-core, hay algunos trabajos realizados por el Node básico en la forma de un módulo cluster [ref: http://nodejs.org/api/cluster.html]. También podés ejecutar varias instancias del servidor Node.js bastante fácil detrás de un proxy inverso a través de nginx.
+- Como se dijo anteriormente, Node.js es Single-threaded y utiliza un único núcleo del CPU. Cuando se trata de la adición de la concurrencia en un servidor multi-core, hay algunos trabajos realizados por el Node básico en la forma de un módulo cluster [ref: http://nodejs.org/api/cluster.html](http://nodejs.org/api/cluster.html). También podés ejecutar varias instancias del servidor Node.js bastante fácil detrás de un proxy inverso a través de nginx.
 
 - Con la agrupación, debes descargar todo el cómputo pesado para procesar un fondo escrito dentro de un entorno más apropiado, y que ellos se comuniquen a través de Message Queue Server como RabbitMQ.
 
-Aunque tu procesamiento en segundo plano puede ejecutarse en el mismo servidor inicialmente, este enfoque tiene el potencial de una muy alta escalabilidad. Los servicios de procesamiento de fondo podrían ser fácilmente distribuidos al trabajador independientemente de de servidores sin la necesidad de configurar las cargas de los distintos servidores web.
+- Aunque tu procesamiento en segundo plano puede ejecutarse en el mismo servidor inicialmente, este enfoque tiene el potencial de una muy alta escalabilidad. Los servicios de procesamiento de fondo podrían ser fácilmente distribuidos al trabajador independientemente de de servidores sin la necesidad de configurar las cargas de los distintos servidores web.
 
-Por supuesto utilizarías el mismo enfoque en otras plataformas también, pero con Node.js podés conseguir un alto reqs/s del que hemos hablado, ya que cada petición es una tarea pequeña y un manejo muy rápido y eficientemente.
+- Por supuesto utilizarías el mismo enfoque en otras plataformas también, pero con Node.js podés conseguir un alto reqs/s del que hemos hablado, ya que cada petición es una tarea pequeña y un manejo muy rápido y eficientemente.
 
 ---
 
@@ -794,7 +828,9 @@ Hemos hablado de Node.js desde una teoría práctica, comenzando con sus objetiv
 ### ¿Por qué usar Node.js? 
 
 
-Si el caso de uso no contiene operaciones intensivas del CPU ni el acceso a los recursos de bloqueo, podés aprovechar los beneficios de Node.js y disfrutar de aplicaciones de red rápidas y escalables. Bienvenido a la web en tiempo real.
+Si el caso de uso no contiene operaciones intensivas del CPU ni el acceso a los recursos de bloqueo, podés aprovechar los beneficios de Node.js y disfrutar de aplicaciones de red rápidas y escalables. 
+
+Bienvenido a la web en tiempo real.
  
 
 
@@ -802,25 +838,25 @@ Si el caso de uso no contiene operaciones intensivas del CPU ni el acceso a los 
 ## :star: 4. ¿Por qué usar NodeJS?
  
 
-Inicialmente uno de los puntos que se deben tener en claro es que Node.JS por definición es un entorno de ejecución para JavaScript. Así mismo, sus características son aquellas que hacen que sea tan interesante a la hora de utilizarlo ya bien sea para un desarrollo batch, un servicio web, una API Rest o cualquier herramienta a nivel de batch.
+Inicialmente uno de los puntos que se deben tener en claro es que Node.JS por definición **es un entorno de ejecución para JavaScript**. Así mismo, sus características son aquellas que hacen que sea tan interesante a la hora de utilizarlo ya bien sea para un desarrollo batch, un servicio web, una API Rest o cualquier herramienta a nivel de batch.
 
 
 Anteriormente, los desarrolladores de JavaScript sólo podían utilizar este lenguaje con la obligación de utilizar un navegador web ya sea Firefox, Chrome, entre otros. Lo que ocasionaba que se tuviera una limitación a la hora de realizar cierto tipo de aplicaciones, ya que no se podían generar o programar aplicaciones que se renderizaran en el servidor.
 
 
-Con la llegada de Node.JS, se abrió un nuevo mundo y empezaron a surgir los servidores web hechos con Express o con otras librerías basadas en Node, las de API Rest, incluso se abrió un nuevo mundo a la hora de desarrollar para IOT. Por ejemplo: las placas arduino, ya que éstas se pueden desarrollar con Node en una aplicación y utilizarlas en ese tipo de placas. Con lo cual, se puede decir que Node tiene una cantidad considerable de características entre las cuales destacan las siguientes:
+Con la llegada de Node.JS, se abrió un nuevo mundo y empezaron a surgir los **servidores web hechos con Express o con otras librerías basadas en Node, las de API Rest**, incluso se abrió un nuevo mundo a la hora de desarrollar para IOT. Por ejemplo: las placas arduino, ya que éstas se pueden desarrollar con Node en una aplicación y utilizarlas en ese tipo de placas. Con lo cual, se puede decir que Node tiene una cantidad considerable de características entre las cuales destacan las siguientes:
  
 
-**Desarrollo en JavaScript**: Para desarrollar en Node se realiza a través del lenguaje de programación JavaScript, que actualmente está teniendo popularidad y mejoras permitiendo el desarrollo tanto para frontend como para backend, abriendo el camino a los profesionales fullstack.
+**Desarrollo en JavaScript**: Para desarrollar en Node se realiza a través del **lenguaje de programación JavaScript**, que actualmente está teniendo popularidad y mejoras permitiendo el desarrollo tanto para frontend como para backend, abriendo el camino a los profesionales full stack.
 
 
-**Basado en el motor V8 de Chrome**: Es uno de los motores más avanzados a nivel de JavaScript ya que se mantiene actualizado con las nuevas funcionalidades del estándar ECMAScript 6, 7 y 8. También existe una versión de Node.JS que utiliza el motor de JavaScript Chakra propio de Microsoft, aunque en su mayoría las versiones y los proyectos de Node se encuentran basadas en V8.
+**Basado en el motor V8 de Chrome**: Es uno de los motores más avanzados a nivel de JavaScript ya que *se mantiene actualizado con las nuevas funcionalidades del estándar ECMAScript 6, 7 y 8*. También existe una versión de Node.JS que utiliza el motor de JavaScript Chakra propio de Microsoft, aunque en su mayoría las versiones y los proyectos de Node se encuentran basadas en V8.
 
 
-**Operaciones de E/S sin bloqueos**: Node está pensado para que las operaciones de entrada y salida sean sin bloqueos, por ejemplo: un servidor web realiza una petición única y espera una respuesta.
+**Operaciones de E/S sin bloqueos**: Node está pensado *para que las operaciones de entrada y salida sean sin bloqueos*, por ejemplo: un servidor web realiza una petición única y espera una respuesta.
 
 
-**Orientado a eventos (POE)**: Para comprender esta característica, pensemos en un bus de datos cuando un trozo de código realiza una operación, pública un evento ese evento en otra instancia (en otro momento del tiempo) lo recibe otro trozo de código y hace otra acción con él; en este punto de hecho, se habla mucho del término asincronía del tema de ajax. Por ejemplo, a la hora de hacer peticiones a un servicio web externo una API Rest la sincronía es una consecuencia de la orientación a eventos, Node.JS funciona perfectamente con temas de asincronía y es una muy buena opción si queremos hablar de códigos asíncronos que queramos hacer para nuestra aplicación. 
+**Orientado a eventos (POE)**: Para comprender esta característica, pensemos en un bus de datos cuando un trozo de código realiza una operación, pública un evento ese evento en otra instancia (en otro momento del tiempo) lo recibe otro trozo de código y hace otra acción con él; en este punto de hecho, se habla mucho del término **asincronía** del tema de **ajax**. Por ejemplo, a la hora de hacer peticiones a un servicio web externo una API Rest la sincronía es una consecuencia de la orientación a eventos, Node.JS funciona perfectamente con temas de asincronía y es una muy buena opción si queremos hablar de códigos asíncronos que queramos hacer para nuestra aplicación. 
  
 
 **Liviano y Eficiente**: En resumen por todo lo anteriormente mencionado (entradas y salidas sin bloqueo, desarrollado bajo JavaScript, basado en V8, orientado a eventos y el tema de la asincronía) hace que Node.JS sea liviano (pese muy poco) y a su vez sea muy eficiente en los casos de gestión de eventos, orientación a eventos y los casos de entrada y salida.
@@ -893,7 +929,9 @@ brew update
 
 #### Probando los primeros comandos NodeJS
 
-En NodeJS la consola de Node podés escribir instrucciones Javascript. Si lo deseas, podés mandar mensajes a la consola con ```console.log()``` por lo que ésta podría ser una bonita instrucción para comenzar con node:
+En NodeJS la consola de Node podés escribir instrucciones Javascript. 
+
+Si lo deseas, podés mandar mensajes a la consola con ```console.log()``` por lo que ésta podría ser una bonita instrucción para comenzar con node:
  
 ``` 
 $ node
@@ -939,7 +977,7 @@ Ahora, ejecutalo en tu servidor web usando node app.js. Visitá [http://localhos
 #### Bloqueo
 
 
-El bloqueo es cuando la ejecución de JavaScript adicional en el proceso de Node.js debe esperar hasta que se complete una operación que no es de JavaScript. Esto sucede porque el bucle de eventos no puede seguir ejecutando JavaScript mientras se produce una operación de bloqueo.
+El bloqueo es cuando la ejecución de JavaScript adicional en el proceso de Node.js debe esperar hasta que se complete una operación que no es de JavaScript. Esto sucede porque **el bucle de eventos no puede seguir ejecutando JavaScript mientras se produce una operación de bloqueo**.
 
 
 En Node.js, JavaScript que presenta un rendimiento deficiente debido a que consume mucha CPU en lugar de esperar una operación que no es JavaScript, como E / S, no se suele denominar bloqueo. Los métodos síncronos en la biblioteca estándar de Node.js que usan libuv son las operaciones de bloqueo más comúnmente utilizadas. Los módulos nativos también pueden tener métodos de bloqueo.
@@ -954,6 +992,7 @@ Todos los métodos de E / S en la biblioteca estándar de Node.js proporcionan v
 
 
 Los métodos de bloqueo se ejecutan de forma sincrónica y los métodos sin bloqueo se ejecutan de forma asincrónica.
+
 Usando el módulo Sistema de archivos como ejemplo, este es un archivo síncrono leído:
 
 
@@ -973,7 +1012,9 @@ fs.readFile('/file.md', (err, data) => {
 ```
 
 
-El primer ejemplo parece más simple que el segundo, pero tiene la desventaja de que la segunda línea bloquea la ejecución de cualquier JavaScript adicional hasta que se lea todo el archivo. Tenga en cuenta que en la versión síncrona, si se produce un error, será necesario detectarlo o el proceso se bloqueará. En la versión asincrónica, depende del autor decidir si se debe producir un error como se muestra.
+El primer ejemplo parece más simple que el segundo, pero tiene la desventaja de que la segunda línea bloquea la ejecución de cualquier JavaScript adicional hasta que se lea todo el archivo. 
+
+**Tenga en cuenta que en la versión síncrona, si se produce un error, será necesario detectarlo o el proceso se bloqueará**. **En la versión asincrónica, depende del autor decidir si se debe producir un error como se muestra**.
 
 
 Ampliemos un poco nuestro ejemplo:
@@ -999,7 +1040,9 @@ moreWork(); // will run before console.log
 ```
 
 
-En el primer ejemplo anterior, console.log se llamará antes que  moreWork(). En el segundo ejemplo fs.readFile() es sin bloqueo, por lo que la ejecución de JavaScript puede continuar y moreWork() se llamará primero. La capacidad de ejecutarse moreWork() sin esperar a que se complete la lectura del archivo es una opción de diseño clave que permite un mayor rendimiento.
+En el primer ejemplo anterior, console.log se llamará antes que  moreWork().
+
+En el segundo ejemplo fs.readFile() es sin bloqueo, por lo que la ejecución de JavaScript puede continuar y moreWork() se llamará primero. La capacidad de ejecutarse moreWork() sin esperar a que se complete la lectura del archivo es una opción de diseño clave que permite un mayor rendimiento.
 
 
 ---
@@ -1007,7 +1050,7 @@ En el primer ejemplo anterior, console.log se llamará antes que  moreWork(). En
 #### Simultaneidad y rendimiento
 
 
-La ejecución de JavaScript en Node.js es de un solo subproceso, por lo que la concurrencia se refiere a la capacidad del bucle de eventos para ejecutar funciones de devolución de llamada de JavaScript después de completar otro trabajo. Cualquier código que se espere que se ejecute de manera concurrente debe permitir que el bucle de eventos continúe ejecutándose mientras se están produciendo operaciones que no son de JavaScript, como E / S.
+La **ejecución de JavaScript en Node.js es de un solo subproceso**, por lo que la **concurrencia** se refiere a la **capacidad del bucle de eventos para ejecutar funciones de devolución de llamada de JavaScript después de completar otro trabajo**. Cualquier código que se espere que se ejecute de manera concurrente **debe permitir que el bucle de eventos continúe ejecutándose mientras se están produciendo operaciones que no son de JavaScript, como E / S**.
 
 
 Como ejemplo, consideremos un caso en el que cada solicitud a un servidor web tarda 50 ms en completarse y 45 ms de esos 50 ms son E / S de base de datos que se pueden realizar de forma asincrónica. La elección  de operaciones asincrónicas sin bloqueo libera esos 45 ms por solicitud para manejar otras solicitudes. Esta es una diferencia significativa en la capacidad con solo elegir usar métodos sin bloqueo en lugar de métodos de bloqueo .
@@ -1060,7 +1103,11 @@ Lo anterior coloca una llamada sin bloqueo ```fs.unlink()``` dentro de la devolu
 ### Comentarios en Node.Js
 
 
-No tenemos que olvidarnos que Node es JavaScript, por ende, permite insertar comentarios en el código, al igual que la mayoría de los lenguajes de programación y puntualmente que JS. En concreto hay dos tipos de comentarios permitidos, los comentarios en línea que comienzan con una doble barra: //, y los comentarios multilínea, que comienzan con /* y terminan con */.
+No tenemos que olvidarnos que Node es JavaScript, por ende, permite insertar comentarios en el código, al igual que la mayoría de los lenguajes de programación y puntualmente que JS. En concreto hay dos tipos de comentarios permitidos:
+
+- los **comentarios en línea** que comienzan con una doble barra: **//**
+
+- los **comentarios multilínea**, que **comienzan con /* y terminan con */**.
 
 
 ---
@@ -1068,10 +1115,15 @@ No tenemos que olvidarnos que Node es JavaScript, por ende, permite insertar com
 ### Importando y creando módulos
 
 
-Un modulo es una librería o archivo JavaScript que puede ser importado dentro de otro código utilizando la función``` require()``` de Node.  Por sí mismo, Express es un modulo,  como lo son el middleware y las librerías de bases de datos que se utilizan en las aplicaciones Express.
+Un modulo es una librería o archivo JavaScript que puede ser importado dentro de otro código utilizando la función``` require()``` de Node.  
+
+Por sí mismo, Express es un modulo,  como lo son el middleware y las librerías de bases de datos que se utilizan en las aplicaciones Express.
 
 
-El código mostrado abajo, muestra como puede importarse un modulo con base a su nombre, como ejemplo se utiliza el  framework Express . Primero se invoca la función ```require()```, indicando como parámetro el nombre del módulo o librería como una cadena ('express',  posteriormente se invoca el objeto obtenido para crear una aplicación Express.
+El código mostrado abajo, muestra como puede importarse un modulo con base a su nombre, como ejemplo se utiliza el  framework Express. 
+
+Primero se invoca la función ```require()```, indicando como parámetro el nombre del módulo o librería como una cadena ('express'),  posteriormente se invoca el objeto obtenido para crear una aplicación Express.
+
 Posteriormente, se puede acceder a las propiedades y funciones del objeto Aplicación.
 
 
