@@ -41,6 +41,90 @@ servidor.listen(4000);
 ---
 ---
 
+## :star: Modulo Express
+
+
+### 1 - Inicializamos con nmp init el package.json
+- Al instalar **Node.js** ya tengo el **npm** (Node Package Manager, el manejador de múdulos de Node).
+
+- Si necesito **inicializar un proyecto**:
+
+```> nmp init ```
+
+Y me comienza a preguntar los datos de mi proyecto:
+
+-nombre del proyecto: **crud-node**, no debe tener espacios en blanco, ni caracteres especiales.
+
+-version: **1.0.1** ó 0.0.1
+
+-descripción: **crud en Node.js**
+
+-entry point: **index.js**, es el archivo principal del proyecto, el que primero se ejecutará. Otros nombres pueden ser: **main.js** ó **app.js**.
+
+-test command: aca se automatiza el test, si el proyecto es emdiano o grande, con un comando que defino aca corro todo el proyecto y lo pruebo automaticamente. Asi ante los cambios que realice corro los test y me aseguro que todo funcione bien.
+
+-git repository: si va a un repositorio en git se completa aca
+
+-keywords: son las palabras claves dle proyecto, en este caso podría ser: **nodejs**, **crud**
+
+-autor: del proyecto, en este caso mi nombre: **Maria Eugenia Costa**
+
+-licencia: hay distintos tipos, vamos a utilizar: **(ISC) MIT**.
+
+-Pregunta si esta ok? (yes)
+
+->> Se crea el **package.json** donde se van a ir guardando las dependencias que utilizaremos en el proyecto.
+
+
+
+
+- Otro modo de inciializarlo, sin necesidad de ingresar los datos del proyecto, es con: ```> nmp init -y```, va a  ser uno generico, se puede modificar. El nombre dle proyecto debe estar siempre todo en minuscula.
+
+
+### 2 - Modulo Express
+
+```> npm install express``` utiliza el **módulo http** y nos facilita crear el servidor, se usa para APIs y para paginas con contenido dinámico. Es más fácil que hacerlo todo con http.
+
+Se instala el módulo, sus dependencia y se agrega en el package.json como **dependencies**.
+
+Puede demorar un poco, ya que trae varios módulos, genera la carpeta **node_modules**, son muchas carpetas, cada una es un modulo, todo es para que funcione express. Este node_modules va a estar en **.gitignore** y no se nos va a subir a github, al compartir el proyecto con el ```>npm install``` se van a instalar todas las dependencias. 
+
+### 3 - Empezamos a utilizar Express para crear el servidor
+
+- Creo mi archivo principal **app.js** (o sino **index.js** o **main.js**).
+
+-Recordar nombrar las constantes como los pquetes que se requieren.
+
+-En este caso el paquete express lo va a traer de **node_modules**
+
+-Creo una instancia del servidor con: **const express= express();**
+
+-declaro el numero para el puerto que va a escuchar
+
+-con 
+**app.get('/', (req, res) => {**
+
+**res.send('Hola Express');**
+
+**});**
+
+```JavaScript
+const express = require('express');
+const express= express();
+
+
+app.get('/', (req, res) => {
+  res.send('Hola Express');
+});
+
+const port = 3000;
+
+app.listen(port, () => console.log(`http://localhost:${port}`));
+```
+
+
+---
+---
 # :book: Teoría : UNIDAD 2
 
 ---
