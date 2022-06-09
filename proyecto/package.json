@@ -4,7 +4,8 @@
   "description": "crud en node js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "star": "node app",
+    "dev": "nodemon app"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,9 @@
   "homepage": "https://github.com/eugenia1984/codo-a-codo-back-end-node#readme",
   "dependencies": {
     "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
     "nodemon": "^2.0.16"
   }
 }

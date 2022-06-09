@@ -360,7 +360,7 @@ router.get('/productos/:codigo', (req, res) => {
   res.send(`Producto: ${req.params.codigo}`);
 });
 
-module.export = router;
+module.exports = router;
 ```
 
 Y para poder usarla en **app.js**: `

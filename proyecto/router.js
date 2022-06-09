@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send(`<h1>Hola Express</h1>`);
+  res.render('index');
 });
 
 router.get('/productos', (req, res) => {
@@ -10,8 +10,7 @@ router.get('/productos', (req, res) => {
 });
 
 router.get('/productos/:codigo', (req, res) => {
-  //res.send('Producto:' + req.params.codigo);
-  res.send(`Producto: ${req.params.codigo}`);
+  res.render('productos/show', { codigo: req.params.codigo });
 });
 
-module.export = router;
+module.exports = router;
