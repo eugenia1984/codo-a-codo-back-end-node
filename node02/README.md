@@ -308,6 +308,69 @@ app.get('/productos/1', (req, res) => {
 
 Si por ejemplo levantaría el numero dle producto, y al tener el id, podria mostrar una foto, descripcion, precio, etc.
 
+->> La idea no es hacer una ruta por cada producto, menos en un e-commerce con muchos productos, en este caso el **id** va a ser un numero dinamico que va a ir a la base de datos para traer los datos del producto, para ello usamos los **parametros**:
+
+```JavaScript
+app.get('/productos/:codigo', (req, res) => {
+  res.send('Producto:' + req.params.codigo);
+}):
+```
+
+Tambien se pueden usar template literals:
+
+```JavaScript
+app.get('/productos/:codigo', (req, res) => {
+  res.send(`Producto: ${req.params.codigo}`);
+}):
+```
+
+---
+
+## :star: Router
+
+Vamos a crear un modulo para las rutas, para lo que creo un archivo **router.js** y me voy a llevar las tres rutas que tengo en **app.js**
+
+```JavaScript
+const express = require('express')
+const router = express.Router()
+
+router.get('/', (req, res) => {
+  res.send('Hola Express')
+})
+//
+module.exports = router 
+```
+
+Y las dejo en **router.js**:
+
+```JavaScript
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  res.send(`<h1>Hola Express</h1>`);
+});
+
+router.get('/productos/1', (req, res) => {
+  res.send('Listado de productos');
+});
+
+router.get('/productos/:codigo', (req, res) => {
+  //res.send('Producto:' + req.params.codigo);
+  res.send(`Producto: ${req.params.codigo}`);
+});
+
+module.export = router;
+```
+
+Y para poder usarla en **app.js**: `
+```JavaScript
+app.use(require('./router'));
+```
+
+-->> Asi es como hay que ir trabajando, todo en **modulos** se que van exportando para poder utilizar en otro archivo.
+
+
 ---
 ---
 # :book: Teoría : UNIDAD 2
