@@ -127,13 +127,13 @@ app.listen(port, () => console.log(`http://localhost:${port}`));
 
 Como estoy todo el tiempo haciendo cambios en el proyecto, debería estar todo el tiempo parandolo con **Ctrl + C** y volviendolo a ejecutar; para tener esto automático tengo el **paquete nodemon**.
 
-Con el comando: ```> nmp install -g nodemon``` lo instalo, con **g** queda globalmente, no solo para este proyecto, no va al package json porque esta global. 
+Con el comando: ```> npm install -g nodemon``` lo instalo, con **g** queda globalmente, no solo para este proyecto, no va al package json porque esta global. 
 
-Si solo lo quiero para el proyecto:  ```> nmp install nodemon``` 
+Si solo lo quiero para el proyecto:  ```> npm install nodemon``` 
 
 Y ahora para correrlo:
 
-``` > nodemon cmd app``` 
+``` > nodemon.cmd app``` 
 
 ``` > nodemon app``` 
 
@@ -156,6 +156,64 @@ Y ahora para correrlo:
 
 3ro: si está todo bien en el **package.json** lo voy a ver en **dependencies**
 
+
+---
+
+## :star: .env
+
+Creo un archivo **.env** para crear las variables de entorno, como:
+
+... el puerto en que se ejecutara
+
+... datos de las credenciales de la base de datos
+
+... credenciales de alguna API que se consulta
+
+En **app.js**, para poder levantar toda la informacion que tengo de las variables de netorno:
+
+```JavaSCript
+require('dotenv').config();
+```
+
+Y en **.env** declaro las *variables de entorno* coo constantes, va un valor por linea:
+
+```PORT=5000```
+
+Y en el **app.js** cambio ```const port = 3000;``` para utilizar la variable:
+
+```JavaScript
+const port = process.env.PORT || 3000;
+```
+
+->> busca la **variable de entorno** llamada **PORT** o si no la encontras configura el **3000** como puerto (le doy por default el 3000 en caso de que no encuentre la variable de entorno).
+
+->> al estar ejecutando nodemon voy a ver que ya me cambia el puerto del 3000 que tenia al 5000:
+
+```
+[nodemon] restarting due to changes...
+[nodemon] starting `node app.js`
+http://localhost:5000
+```
+
+- esto de las **variables de entorno** es muy importante, porque por ejemplo al utilizar **Heroku** me van a decir en què puertos puedo levantar mi servidor.
+
+- si por ejemplo trabajamos con una **API** externa vamos a tener: **SECRET**, **API_KEY**
+
+- si trabajamos con una base de datos, tenem
+
+os: **DB_NAME** y **DB_USER**
+
+-->> generalmente este archivo **.env** como tiene datos sensibles (claves) no se suele subir la repositorio, o se sube una vacio, con el nombre: **.env-example**:
+
+```
+PORT=
+SECRET=
+API_KEY=
+DB_NAME=
+DB_USER=
+```
+
+Luego cuando uno lo configura y lo baja ahi si carga los datos que se tenga en el entorno.
 
 ---
 ---

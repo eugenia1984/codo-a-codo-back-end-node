@@ -52,6 +52,10 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 ... el [hola_mundo.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node02/hola_mundo.js) con un servidor en Nodejs. que renderiza etiquetas html.
 
+
+- [En la carpeta **proyecto**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/proyecto) el **CRUD** realizado como proyecto.
+
+
 ---
 ## :star: Temario:
 
