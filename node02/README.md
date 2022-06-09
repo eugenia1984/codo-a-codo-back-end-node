@@ -49,7 +49,7 @@ servidor.listen(4000);
 
 - Si necesito **inicializar un proyecto**:
 
-```> nmp init ```
+```> npm init ```
 
 Y me comienza a preguntar los datos de mi proyecto:
 
@@ -101,7 +101,7 @@ Puede demorar un poco, ya que trae varios módulos, genera la carpeta **node_mod
 
 -declaro el numero para el puerto que va a escuchar
 
--con 
+-manejo la ruta '/' o el index.html con el metodo .get(). **req** son las peticiones del usuario (REQUEST) y **res** es la respuesta (RESPONSE):
 **app.get('/', (req, res) => {**
 
 **res.send('Hola Express');**
@@ -110,7 +110,7 @@ Puede demorar un poco, ya que trae varios módulos, genera la carpeta **node_mod
 
 ```JavaScript
 const express = require('express');
-const express= express();
+const app = express();
 
 
 app.get('/', (req, res) => {
@@ -121,6 +121,40 @@ const port = 3000;
 
 app.listen(port, () => console.log(`http://localhost:${port}`));
 ```
+
+---
+## :star: Paquete Nodemon
+
+Como estoy todo el tiempo haciendo cambios en el proyecto, debería estar todo el tiempo parandolo con **Ctrl + C** y volviendolo a ejecutar; para tener esto automático tengo el **paquete nodemon**.
+
+Con el comando: ```> nmp install -g nodemon``` lo instalo, con **g** queda globalmente, no solo para este proyecto, no va al package json porque esta global. 
+
+Si solo lo quiero para el proyecto:  ```> nmp install nodemon``` 
+
+Y ahora para correrlo:
+
+``` > nodemon cmd app``` 
+
+``` > nodemon app``` 
+
+
+---
+
+## :star: Paquete dotenv
+
+- **Dotenv** ayuda a leer o generar **variables de entorno**, las variables que va a tener configurado el servidor, como por ejemplo para...
+
+... los datos de la base de datos
+
+... el puerto a utilizar
+
+- ¿ Cómo la instalo ?
+
+1ro: para el servidor con **Ctrl + C**
+
+2do: ```> npm install dotenv``` ó ```> npm i dotenv```, **i** es la abbreviación de **install**.
+
+3ro: si está todo bien en el **package.json** lo voy a ver en **dependencies**
 
 
 ---

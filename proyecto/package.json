@@ -1,0 +1,26 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "crud en node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugenia1984/codo-a-codo-back-end-node.git"
+  },
+  "keywords": [
+    "crud",
+    "nodejs"
+  ],
+  "author": "Maria Eugenia Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eugenia1984/codo-a-codo-back-end-node/issues"
+  },
+  "homepage": "https://github.com/eugenia1984/codo-a-codo-back-end-node#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
