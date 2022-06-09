@@ -215,6 +215,51 @@ DB_USER=
 
 Luego cuando uno lo configura y lo baja ahi si carga los datos que se tenga en el entorno.
 
+
+---
+
+## :star: .gitignore
+
+Recordar para que al repositorio no se suban toods los node_modules debo tener el archivo **.gitignore** y dentro aclarar **node_modules** asi no se sube.
+
+---
+
+## :star: Error 404 - middle ware
+
+- Si por error tipeo una URL que no tengo, por ejemplo: **http://localhost:50007contacto** voy a ver : ***Cannot GET /contacto***, con los **middle ware** puedo ir filtrando, por ejemplo hacer uno que levante todas las rutas que no existen en el sistema para mostrarle una ruta o una vista prticular, con mensaje para redireccionarlo la inicio y no se quede ahi.
+
+->  **app.use()** recibe un **callback** que tiene como parametros: 
+
+**req** -> las peticiones
+
+**res** -> las respuestas
+
+**next** -> si la primer capa va bien, pasa a la otra capa, sino no va a next, sino redirecciono.
+
+->> En este caso vamos a personalizar el mensaje  cuando tenemos el error 404.
+
+```JavaScript
+app.use((req,res,next) => {
+  res.status(404).send('Not found')
+})
+```
+
+->> Despues podemos cambiar este mensaje de Not Found por una vista.
+
+
+La app primero va a ir a buscar la ruta '/' y si no la encuentra va a app.use():
+
+```JavaScript
+app.get('/', (req, res) => {
+  res.send(`<h1>Hola Express</h1>`);
+});
+
+app.use((req, res, next) => {
+  res.status(404).send('Not Found')
+});
+```
+
+Si voy a inseccionar en el navegador > **Network** y recargo veo el **error 404**
 ---
 ---
 # :book: Teoría : UNIDAD 2
