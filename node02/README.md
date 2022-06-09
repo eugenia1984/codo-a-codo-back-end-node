@@ -260,6 +260,54 @@ app.use((req, res, next) => {
 ```
 
 Si voy a inseccionar en el navegador > **Network** y recargo veo el **error 404**
+
+---
+
+## :star: Middleware STATIC de Express
+
+- Sirve para leer archivos estáticos, html, css, con JavaScript.
+
+- Debe ir primero, asi primero levanta los archivos estaticos.
+
+```JavaScript
+app.use(express.static(__dirname + '/public'));
+```
+
+Y entonces en mi proyecto creo la carpeta **public** y dentro voy a tener mis archivos html planos, por ejemplo **contacto.html**, le agrego un ``` <h1>Contacto</h1>``` y en el **http://localhost:5000/contacto.html** voy a ver el contacto.html
+
+---
+
+## :star: Params
+
+```JavaScript
+app.get('/productos/:id', (req, res) => {
+  res.send('Producto:' + req.params.id)
+})
+```
+
+En vez de trabajar con archivos estacos de html, css y js, puedo hacer cosas dinámicamente, por ejemplo:
+
+```JavaSCript
+app.get('/productos', (req, res) => {
+  res.send('Listado de productos');
+});
+```
+
+-> Entonces en **http://localhost:5000/productos** voy a ver: **Listado de productos**
+
+Si tuviera un e-commerce podría listar los productos, con el nombre, descripcion, precio, etc, en la url además del **producto** le paso como parámetro el **id** que va a ser único.
+
+
+->> Si por ejemplo mandaria como parametro el id, entonces con **http://localhost:5000/productos/1**:
+
+```JavaScript
+app.get('/productos/1', (req, res) => {
+  res.send('Producto nro. 1');
+});
+```
+
+Si por ejemplo levantaría el numero dle producto, y al tener el id, podria mostrar una foto, descripcion, precio, etc.
+
 ---
 ---
 # :book: Teoría : UNIDAD 2
