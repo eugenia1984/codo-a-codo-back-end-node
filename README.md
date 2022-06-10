@@ -54,8 +54,9 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 ... la teoria sobre: inicializar con nmp init el package.json /  modulo express y creacion del servidor /  paquete nodemon /  paquete dotenv /  archivo .env y variables de entorno /  archivo .gitignore /  middlewares, static de express /  params en las URL /  router
 
-- [En la carpeta **node03**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node03) podras ver la teoria sobre :  scripts /  ejs / views y partials / layouts
+- [En la carpeta **node03**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node03/README.md) podras ver la teoria sobre :  scripts /  ejs / views y partials / layouts
 
+- [En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node04/README.md) 
 
 - [En la carpeta **proyecto**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/proyecto) el **CRUD** realizado como proyecto.
 

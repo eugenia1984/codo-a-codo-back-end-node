@@ -1,18 +1,18 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const express = require("express");
+const express = require('express');
 const app = express();
-const expressLayout = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 
 app.set('view engine', 'ejs');
-app.use(expressLayout);
+app.use(expressLayouts);
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/public'));
 
-app.use(require("./router"));
+app.use(require('./router'));
 
 app.use((req, res, next) => {
-  res.status(404).send("Not found");
+    res.status(404).send('Not found');
 });
 
 const port = process.env.PORT || 3000;
