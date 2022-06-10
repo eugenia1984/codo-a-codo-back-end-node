@@ -164,6 +164,111 @@ Y en **index.ejs**:
 Y se le va a sumar toda la renderizacion del layout.
 
 
+---
+
+### Renderizar una vista
+
+En **router.ejs**:
+
+```JavaSCript
+
+router.get('/productos', (req, res) => {
+  res.render('productos/index');
+});
+```
+
+Aca voy a tener un **index** dentro de **productos**. Entonces tengo:
+
+```
+views
+   partials
+      nav.ejs
+   productos
+      show.ejs
+      index.ejs
+index.ejs
+layout.ejs
+```
+
+---
+
+### :star: Modulo * productos
+
+-->> Lo que quiero es que en '/productos' pueda tener un listado de productos, entonces voy a crear un nuevo modulo **productos.js**, voy a tener la constante **productos** que va a ser un **array** y cada item es un objeto con el **id** del producto y el **nombre**, le odriamos agregar más datos como la descripción, el precio o una imagen.
+
+```JavaScript
+const productos = [
+  {id: 1, name: 'Producto Nro. 1'},
+  {id: 2, name: 'Producto Nro. 2'},
+  {id: 3, name: 'Producto Nro. 3'},
+];
+```
+
+Y tengo la funcion que me va a retornar todo el array:
+
+```JavaScript
+const all = () => {
+  return productos;
+}
+```
+
+Y tambien la función find para buscar el producto por id con el metodo .find() y me va a comparar que el numero dle producto sea igual al numero recibido por parametro:
+
+```JavaScript
+const find = (id) => {
+  return productos.find(producto.id == id);
+}
+```
+
+Ambas funciones son propias del módulo, si las quiero utilizar por fuera, debo exponerlas con :
+
+```JavaScript
+module.expots = {
+  all: all,
+  find: find
+}
+```
+
+El primer all es como se llamara fuera del modulo y el segundo all es el nombre dentro del modulo (el nombre de mi funcion).
+
+
+Como se van a llaamr igual tanto dentro como fuera del modulo, las nombro solo una vez.
+
+```JavaScript
+module.exports = {
+  all,
+  find
+}
+```
+
+-->> Para poder usar el modulo en **router.js**:
+
+```JavaScript
+const productos = require('./productos');
+
+router.get('/productos', (req, res) => {
+  res.render('productos/index', {productos: productos.all()});
+});
+```
+
+Y en la vista utilizo el modulo productos, retorno todo el array y lo asigno a productos.
+
+Volviendo a views> productos > index.ejs
+
+-->> Y en */*show.ejs** poder mostrar todos los datos del producto, debo modificar en **router.js**:
+
+```JavaScript
+router.get('/productos/:codigo', (req, res) => {
+  res.render('productos/show', { producto: productos.find(req.params.codigo) });
+});
+```
+
+**.find()** siempre trae un elemento, en este caso el producto
+
 
 ---
 ---
+
+## Git Hub
+
+->> Para subir con **tag** 
