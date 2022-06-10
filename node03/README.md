@@ -137,7 +137,33 @@ app.use(expressLayout);
 ```
 -->> Voy a tene error, me falta dentro de **views** tener el **layout**
 
-Y para hacer más rápido me copio todo lo que tenia en el index y lo paso al layout
+Y para hacer más rápido me copio todo lo que tenia en el index y lo paso al layout.
+
+Y en el **layout.ejs** en el ```<body>``` tengo :
+
+```HTML
+  <main>
+    <%- body %>>
+  </main>
+``` 
+
+Para que el contenido del body sea dinamico. ->> esto está dentro de la librería de express-ejs-layouts
+
+Y en la **vista** (**show.ejs**) solo pongo:
+``` 
+  <h2>Producto: <%= codigo %></h2>
+``` 
+
+Ya que el resto se va a renderizar del layout.
+
+Y en **index.ejs**:
+
+```
+<h2>Hola EJS</h2>
+```
+Y se le va a sumar toda la renderizacion del layout.
+
+
 
 ---
 ---
