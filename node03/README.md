@@ -271,4 +271,36 @@ router.get('/productos/:codigo', (req, res) => {
 
 ## Git Hub
 
-->> Para subir con **tag** 
+->> Paso al stage agrgando las modificaciones:
+```
+> git add .
+```
+
+->> Commiteo:
+```
+> git commit -m "clase 03 - vista"
+```
+
+->> Para subirlo al repositorio:
+```
+> git push
+```
+
+
+->> Veo si tengo algun tag:
+```
+> git tag
+```
+
+->> Creo el tag:
+```
+> git tag clase-03
+```
+
+->> Para subir el tag:
+```
+> git push --tags 
+```
+
+---
+---
