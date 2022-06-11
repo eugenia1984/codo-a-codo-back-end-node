@@ -1,4 +1,7 @@
-# :star: Mi primer Script en Node.js
+# book: Node.js - Clase 01
+
+---
+## :star: Mi primer Script en Node.js
 
 - En el archivo [**primer-script.js**](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-script.js) tengo un console: ```console.log("Hola Node.js");```.
 
@@ -314,6 +317,7 @@ Y asi voy a mostrar los nombres de los usuarios.
 
 ---
 
+# :book: TEORIA
 ## UNIDAD 1 - 1. Contenidos de la unidad
 
 - Node.JS
