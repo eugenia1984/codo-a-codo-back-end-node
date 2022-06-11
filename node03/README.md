@@ -563,7 +563,7 @@ Uso común del módulo Sistema de archivos:
 
 - Cambiar el nombre de los archivos
 
-### :star: Leer archivos
+### :star: Leer archivos: fs.readFile()
 
 El método **fs.readFile()** se utiliza para leer archivos.
 
@@ -615,6 +615,8 @@ El módulo del sistema de archivos tiene métodos para crear nuevos archivos:
 
 - fs.writeFile()
 
+## :star: fs.appendFile()
+
 El método **fs.appendFile()** agrega contenido especificado a un archivo. Si el archivo no existe, se creará el archivo.
 
 ### Ejemplo
@@ -646,7 +648,7 @@ fs.open('archivo.txt', 'w', function (err, file) {
 });
 ```
 
-## :star: fs.writeFile(
+## :star: fs.writeFile()
 
 El método **fs.writeFile()** reemplaza el archivo y el contenido de éste si existe. Si el archivo no existe, se creará un nuevo archivo con el contenido especificado:
 
