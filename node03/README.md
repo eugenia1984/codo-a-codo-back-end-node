@@ -311,7 +311,7 @@ router.get('/productos/:codigo', (req, res) => {
 
 ---
 ---
-ç
+
 # :book: TEORIA
 
 ---
@@ -563,7 +563,7 @@ Uso común del módulo Sistema de archivos:
 
 - Cambiar el nombre de los archivos
 
-### Leer archivos
+### :star: Leer archivos
 
 El método **fs.readFile()** se utiliza para leer archivos.
 
@@ -605,7 +605,7 @@ Guardá el código anterior en un archivo llamado "demo_readfile.js" e iniciá e
 Si has seguido los mismos pasos en tu computadora, verás el mismo resultado que en el ejemplo ingresando en tu navegador: [http://localhost:8080](http://localhost:8080)
 
 
-###  Crear archivos
+###  :star: Crear archivos
 
 El módulo del sistema de archivos tiene métodos para crear nuevos archivos:
 
@@ -630,6 +630,8 @@ fs.appendFile('nuevoarchivo.txt', 'Hola Node!', function (err) {
 });
 ```
 
+## :star: fs.open()
+
 El método **fs.open()** toma una *parámetro* como segundo argumento, si el parámetro es "w" , el archivo especificado se abre para escribir. Si el archivo no existe, se crea un archivo vacío:
 
 ### Ejemplo
@@ -643,6 +645,8 @@ fs.open('archivo.txt', 'w', function (err, file) {
   console.log('Guardado!');
 });
 ```
+
+## :star: fs.writeFile(
 
 El método **fs.writeFile()** reemplaza el archivo y el contenido de éste si existe. Si el archivo no existe, se creará un nuevo archivo con el contenido especificado:
 
@@ -676,6 +680,8 @@ El método fs.appendFile()agrega el contenido especificado al final del archivo 
 
 ### Ejemplo
 
+## :star: fs.appendFile()
+
 Incorporar "Este es el nuevo texto." al final del archivo "archivo.txt":
 
 ```JavaScript
@@ -686,6 +692,7 @@ fs.appendFile('archivo.txt', ' Este es el nuevo texto.', function (err) {
 });
 ```
 
+## :star: fs.writeFile()
 
 El método **fs.writeFile()** reemplaza el archivo y el contenido especificados:
 
@@ -703,7 +710,7 @@ fs.writeFile('archivo.txt', 'Este es el nuevo texto', function (err) {
 
 La diferencia fundamental en este método, es que el archivo no es creado nuevamente, sino que se reemplaza el dato contenido en él.
 
-## :star: Borrar archivos
+## :star: Borrar archivos: fs.unlink()
 
 Para eliminar un archivo con el módulo Sistema de archivos, usamos el método fs.unlink().
 
@@ -719,7 +726,7 @@ fs.unlink('archivo.txt', function (err) {
 });
 ```
 
-### Cambiar el nombre de los archivos
+##  :star: Cambiar el nombre de los archivos: fs.rename()
 
 Para cambiar el nombre de un archivo con el módulo Sistema de archivos, utilizá el método **fs.rename()**.
 
