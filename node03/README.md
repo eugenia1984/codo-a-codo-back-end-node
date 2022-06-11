@@ -1,3 +1,7 @@
+# :book: Clase 03 de Node.js - 07 de Junioi 2022
+
+---
+
 ## :star: Script en Package.json
 
 Para correrlo y ejecutarlo con nodemon.
@@ -13,10 +17,9 @@ Con **dev** para trabajar en local.
   },
 ```
 
-->> Hasta ahora lo venia ejecutando con ```> nodemon.cmd app```
+->> Hasta ahora lo venia ejecutando con `> nodemon.cmd app`
 
-
-->> Ahora utilizo los scripts : ```> npm run dev```
+->> Ahora utilizo los scripts : `> npm run dev`
 
 ---
 
@@ -24,10 +27,11 @@ Con **dev** para trabajar en local.
 
 **ejs** es un **motor de vistas**, parecido a handlerbar o pug (se escribe similar a Python con identacion, sin {}).
 
-- ¿ Cómo lo instalo ?: ```> npm install ejs``` ó 
-```> npm i ejs```
+- ¿ Cómo lo instalo ?: `> npm install ejs` ó
+  `> npm i ejs`
 
 - Para verificar en **package.json** en dependencias veo:
+
 ```JavaScript
 "dependencies": {
   "dotenv": "^16.0.1",
@@ -37,7 +41,7 @@ Con **dev** para trabajar en local.
 }
 ```
 
--_>> Hay que decirle a express para que use este view engine, en el **app.js**:
+-\_>> Hay que decirle a express para que use este view engine, en el **app.js**:
 
 ```JavaScript
 app.set('view engine', 'ejs' );
@@ -61,7 +65,6 @@ router.get('/', (req, res) => {
 
 -->> Me va a dar error porque va a ir a buscar en la carpeta **veiws** el archivo **index.ejs**, para no tener el error creamos la carpeta y el archivo.
 
-
 -->> Tambien tengo que cambiar las otras vistas que tenia, por ejemplo la que recibe e producto y el id del mismo, en vez de **.send()** voy a tener **.render()** y va a tener como **parametro** un objeto que consiste en el **codigo del producto (id)**:
 
 ```JavaScript
@@ -76,12 +79,11 @@ router.get('/productos/:codigo', (req, res) => {
   <h1>Producto: <%= codigo %></h1>
 ```
 
-Con el ```<%= %>``` lo renderizo
-
+Con el `<%= %>` lo renderizo
 
 ### include
 
-```<%- include('partials/header) -%>```
+`<%- include('partials/header) -%>`
 
 -->> Documentacion para ver en [https://ejs.co/](https://ejs.co/)
 
@@ -117,7 +119,7 @@ Para esto dentro de **views** me creo la carpeta **partials** y ahi dentro van a
 </nav>
 ```
 
-Y para incluirlo en **index.ejs**: ```<%- include('partials/nav') %>```
+Y para incluirlo en **index.ejs**: `<%- include('partials/nav') %>`
 
 ---
 
@@ -125,8 +127,7 @@ Y para incluirlo en **index.ejs**: ```<%- include('partials/nav') %>```
 
 Otro modo de ir maquetando, lo que hace es envolver la vista y todo lo que se repite, como el header, footer lo hago en el layout.
 
-
-Para instalarlo: ```npm install express-ejs-layouts```
+Para instalarlo: `npm install express-ejs-layouts`
 
 -->> Para configurar el modulo en **app.js**:
 
@@ -135,24 +136,26 @@ const expressLayout = require('express-ejs-layouts');
 
 app.use(expressLayout);
 ```
+
 -->> Voy a tene error, me falta dentro de **views** tener el **layout**
 
 Y para hacer más rápido me copio todo lo que tenia en el index y lo paso al layout.
 
-Y en el **layout.ejs** en el ```<body>``` tengo :
+Y en el **layout.ejs** en el `<body>` tengo :
 
 ```HTML
   <main>
     <%- body %>>
   </main>
-``` 
+```
 
 Para que el contenido del body sea dinamico. ->> esto está dentro de la librería de express-ejs-layouts
 
 Y en la **vista** (**show.ejs**) solo pongo:
-``` 
+
+```
   <h2>Producto: <%= codigo %></h2>
-``` 
+```
 
 Ya que el resto se va a renderizar del layout.
 
@@ -161,8 +164,8 @@ Y en **index.ejs**:
 ```
 <h2>Hola EJS</h2>
 ```
-Y se le va a sumar toda la renderizacion del layout.
 
+Y se le va a sumar toda la renderizacion del layout.
 
 ---
 
@@ -231,7 +234,6 @@ module.expots = {
 
 El primer all es como se llamara fuera del modulo y el segundo all es el nombre dentro del modulo (el nombre de mi funcion).
 
-
 Como se van a llaamr igual tanto dentro como fuera del modulo, las nombro solo una vez.
 
 ```JavaScript
@@ -255,7 +257,7 @@ Y en la vista utilizo el modulo productos, retorno todo el array y lo asigno a p
 
 Volviendo a views> productos > index.ejs
 
--->> Y en */*show.ejs** poder mostrar todos los datos del producto, debo modificar en **router.js**:
+-->> Y en **show.ejs** poder mostrar todos los datos del producto, debo modificar en **router.js**:
 
 ```JavaScript
 router.get('/productos/:codigo', (req, res) => {
@@ -265,42 +267,48 @@ router.get('/productos/:codigo', (req, res) => {
 
 **.find()** siempre trae un elemento, en este caso el producto
 
-
 ---
+
 ---
 
 ## Git Hub
 
 ->> Paso al stage agrgando las modificaciones:
+
 ```
 > git add .
 ```
 
 ->> Commiteo:
+
 ```
 > git commit -m "clase 03 - vista"
 ```
 
 ->> Para subirlo al repositorio:
+
 ```
 > git push
 ```
 
-
 ->> Veo si tengo algun tag:
+
 ```
 > git tag
 ```
 
 ->> Creo el tag:
+
 ```
 > git tag clase-03
 ```
 
 ->> Para subir el tag:
+
 ```
-> git push --tags 
+> git push --tags
 ```
 
 ---
+
 ---

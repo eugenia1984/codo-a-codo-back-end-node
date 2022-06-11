@@ -32,6 +32,21 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 ---
 
+##  Para instalar dependencias
+
+```
+npm install
+```
+
+---
+
+##  Para ejecutar el server con Express
+
+```
+npm run dev
+```
+
+---
 ## ¿ Qué verás ?
 
 - [En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node01) podrás ver...
@@ -56,7 +71,7 @@ Aca encontrarán la teoría y la práctica del curso en **Codo a Codo** de *Back
 
 - [En la carpeta **node03**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node03/README.md) podras ver la teoria sobre :  scripts /  ejs / views y partials / layouts
 
-- [En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node04/README.md) 
+- [En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node04/README.md) podras ver la teoria sobre: reordenamiento de rutas / formulario con sanitizacion de la información enviada con **express-validator**.
 
 - [En la carpeta **proyecto**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/proyecto) el **CRUD** realizado como proyecto.
 
