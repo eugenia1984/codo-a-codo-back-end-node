@@ -73,7 +73,7 @@ npm run dev
 
 - [En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node04/README.md) podras ver la teoria sobre: reordenamiento de rutas / formulario con sanitizacion de la información enviada con **express-validator**.
 
-- [En la carpeta **node05**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node05/README.md) podras ver la teoría sobre base de datos, con MySQL: crear base de datos, crear tablas, PK, FR, INSERT, SELECT, UPDATE, DELETE.
+- [En la carpeta **node05**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node05/README.md) podras ver la teoría sobre base de datos, con MySQL: crear base de datos, crear tablas, PK, FR, INSERT, SELECT, UPDATE, DELETE. JOIN entre tablas.
 
 - [En la carpeta **node06**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node06/README.md)
 
