@@ -94,7 +94,7 @@ PATCH -> para modificar una parte
 
 DELETE -> para borrar un registro
 
-### Modulo methods-override
+### Modulo methods-override6"
 
 - 1ro: lo instalamos con :```> npm install method-override```. Más información en [http://expressjs.com/en/resources/middleware/method-override.html](http://expressjs.com/en/resources/middleware/method-override.html)
 
