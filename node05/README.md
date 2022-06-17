@@ -176,7 +176,7 @@ router.posrt('produtcos/store', (req,res) => {
   }, (error, results) => {
     if (error) { throw error }
 
-    res.send(results);
+    res.redirect('productos'); // una vez que ingreso el producto redirijo a la lista de los productos
   });
 })
 ```

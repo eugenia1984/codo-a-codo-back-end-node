@@ -1,8 +1,17 @@
 <h2>Listado de productos</h2>
-  <ul>
-    <% productos.forEach(producto => { %>
-      <li> <a href="/productos/<%= producto.codigo %>"> Producto: <%= producto.nombre %> </a></li>
-    <% }) %>
-  </ul>
 
-  <a href="/productos/create"> Crear producto</a>
+<div class="row">
+    <% productos.forEach(producto => { %>
+      <div class="col-12 col-md-6  col-lg-4 col-xl-3 mb-3">
+        <div class="card" style="width: 18rem;">
+          <!--<img src="..." class="card-img-top" alt="...">-->
+          <div class="card-body">
+            <h5 class="card-title"> <%= producto.nombre %> </h5>
+            <p class="card-text"> <%= producto.descripcion %> </p>
+            <a href="/productos/<%= producto.codigo %>" class="btn btn-primary">Ver mas</a>
+            <a href="/productos/<%= producto.codigo %>/editar" class="btn btn-warning">Editar</a>
+          </div>
+      </div>
+    <% }) %>
+</div>
+<a href="/productos/create" class="btn btn-success"> Crear producto</a>

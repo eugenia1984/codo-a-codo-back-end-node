@@ -1,25 +1,30 @@
-<from action="/productos/store" method="post">
-  <div>
-    <label for="codigo">Codigo:</label>
-    <input type="text" id="codigo" name="codigo">
+<h1>Crear producto</h1>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <form action="/productos/store" method="post">
+      <div>
+        <label for="codigo" class="form-label">Codigo:</label>
+        <input type="text" id="codigo" name="codigo" class="form-control">
+      </div>
+      <div>
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control">
+      </div>
+      <div>
+        <label for="descripcion">Descripcion:</label>
+        <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+      </div>
+      <div>
+        <label for="categoria" class="form-label">Categoria:</label>
+       <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+       </select>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
   </div>
-  <div>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre">
-  </div>
-  <div>
-    <label for="descripcion">Descripcion:</label>
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
-  </div>
-  <div>
-    <label for="categoria">Categoria:</label>
-   <select name="" id="">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-   </select>
-  </div>
-  <div>
-    <button type="submit">Guardar</button>
-  </div>
-</from>
+</div>

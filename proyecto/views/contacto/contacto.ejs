@@ -1,27 +1,32 @@
 <h2>Formulario de contacto</h2>
-<% if (typeof errors != 'undefined') { %>
-  <ul>
-    <% errors.forEach(error => { %>
-      <li> <%= error.msg %> </li>
-    <% })  %>
-  </ul>
-<% } %>
-<section class="formulario-contacto">
-  <form action="/contacto" method="post">
-    <section class="nombre">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" value="<%= values.nombre %>">
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <% if (typeof errors != 'undefined') { %>
+      <ul>
+        <% errors.forEach(error => { %>
+          <li> <%= error.msg %> </li>
+        <% })  %>
+      </ul>
+    <% } %>
+    <section class="formulario-contacto">
+      <form action="/contacto" method="post">
+        <section class="nombre">
+          <label for="nombre" class="form-label" >Nombre:</label>
+          <input type="text" id="nombre" name="nombre" value="<%= values.nombre %>"  class="form-control" >
+        </section>
+        <section class="correo">
+          <label for="email" class="form-label">Correo:</label>
+          <input type="text" id="email" name="email" value="<%= values.email %>""  class="form-control" >
+        </section>
+        <section class="texto">
+          <label for="mensaje" class="form-label">Mensaje:</label>
+          <textarea name="mensaje" id="mensaje" cols="30" rows="10"><%= values.mensaje %></textarea>
+        </section>
+        <section class="boton-envio">
+          <button type="submit"  class="btn btn-primary">Enviar</button>
+        </section>
+      </form>
     </section>
-    <section class="correo">
-      <label for="email">Correo:</label>
-      <input type="text" id="email" name="email" value="<%= values.email %>"">
-    </section>
-    <section class="texto">
-      <label for="mensaje">Mensaje:</label>
-      <textarea name="mensaje" id="mensaje" cols="30" rows="10"><%= values.mensaje %></textarea>
-    </section>
-    <section class="boton-envio">
-      <button type="submit">Enviar</button>
-    </section>
-  </form>
-</section>
+  </div>
+</div>

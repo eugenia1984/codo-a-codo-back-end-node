@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
+const override = require('methods-override');
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -10,6 +11,7 @@ app.use(expressLayouts);
 app.use(express.static(__dirname + '/public'));
 
 app.use(express.urlencoded({extended: false}));
+app.use(methodOverride('_method'));
 
 app.use(require('./routers/index'));
 app.use(require('./routers/productos'));

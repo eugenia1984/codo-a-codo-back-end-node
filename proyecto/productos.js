@@ -18,40 +18,17 @@ const router = express.Router();
 const producto = require('../productos');
 const connection = require('../db');
 
-router.get('/productos', (req, res) => {
-  connection.query('SELECT * FROM productos',  (error, results) => {
-    if (error) { throw error }
-
-    res.render('productos/index', { productos: results });
-  })
-});
+router.get('/productos', controller.index);
 
 // para crear los poductos
-router.get('productos/create', (req, res) => {
-  res.render('productos/create');
-})
+router.get('productos/create', controller.create);
+
 // para insertar el producto en la base de datos
-router.posrt('produtcos/store', (req,res) => {
-  connection.query('INSERT INTO productos SET = ?', { 
-    codigo: req.body.codigo,
-    nombre: req.body.nombre,
-    descripcion: req.body.descripcion,
-    categoria_id: req.body.categoria
-  }, (error, results) => {
-    if (error) { throw error }
+router.posrt('produtcos/store', controller.store);
 
-    res.send(results);
-  });
-})
+router.get('/productos/:codigo', controller.show);
 
-router.get('/productos/:codigo', (req, res) => {
-  connection.query('SELECT * FROm productos WHERe codigo = ?',
-    [ req.params.codigo],
-    (error, results) => {
-      if (error) { throw error }
-      //res.send(results);
-      res.render('productos/show', { productos: results[0] })
-  });
-});
+router.get('/productos/:codigo/edit', controller.edit);
+router.put('/productos/update', controller.update);
 
 module.exports = router;
