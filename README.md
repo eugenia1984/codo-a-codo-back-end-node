@@ -73,6 +73,10 @@ npm run dev
 
 - [En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node04/README.md) podras ver la teoria sobre: reordenamiento de rutas / formulario con sanitizacion de la información enviada con **express-validator**.
 
+- [En la carpeta **node05**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node05/README.md)
+
+- [En la carpeta **node06**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node06/README.md)
+
 - [En la carpeta **proyecto**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/proyecto) el **CRUD** realizado como proyecto.
 
 
@@ -205,8 +209,13 @@ npm run dev
 
 ## Tecnologías 🛠️
 
-**HTML**, **CSS**, **JavaScript** y **Node.js**
+**HTML**, **CSS**, **Bootstrap**, **JavaScript** , **Node.js**, **MySQL**
 
+### Herramientas 🛠️:
+
+-> Para la BASE DE DATOS: Laragoon y Heidi
+
+-> Para NODE, los módulos: *express*, *nodemon*, *dotenv*, *ejs*, *express-ejs-layouts*, *express-validator*, *method-override*.
 
 ---
 
