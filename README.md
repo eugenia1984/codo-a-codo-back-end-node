@@ -54,35 +54,38 @@ npm run dev
 
 - [En la carpeta **teoria**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/teoria) esta todo la teoría brindada en Codo a Codo
 
-- [En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node01) podrás ver...
 
-... el [primer-script.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-script.js) con Node.js, que simplemente muestra por terminal un consola.
+- [En la carpeta **clases**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases) esta el paso a paso del proyecto separado por clases:
 
-... el [primer-servidor.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-servidor.js) con un manejo de url, para que si tengo '/contacto' renderise *Contacto* en el naveador y si es otra url renderizara *Hola Node.js*.
+-[En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node01) podrás ver...
 
-... el [servidor-html.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/servidor-html.js) que es un servidor que renderiza un archivo HTML y hay manejo de error en el caso de que la URL se escriba mal.
+... el [primer-script.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/clases/node01/primer-script.js) con Node.js, que simplemente muestra por terminal un consola.
 
-... el [usuarios.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/usuarios.js) que es el primer modulo creado por nosotros, donde va a tener un array de nombres de los usuarios.
+... el [primer-servidor.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/clases/node01/primer-servidor.js) con un manejo de url, para que si tengo '/contacto' renderise *Contacto* en el naveador y si es otra url renderizara *Hola Node.js*.
 
-... la teoría asociada en el archivo [README.md](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/README.md) -> Web dinámica vs Web estática | ¿Qué es NodeJS? | Por qué usar Nodejs | Instalación de Node | Comenzando con Node | Conceptos de bloqueo | Crear comentario y manejo de módulos
+... el [servidor-html.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/clases/node01/servidor-html.js) que es un servidor que renderiza un archivo HTML y hay manejo de error en el caso de que la URL se escriba mal.
 
-- [En la carpeta **node02**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node02) podras ver...
+... el [usuarios.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/mainclases//node01/usuarios.js) que es el primer modulo creado por nosotros, donde va a tener un array de nombres de los usuarios.
 
-... el [hola.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node02/hola.js) con un servidor en Nodejs.
+... la teoría asociada en el archivo [README.md](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/clases/node01/README.md) -> Web dinámica vs Web estática | ¿Qué es NodeJS? | Por qué usar Nodejs | Instalación de Node | Comenzando con Node | Conceptos de bloqueo | Crear comentario y manejo de módulos
 
-... el [hola_mundo.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node02/hola_mundo.js) con un servidor en Nodejs. que renderiza etiquetas html.
+-[En la carpeta **node02**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node02) podras ver...
+
+... el [hola.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/clases/node02/hola.js) con un servidor en Nodejs.
+
+... el [hola_mundo.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/clases/node02/hola_mundo.js) con un servidor en Nodejs. que renderiza etiquetas html.
 
 ... la teoria sobre: inicializar con nmp init el package.json /  modulo express y creacion del servidor /  paquete nodemon /  paquete dotenv /  archivo .env y variables de entorno /  archivo .gitignore /  middlewares, static de express /  params en las URL /  router
 
-- [En la carpeta **node03**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node03/README.md) podras ver la teoria sobre :  scripts /  ejs / views y partials / layouts
+-[En la carpeta **node03**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node03/README.md) podras ver la teoria sobre :  scripts /  ejs / views y partials / layouts
 
-- [En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node04/README.md) podras ver la teoria sobre: reordenamiento de rutas / formulario con sanitizacion de la información enviada con **express-validator**.
+-[En la carpeta **node04**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node04/README.md) podras ver la teoria sobre: reordenamiento de rutas / formulario con sanitizacion de la información enviada con **express-validator**.
 
-- [En la carpeta **node05**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node05/README.md) podras ver la teoría sobre base de datos, con MySQL: crear base de datos, crear tablas, PK, FR, INSERT, SELECT, UPDATE, DELETE. JOIN entre tablas.
+-[En la carpeta **node05**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node05/README.md) podras ver la teoría sobre base de datos, con MySQL: crear base de datos, crear tablas, PK, FR, INSERT, SELECT, UPDATE, DELETE. JOIN entre tablas.
 
-- [En la carpeta **node06**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node06/README.md)
+-[En la carpeta **node06**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node06/README.md)
 
-
+- [En la carpeta **scripts_sql**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/scripts_sql) podes ver el script sql para crear la misma base de datos y tablas utilizadas en el proyecto.
 
 
 ---
