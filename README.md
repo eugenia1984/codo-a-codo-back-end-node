@@ -49,6 +49,11 @@ npm run dev
 ---
 ## ¿ Qué verás ?
 
+- [En la carpeta **proyecto**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/proyecto) el **CRUD** realizado como proyecto.
+
+
+- [En la carpeta **teoria**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/teoria) esta todo la teoría brindada en Codo a Codo
+
 - [En la carpeta **node01**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node01) podrás ver...
 
 ... el [primer-script.js](https://github.com/eugenia1984/codo-a-codo-back-end-node/blob/main/node01/primer-script.js) con Node.js, que simplemente muestra por terminal un consola.
@@ -77,7 +82,7 @@ npm run dev
 
 - [En la carpeta **node06**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/node06/README.md)
 
-- [En la carpeta **proyecto**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/proyecto) el **CRUD** realizado como proyecto.
+
 
 
 ---
