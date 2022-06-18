@@ -1,4 +1,4 @@
-/*const productos = [
+const productos = [
   {id: 1, name: 'Mesa', description: 'de eucaliptus'},
   {id: 2, name: 'Silla', description: 'de pino'},
   {id: 3, name: 'Escritorio', description: 'individual'},
@@ -11,7 +11,9 @@ const find = (id) => productos.find(producto => producto.id == id)
 module.exports = {
   all,
   find
-}*/
+}
+
+/*
 const express = require('express');
 const router = express.Router();
 
@@ -32,3 +34,4 @@ router.get('/productos/:codigo/edit', controller.edit);
 router.put('/productos/update', controller.update);
 
 module.exports = router;
+*/

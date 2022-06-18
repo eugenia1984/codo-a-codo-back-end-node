@@ -6,10 +6,13 @@
         <div class="card" style="width: 18rem;">
           <!--<img src="..." class="card-img-top" alt="...">-->
           <div class="card-body">
-            <h5 class="card-title"> <%= producto.nombre %> </h5>
+            <h2 class="card-title"> <%= producto.nombre %> </h2>
             <p class="card-text"> <%= producto.descripcion %> </p>
-            <a href="/productos/<%= producto.codigo %>" class="btn btn-primary">Ver mas</a>
+            <p class="btn btn-outline-primary"> $ <%= producto.precio %> </p>
+            <p>
+              <a href="/productos/<%= producto.codigo %>" class="btn btn-primary">Ver más</a>
             <a href="/productos/<%= producto.codigo %>/editar" class="btn btn-warning">Editar</a>
+            </p>
           </div>
       </div>
     <% }) %>
