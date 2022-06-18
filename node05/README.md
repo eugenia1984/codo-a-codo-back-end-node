@@ -608,7 +608,7 @@ LIMIT 200;
 ## :star: Actualizar informacion: UPDATE
 
 
-Para modificar datos que ya tengo ingresados en la base de datos, lo más importante es siempre tener el **WHERE** sino voy a actualizar el dato en TODOS los registros.
+Para modificar datos que ya tengo ingresados en la base de datos, lo más importante es siempre tener el **WHERE**, sino voy a actualizar el dato en TODOS los registros.
 
 ```SQL
 UPDATE FROM usuarios
@@ -620,7 +620,7 @@ WHERE id = 3
 
 ## :star: Borrar informacion: DELETE
 
-También es importantísimo tenere el WHERE sino borro todos los registros; ya que no tengo un roll back, una vez que borre todo sone.
+También es importantísimo tenere el **WHERE**, sino borro todos los registros; ya que no tengo un roll back, una vez que borre todo sone.
 
 
 ```SQL
@@ -688,3 +688,99 @@ FROM productos AS p
 INNER JOIN categorias AS c
   ON p.codigo_id = c.id;
 ```
+
+- Ejemplo de **LEFT JOIN**:
+
+```SQL
+SELECT productos.categoria_id, categorias.nombre
+FROM productos
+LEFT JOIN categorias
+  ON productos.categoria_id = categorias.id
+GROUP BY categorias.id, ategorias.nombre;
+```
+
+---
+
+## :star: COUNT y GROUP BY
+
+Con el COUNT contamos los datos que estarán agrupados por alguna manera gracias al GROUP BY
+
+```SQL
+SELECT COUNT(*) as Cantidad, categorias.id
+FROM productos 
+INNER JOIN categorias 
+ON productos.codigo_id = categorias.id
+GROUP BY categorias.id;
+```
+---
+
+## :star: HAVING
+
+**HAVING** es similar al WHERE, pero se utiliza cuando tengo una  AGRUPACIÓN (con GROUP BY), va luego del group by.
+
+```SQL
+SELECT COUNT(*) asCantidad, categorias.id
+FROM productos
+LEFT JOIN categorias
+ON productos.categoria_id = categorias.id
+GROUP BY categorias.id
+HAVING cantidad > 1
+```
+
+---
+
+## :star: Algunas funciones
+
+**AVG** es el promedio
+
+**MIN** para obtener el minimo
+
+**MAX** para obtener el maximo
+
+
+```SQL
+SELECT COUNT(*), AVG(Population), SUM(Population)
+FROM city
+GROUP BY countryCode;
+```
+
+---
+
+## :star: Cuando tenemos una tabla de N a n
+
+
+Hay una tabla intermedia entre la de usuarios y los roles, para relacionar ambas tablas, por ejemplo un usuario puede tener más de un rol.
+
+Creo una tabla de **usuarios** con el campo...
+
+... id que sea la PK, AUTOINCREMENT
+
+... email que sea UNIQ (asi no puede repetir el mail)
+
+... password, VARCHAR (60) - en la base de datos se guarda encriptado, con un hash -
+
+
+Creo la tabla de **roles** con los campos...
+
+... id, INt, PK, AUTOINCREMENT
+
+... nombre, VARCHAR (50)
+
+La **relacion** estará en una tabla intermedia
+
+
+Creo la tabla intermedia, llamada **role_usario** con lso campos...
+
+... role_id, INT, FK -> role_id / usuarios / id
+
+... usuario_id, INT -> usuarios_id / usuarios / id
+
+
+```SQL
+SELECT usuarios.*, roles.*
+FROM usuarios
+INNER JOIN role_usuario ON role_usuario.usuario_id = usuarios.id
+INNER JOIN roles ON roles.id = role_usuario.role_id
+```
+
+---
