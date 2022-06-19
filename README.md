@@ -85,7 +85,7 @@ npm run dev
 
 -[En la carpeta **node06**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/clases/node06/README.md)
 
-- [En la carpeta **scripts_sql**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/scripts_sql) podes ver el script sql para crear la misma base de datos y tablas utilizadas en el proyecto.
+- [En la carpeta **script_sql**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/script_sql) podes ver el script sql para crear la misma base de datos y tablas utilizadas en el proyecto.
 
 
 ---
