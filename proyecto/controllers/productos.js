@@ -1,4 +1,4 @@
-const connection = require('./db'); // para trabajar con la base de datos en el controlador
+const connection = require('../db'); // para trabajar con la base de datos en el controlador
 
 module.exports.index = (req, res) => {
   connection.query('SELECT * FROM productos',  (error, results) => {
@@ -52,6 +52,14 @@ module.exports.update = (req, res) => {
     categoria_id: req.body.categoria // base de datos : formulario
   }, req.body.codigo], (error, results) => {
     if(error) { throw error }
+
+    res.redirect('/productos');
+  });
+}
+
+module.exports.delete = (req,res) => {
+  connection.query('DELETE FROM productos WHERE codigo = ?', [req.params.codigo], error => {
+    if (error) { throw error}
 
     res.redirect('/productos');
   });
