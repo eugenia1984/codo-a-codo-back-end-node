@@ -1,0 +1,41 @@
+<h2>Listado de productos</h2>
+
+<a href="/admin/productos/create" class="btn btn-success">Crear Producto</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% productos.forEach(producto => { %>
+        <tr>
+            <td><%= producto.codigo %></td>
+            <td><%= producto.nombre %></td>
+            <td>
+                <a href="/admin/productos/<%= producto.codigo %>" class="btn btn-primary">Ver más</a>
+                <a href="/admin/productos/<%= producto.codigo %>/edit" class="btn btn-warning">Editar</a>
+
+                <form class="form-delete" action="/admin/productos/<%= producto.codigo %>/delete?_method=DELETE" method="post" style="display: inline-block;">
+                  <button type="submit" class="btn btn-danger">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('submit', event => {
+        if (event.target.classList.contains('form-delete')) {
+            event.preventDefault();
+
+            if (confirm('¿Esta seguro?')) {
+                event.target.submit();
+            }
+        }
+    });
+</script>
