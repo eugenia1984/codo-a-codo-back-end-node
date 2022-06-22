@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-//const productos = require('../productos');
-const connection = require('../controllers/productos');
+const connection = require('../controllers/admin/productos');
 
 // Para mostrar el listado de los productos
 router.get('/productos', (req, res) => {
