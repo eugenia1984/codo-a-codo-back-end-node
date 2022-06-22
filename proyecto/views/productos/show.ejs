@@ -1,10 +1,8 @@
 <% if (producto) { %>
-  <h2><%= producto.nombre %></h2>
+  <h2>Nombre: <%= producto.nombre %></h2>
   <h3>Codigo: <%= producto.codigo %></h3>
-  <p><%= producto.descripcion %></p>
+  <p>Descripcion: <%= producto.descripcion %></p>
   <p class="btn btn-outline-primary">$ <%= producto.precio %></p>
 <% } else { %>
   <p>No existe el producto</p>
 <% }%>
-
-

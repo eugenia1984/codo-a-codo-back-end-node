@@ -1,7 +1,7 @@
 <h2>Formulario de contacto</h2>
 
 <div class="row justify-content-center">
-  <div class="col-6">
+  <div class="col col-sm-12 col-md-10">
     <% if (typeof errors != 'undefined') { %>
       <ul>
         <% errors.forEach(error => { %>
@@ -11,19 +11,21 @@
     <% } %>
     <section class="formulario-contacto">
       <form action="/contacto" method="post">
-        <section class="nombre">
+        <section class="nombre my-3">
           <label for="nombre" class="form-label" >Nombre:</label>
           <input type="text" id="nombre" name="nombre" value="<%= values.nombre %>"  class="form-control" >
         </section>
-        <section class="correo">
+        <section class="correo my-3">
           <label for="email" class="form-label">Correo:</label>
           <input type="text" id="email" name="email" value="<%= values.email %>""  class="form-control" >
         </section>
-        <section class="texto">
-          <label for="mensaje" class="form-label">Mensaje:</label>
-          <textarea name="mensaje" id="mensaje" cols="30" rows="10"><%= values.mensaje %></textarea>
+        <section class="texto my-3 form-floating">
+          <div>
+            <label for="mensaje" class="form-label">Mensaje:</label>
+          </div>
+          <textarea class="form-control"  name="mensaje" id="mensaje" cols="30" rows="10"><%= values.mensaje %></textarea>
         </section>
-        <section class="boton-envio">
+        <section class="boton-envio my-3">
           <button type="submit"  class="btn btn-primary">Enviar</button>
         </section>
       </form>

@@ -13,7 +13,7 @@ module.exports.show = (req, res) => {
     [ req.params.codigo],
     (error, results) => {
       if (error) { throw error }
-      //res.send(results);
+      
       res.render('productos/show', { productos: results[0] })
   });
 }
