@@ -28,10 +28,53 @@ En la base de datos necesitamos dos nuevas tablas...
 
 ... **usuarios** con los campos: **email** como PK y **password**
 
+---
+
+## :star: Bcryptjs
+
 
 Y vamos a tener que **encriptar** la contraseña de los emails, hace un tiempo se utilizaba el **md5**, pero o se usa más porque fue hakeado y se revierta la encriptación. Además siempre generaba el mismo HASH.
 
 Ahora se utiliza **bcryptjs** , lo bueno es que genera codigos distintos.
 
+Hay que crear el HASH, en **routers** > **auth.js**:
 
 - Para instalar el modulo: ``` > npm install bcryptjs```
+
+Se ejecuta una promesa, hay que usar un then-cath, o el async-await(usamos este nosotros).
+
+```JavaScript
+const bcryptjs = require('bycryptjs');
+
+const bcryptjs = require('bycryptjs');
+
+// para la parte del registro
+router.post('/register', async (req, res) => {
+  const hash = await bcryptjs.hash(req.body.password, 8);
+
+  connection.query('INSET INTO usuarios SET =?', { email: req.body.email, password: req.body.password}, error => {
+    if (error) { throw error }
+
+    res.redirect('/');
+  });
+});
+```
+
+---
+
+## :star: Express-session
+
+- Para instalar el modulo: ``` > npm install express-session```
+
+Asi nos podemos manejar con sesiones y se configura a nivel aplicacion en **app.js**
+
+```JavaScript
+const session = require('express-session');
+
+
+app.use(session({
+  secret: '',
+  resave: false,
+  saveUninitialized: false,
+}))
+```

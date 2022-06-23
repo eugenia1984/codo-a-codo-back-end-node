@@ -12,6 +12,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
+const session = require('express-session');
 
 app.use(require('./routers/index'));
 app.use(require('./routers/productos'));
