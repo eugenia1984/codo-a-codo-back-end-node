@@ -223,7 +223,7 @@ npm run dev
 
 -> Para la BASE DE DATOS: Laragoon y Heidi
 
--> Para NODE, los módulos: *express*, *nodemon*, *dotenv*, *ejs*, *express-ejs-layouts*, *express-validator*, *method-override*.
+-> Para NODE, los módulos: *express*, *nodemon*, *dotenv*, *ejs*, *express-ejs-layouts*, *express-validator*, *method-override*, *bcryptjs*.
 
 ---
 
