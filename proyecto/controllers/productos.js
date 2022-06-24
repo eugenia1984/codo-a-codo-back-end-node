@@ -9,9 +9,7 @@ module.exports.index = (req, res) => {
 }
 
 module.exports.show = (req, res) => {
-  connection.query('SELECT * FROM productos WHERE codigo = ?',
-    [ req.params.codigo],
-    (error, results) => {
+  connection.query('SELECT * FROM productos WHERE codigo = ?', [ req.params.codigo], (error, results) => {
       if (error) { throw error }
       
       res.render('productos/show', { productos: results[0] })
