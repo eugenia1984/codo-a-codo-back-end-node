@@ -1,28 +1,25 @@
-<h2>Formulario de contacto</h2>
-
 <div class="row justify-content-center">
   <div class="col col-sm-12 col-md-10">
     <% if (typeof errors != 'undefined') { %>
-      <ul>
+      <ul class="list-unstyled text-danger">
         <% errors.forEach(error => { %>
           <li> <%= error.msg %> </li>
         <% })  %>
       </ul>
     <% } %>
+    <!-- FORMULARIO -->
     <section class="formulario-contacto">
       <form action="/contacto" method="post">
         <section class="nombre my-3">
           <label for="nombre" class="form-label" >Nombre:</label>
-          <input type="text" id="nombre" name="nombre" value="<%= values.nombre %>"  class="form-control" >
+          <input type="text" class="form-control" id="nombre" name="nombre" value="<%= values.nombre %>">
         </section>
         <section class="correo my-3">
           <label for="email" class="form-label">Correo:</label>
-          <input type="text" id="email" name="email" value="<%= values.email %>""  class="form-control" >
+          <input type="text" class="form-control" id="email" name="email" value="<%= values.email %>">
         </section>
         <section class="texto my-3 form-floating">
-          <div>
-            <label for="mensaje" class="form-label">Mensaje:</label>
-          </div>
+          <label for="mensaje" class="form-label">Mensaje:</label>
           <textarea class="form-control"  name="mensaje" id="mensaje" cols="30" rows="10"><%= values.mensaje %></textarea>
         </section>
         <section class="boton-envio my-3">
