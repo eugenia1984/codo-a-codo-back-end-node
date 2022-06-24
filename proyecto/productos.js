@@ -1,7 +1,7 @@
 const productos = [
-  {id: 1, name: 'Mesa', description: 'de eucaliptus'},
-  {id: 2, name: 'Silla', description: 'de pino'},
-  {id: 3, name: 'Escritorio', description: 'individual'},
+  {id: 1, name: 'Mesa', description: 'de eucaliptus', precio: 15000},
+  {id: 2, name: 'Silla', description: 'de pino', precio: 1500},
+  {id: 3, name: 'Escritorio', description: 'individual', precio 10000},
 ];
 
 const all = () => productos
