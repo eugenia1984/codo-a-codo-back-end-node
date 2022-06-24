@@ -1,22 +1,21 @@
-
 <h1>Editar producto</h1>
-
+<!-- FORMULARIO -->
 <div class="row justify-content-center">
     <div class="col col-sm-12 col-md-10">
         <form action="/admin/productos/update?_method=PUT" method="post">
-            <div>
+            <div class="my-3">
                 <label for="codigo" class="form-label">Codigo: </label>
                 <input type="text" class="form-control" id="codigo" name="codigo" value="<%= producto.codigo %>" readonly>
             </div>
-            <div>
+            <div class="my-3">
                 <label for="nombre" class="form-label">Nombre: </label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="<%= producto.nombre %>">
             </div>
-            <div>
+            <div class="my-3">
                 <label for="descripcion" class="form-label">Descripcion: </label>
                 <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="10"><%= producto.descripcion %></textarea>
             </div>
-            <div>
+            <div class="my-3">
                 <label for="categoria" class="form-label">Categoria: </label>
                 <select class="form-control" name="categoria" id="categoria">
                     <option value=""></option>
@@ -25,7 +24,7 @@
                     <option value="3" <%= producto.categoria_id == 3 ? 'selected' : '' %>>Categoria 3</option>
                 </select>
             </div>
-            <div>
+            <div class="my-3">
               <label for="precio" class="form-label">Precio: </label>
               <input type="number" class="form-control" id="precio" name="precio" value="<%= producto.precio %>">
           </div>
