@@ -1,7 +1,7 @@
 <h2>Listado de productos</h2>
-
+<!-- BOTON PARA CREAR PRODUCTO -->
 <a href="/admin/productos/create" class="btn btn-success">Crear Producto</a>
-
+<!-- TABLA PARA MOSTRAR LOS PRODUCTOS -->
 <table class="table">
     <thead>
         <tr>
@@ -18,7 +18,7 @@
             <td>
                 <a href="/admin/productos/<%= producto.codigo %>" class="btn btn-primary">Ver más</a>
                 <a href="/admin/productos/<%= producto.codigo %>/edit" class="btn btn-warning">Editar</a>
-
+                 <!-- FORMULARIO PARA ELIMINAR EL PRODUCTO -->
                 <form class="form-delete" action="/admin/productos/<%= producto.codigo %>/delete?_method=DELETE" method="post" style="display: inline-block;">
                   <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
@@ -27,7 +27,7 @@
         <% }) %>
     </tbody>
 </table>
-
+<!-- JS para consultar si quiere eliminar le producto -->
 <script>
     document.addEventListener('submit', event => {
         if (event.target.classList.contains('form-delete')) {
