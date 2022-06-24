@@ -1,32 +1,33 @@
 <h1>Crear producto</h1>
+<!-- FORMULARIO -->
 <div class="row justify-content-center">
-  <div class="col-6">
-    <form action="/productos/store" method="post">
-      <div>
+  <div class="col col-sm-10 col-md-8 my-5">
+    <form action="/admin/productos/store" method="post">
+      <div class="my-3">
         <label for="codigo" class="form-label">Codigo:</label>
-        <input type="text" id="codigo" name="codigo" class="form-control">
+        <input type="text" class="form-control" id="codigo" name="codigo">
       </div>
-      <div>
+      <div class="my-3">
         <label for="nombre" class="form-label">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" class="form-control">
+        <input type="text" class="form-control" id="nombre" name="nombre">
       </div>
-      <div>
+      <div class="my-3">
         <label for="descripcion">Descripcion:</label>
-        <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+        <textarea name="descripcion" class="form-control" id="descripcion" cols="30" rows="10"></textarea>
       </div>
-      <div>
+      <div class="my-3">
         <label for="categoria" class="form-label">Categoria:</label>
-       <select name="" id="">
+       <select class="form-control" name="categoria" id="categoria">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
        </select>
       </div>
-      <div>
+      <div class="my-3">
         <label for="precio">Precio:</label>
-        <input type="number" id="precio" name="precio" class="form-control">
+        <input type="number" class="form-control" id="precio" name="precio">
       </div>
-      <div>
+      <div  class="my-3">
         <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
     </form>
