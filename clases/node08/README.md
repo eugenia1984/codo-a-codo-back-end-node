@@ -78,3 +78,19 @@ app.use(session({
   saveUninitialized: false,
 }))
 ```
+
+```JavaScript
+const isLogin = (req, res, next) => {
+    if (!req.session.user_id) {
+        res.redirect('/login');
+    }
+
+    next();
+}
+```
+
+```JavaScript
+app.use('/admin', isLogin, require('./routes/admin/productos'));
+
+app.use(require('./routes/auth'));
+```
