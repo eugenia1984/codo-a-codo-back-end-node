@@ -2282,6 +2282,235 @@ Aunque en muchos aspectos la SOA es más sencilla que una arquitectura monolíti
 Las arquitecturas de microservicios se parecen a los patrones SOA en que los servicios son especializados y no tienen conexión directa. Pero además, descomponen las arquitecturas tradicionales en partes más pequeñas. Los servicios de la arquitectura de microservicios usan un marco de mensajería común, como las API de RESTful. Utilizan API de RESTful para comunicarse entre sí, sin necesidad de operaciones complejas de conversión de datos ni capas de integración adicionales. Usar las API de RESTful permite e incluso fomenta una distribución más rápida de nuevas funciones y actualizaciones. Cada servicio es independiente. Un servicio se puede reemplazar, mejorar o abandonar, sin afectar los demás servicios de la arquitectura. Esta arquitectura liviana optimiza los recursos distribuidos o en la nube y admite la escalabilidad dinámica de los servicios individuales.
 
 ---
+
+## :star: 5. Chequeo de Web Services con Postman
+
+Te mostramos de forma práctica cómo instalar Postman y cómo enviar una primera petición a una API REST.
+
+## Descarga e instalación de Postman
+
+Para descargar Postman accedemos a su página oficial: [https://www.postman.com/downloads/](https://www.postman.com/downloads/)
+
+Una vez hemos accedido a la web elegimos el sistema operativo en el que queremos instalar Postman, ya que se puede utilizar como un plugin de Google Chrome o se puede utilizar en Linux, MacOS o en Windows.
+
+Cuando hayamos realizado la descarga ejecutamos el instalador, que va a realizar una instalación que resulta bastante automática. No es la típica instalación en la que se nos pregunta dónde queremos instalar la aplicación, o en la que hay que aceptar los términos y condiciones, sino que automáticamente se va a instalar, en el directorio AppData de nuestro usuario.
+
+ 
+
+Tras la instalación se nos solicita introducir una cuenta que tengamos ya registrada o bien se nos ofrece la posibilidad de crear una nueva cuenta.
+
+Esto se debe a que Postman tiene muchas funciones que interactúan con una nube, por lo que para poder almacenar un registro de las peticiones y de nuestro trabajo en la nube, y poder trabajar compartiendo un workspace o espacio de trabajo con otros compañeros de equipo, necesitamos identificarnos con una cuenta de Postman.
+
+Para esta introducción no vamos a hacer uso de estos, sino que vamos a continuar pulsando en “Skip signing in and take me straight to de app”, para entrar en la aplicación sin tener que registrarse o iniciar sesión en Postman.
+
+### Envío de una petición con Postman
+
+En la vista inicial de Portman una vez ejecutado --> En esta pantalla tenemos diversas funcionalidades, características y elementos con los que podemos interactuar, como son:
+
+- Request: Crear una petición REST.
+
+- Collection: Crear una colección.
+
+- Environment: Crear un entorno.
+
+- Mock Server: Crear un Mock Server.
+
+- Monitor: Crear un monitor.
+
+
+---> Para el ejemplo vamos a crear una petición, para lo que tenemos que encontrar una API a la que queramos llamar. Usaremos la API que encontraremos en esta web: [https://rickandmortyapi.com/](https://rickandmortyapi.com/) .
+
+Al ser una API pública no necesitamos autenticación y tiene un uso muy sencillo.
+
+En la documentación de esta API podemos, vamos a obtener la lista de episodios de la serie. Podemos ver los esquemas de los episodios en [esta página](https://rickandmortyapi.com/documentation/#episode-schema).
+
+Vamos a ir al primer endpoint, al que se accede a través de [esta ruta](https://rickandmortyapi.com/api/episode/).
+
+Volvemos a Postman a la creación de una petición REST, y a la misma le damos el nombre “Todos los episodios”, y en la descripción indicamos “Petición para obtener una lista de episodios de Rick y Morty.”, por ejemplo.
+
+Después pulsamos en “Create Collection” para crear una colección, que simplemente una forma de almacenar peticiones, la llamamos “Episodios” y guardamos nuestra petición.
+
+De esta forma hemos creado una petición que se va a llamar “Todos los episodios”, que va a servir para obtener una lista de episodios de esa API, y que la vamos a guardar en la colección “Episodios”. Así tenemos creada una colección en la que vamos a almacenar todas las peticiones que queramos almacenar en esa colección
+
+Podemos especificar el método HTTP que queremos utilizar, y vamos a definir la URL para acceder a ese endpoint.
+
+También podemos modificar parámetros de query, métodos de autenticación, añadir headers y también añadir algún tipo de body, por ejemplo si quisiéramos hacer POST en lugar de GET, tendríamos que elegir raw y en Text añadir JSON.
+
+Además se pueden introducir scripts que se ejecute antes de la petición o después de la petición, como por ejemplo, para poder validar parámetros, es decir, para poder hacer pruebas.
+
+A pesar de que los scripts se definen en JavaScript, no hace falta un conocimiento extensivo de JavaScript para poder crear pruebas automatizadas en Postman, ya que se incluye la generación de diversos snippets de código para validar o hacer ciertas operaciones, como por ejemplo comprobar que el código de estado es 200.
+
+De esta forma enviaríamos una petición de tipo GET a ese PATH, bajo el protocolo HTTP, con el host rickyandmortyapi.com. Además añadimos unos parámetros adicionales que añade Postman y que se pueden configurar las opciones de la aplicación.
+
+Pulsamos SEND para enviar la petición, y comprobamos que todo ha ido bien, porque el servidor nos ha devuelto un código 200, y podemos obtener la lista de los episodios, en base al modelo que podemos encontrar en la documentación de la API.
+
+ 
+
+Podemos ver cada episodio con su título, la fecha en la que se emitió o los personajes que intervienen en el mismo. En esta lista de personajes, los mismos aparecen con el identificador con el que podemos consultarlos en la misma API en la sección de personajes.
+
+También podemos ver los headers que nos devuelve el servidor, podemos comprobar el tiempo de respuesta, el tamaño de la petición del body o de los headers, además de una lista de los tests que hayamos definido a través de los scripts, que en nuestro caso muestra que ha pasado el código 200.
+
+
+###  Zona de trabajo de Postman
+
+En la parte superior de Postman tenemos lo que sería la barra de tareas, donde podemos crear nuevo contenido, nuevas colecciones y nuevas peticiones. También podemos buscar las opciones para configurar la aplicación.
+
+La zona izquierda es muy importante, porque es donde vamos a definir las colecciones y las peticiones que se incluirán en esas colecciones, que como dijimos antes, una colección es un elemento de Postman que contiene peticiones.
+
+También podemos encontrado la colección History, que es el historial de todas las peticiones que hemos enviado, no importa a qué colección pertenezcan.
+
+Y finalmente, en la sección central de Postman es dónde podremos interactuar con las peticiones.
+
+Aprende las bases del testing y cómo aplicarlas para probar APIs REST con Postman, uno de los clientes más utilizados actualmente con el que podrás consumir, probar, documentar e incluso simular APIs REST.
+
+
+
+
+---
+
+## :star: 6. 5 Herramientas de testing de servicios web
+
+### 5 Herramientas de testing de servicios web
+
+Los servicios web son un estándar en lo que se refiere al diseño y desarrollo de interfaces API entre aplicaciones de software empresarial, es por ello que existen diversas herramientas de testing de servicios web que brindan la capacidad a los testers de diseñar y ejecutar pruebas de software.
+
+
+En este artículo te presentamos 5 herramientas para probar servicios web, específicamente SoapUI, JMeter, Postman, SoapSonar y Wizdler.
+
+
+Estas herramientas proporcionan diversas capacidades para abarcar todos los tipos de pruebas de servicios web que se pueden realizar, tales como las pruebas funcionales, simulación de servicios (Mocking), evaluación de seguridad, pruebas de carga y de rendimiento.
+
+## SoapUI
+
+
+
+SoapUI es una de las herramientas para probar servicios web que permite diseñar pruebas de web services de Arquitecturas SOA y REST. Está en el mercado desde 2005.
+
+Con SoapUI puedes probar web services en los protocolos SOAP, REST, JMS y AMF, además, puedes realizar llamadas HTTP(S) para aplicaciones web y JDBC para bases de datos.
+
+
+Posee una versión gratuita y una versión profesional (esta última tiene un costo).
+
+
+SoapUI permite la creación y ejecución automatizada de distintos tipos de pruebas de software sobre servicios web, incluyendo:
+
+- Testing funcional.
+
+- Pruebas de regresión.
+
+- Simulación de servicios (Mocking).
+
+- Pruebas de carga y rendimiento.
+
+- Evaluación de seguridad.
+
+
+## JMeter
+
+Apache JMeter es una aplicación de código abierto diseñada para la ejecución de pruebas de carga y mediciones de desempeño en aplicaciones.
+
+Es una herramienta desarrollada por la fundación de software Apache 100% en Java. Fue diseñada originalmente para probar aplicaciones web pero desde entonces se ha expandido para abarcar otras funcionalidades.
+
+
+
+JMeter posee capacidades para realizar pruebas de carga y desempeño en diferentes aplicaciones, servidores y protocolos, incluyendo:
+
+ 
+
+- Web - HTTP, HTTPS (Java, NodeJS, PHP, ASP.NET, …).
+
+- Servicios web SOAP / REST.
+
+- Servicios FTP.
+
+- Bases de datos, por medio de JDBC.
+
+- Servicios de directorio LDAP.
+
+- Middleware orientado a mensajes, por medio de JMS.
+
+- Correo electrónico - SMTP(S), POP3(S) e IMAP(S).
+
+- Comandos nativos o Shell Scripts.
+
+- Native commands or shell scripts.
+
+-Transmission Control Protocol (TCP).
+
+- Objetos Java.
+
+### Postman
+
+Postman es una herramienta para probar web services e interfaces de aplicación (API) en arquitectura REST. En términos generales, te permite enviar solicitudes post a cualquier servidor web y te proporciona y cataloga la respuesta.
+
+Comenzó como un plugin del navegador Chrome, pero luego fue lanzada como versión nativa tanto para Windows como Mac.
+
+
+
+Posee una versión gratuita, versión profesional y versión empresarial a diferentes costos.
+
+Entre sus funcionalidades se encuentran:
+
+- Se puede usar tanto para pruebas exploratorias como pruebas automatizadas.
+
+- Puede utilizarse en Windows, Mac, Linux y Apps del navegador Chrome.
+
+- Posee un conjunto de integraciones con formatos Swagger y RAML.
+
+- Funcionalidades para ejecutar, probar, documentar y monitorear las pruebas.
+
+-No requiere aprender nuevos lenguajes de programación.
+
+
+### SoapSonar
+
+
+SOAPSonar es una herramienta que ofrece facilidades para pruebas web services para HTML, XML, SOAP, REST y JSON. Permite realizar pruebas funcionales, de desempeño, cumplimiento, interoperabilidad y de seguridad. Soporta los estándares OASIS y W3C.
+
+Desarrollada por Cross Check Networks, está disponible en una edición personal (gratuita), edición profesional y edición de servidor, a distintos costos.
+
+ 
+ Entre sus funcionalidades están las siguientes:
+
+- Puede realizar pruebas de vulnerabilidad con mutación XSD.
+
+- Funcionalidades para leer WSDL y Schema.
+
+- Pruebas no funcionales como son las de carga con modelamiento de comportamiento.
+
+- Carga de transacciones simultaneas (Para pruebas de carga).
+
+- Reportes en formato XML, DOC, XLS, PDF, RTF y RPT.
+
+- Integración con HP Quality Center.
+
+
+### Wizdler
+
+
+Si no necesitas todas las funcionalidades avanzadas, y más bien buscas algo sencillo, puedes probar Wizdler, una herramienta de testing de web services que soporta únicamente arquitectura SOA, presentada como extensión de navegador y disponible para Google Chrome y Mozilla Firefox.
+
+Usarla es muy sencillo, luego de instalado el plugin, ingresa la dirección WSDL en la dirección de página del navegador, Wizdler la reconoce y lista todas las operaciones y servicios.
+
+Luego haces click sobre cualquier operación y el XML de request se mostrará en el editor SOAP.
+
+
+Modifica para pasar los parámetros y haz click en “Go”, para ver el Response en el editor. Wizdler puede de esta forma generar el XML de Request Soap.
+
+
+---
+
+:star:
+
+---
+
+:star: 
+
+---
+
+
+
+---
 ---
 
 ## :book: UNIDAD 6
