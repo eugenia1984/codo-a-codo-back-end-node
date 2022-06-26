@@ -2082,6 +2082,59 @@ La base de comunicación entre web services es por tanto el lenguaje XML y el pr
 
 ## 2. Componentes de los Web Services
 
+
+```
+             UDDI
+  ------Service Registry------
+  |                          |
+Busqueda                  Publicacion
+ en el                       en el
+ UDDI                        UDDI
+  |                          |
+ CLIENTE                WEB SERVICE
+(service                (service
+requestor)              provider)
+``` 
+
+Los web services estandarizados funcionan con los siguientes componentes:
+
+- **SOAP** - Simple Object Access Protocol
+
+SOAP es un protocolo escrito en XML para el intercambio de información entre aplicaciones. Es un formato para enviar mensajes, diseñado especialmente para servir de comunicación en Internet, pudiendo extender los HTTP headers. Es una forma de definir qué información se envía y cómo mediante XML. Básicamente es un protocolo para acceder a un Web Service.
+
+- **WSDL** - Web Services Description Language
+
+WSDL es un lenguaje basado en XML para describir los servicios web y cómo acceder a ellos. Es el formato estándar para describir un web service, y fue diseñado por Microsoft e IBM. WSDL es una parte integral del estándar UDDI, y es el lenguaje que éste utiliza.
+
+- **UDDI** - Universal Description, Discovery and Integration
+
+UDDI es un estándar XML para describir, publicar y encontrar servicios web. Es un directorio donde las compañías pueden registrar y buscar servicios web. Es un directorio de interfaces de servicios web descritos en WSDL que se comunican mediante SOAP.
+
+### 3. Arquitectura de los Web Services
+
+- **Service Discovery**. Responsable de centralizar servicios web en un directorio común de registro y proveer una funcionalidad sencilla para publicar y buscar. UDDI se encarga del Service Discovery.
+
+- **Service Description**. Uno de los aspectos más característicos de los web services es que se autodescriben. Esto significa que una vez que se ha localizado un Web Service nos proporcionará información sobre que operaciones soporta y cómo activarlo. Esto se realiza a través del Web Services Description Language (WSDL).
+
+- **Service Invocation**. Invocar a un Web Service implica pasar mensajes entre el cliente y el servidor. SOAP (Simple Object Access Protocol) especifica cómo deberíamos formatear los mensajes request para el servidor, y cómo el servidor debería formatear sus mensajes de respuesta.
+
+- **Transport**. Todos estos mensajes han de ser transmitidos de alguna forma entre el servidor y el cliente. El protocolo elegido para ello es HTTP (HyperText Transfer Protocol). Se pueden utilizar otros protocolos pero HTTP es actualmente el más usado.
+
+### 4. Como funciona un Web Service
+
+- **1**. El Service Provider genera el WSDL describiendo el Web Service y registra el WSDL en el directorio UDDI o Service Registry.
+
+- **2**. El Service Requestor o la aplicación del cliente requiere un Web Service y se pone en contacto con el UDDI para localizar el Web Service.
+
+- **3**. El cliente, basándose en la descripción descrita por el WSDL, envía un request para un servicio particular al Web Service Listener, que se encarga de recibir y enviar los mensajes en formato SOAP.
+
+- **4**. El Web Service analiza el mensaje SOAP del request e invoca una operación particular en la aplicación para procesar el request. El resultado se escribe de nuevo en SOAP en forma de respuesta y se envía al cliente.
+
+- **5**. El cliente analiza el mensaje de respuesta SOAP y lo interpreta o genera un error si ha habido alguno.
+
+
+### 5. Componentes de los servidores en una aplicación Web Service
+
 ---
 ---
 
