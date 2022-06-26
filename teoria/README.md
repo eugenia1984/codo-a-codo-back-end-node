@@ -1982,6 +1982,107 @@ Express no hace las cargas de estructura o de componentes utilizados. Rutas, vis
 ## :book: UNIDAD 5
 
 ---
+
+## :star: Temas:
+
+- require HTTP
+
+- writeHead – Crear / Modificar el encabezado HTTP
+
+- end() para el envío de cadenas en HTML
+
+- console.log desde Node.
+
+- Creando un servidor. El módulo HTTP
+
+- Configuración del puerto de escucha con listen()
+
+- Usando http.createServer()
+
+- Análisis de su funcionamiento y detalle de librerías activas.
+
+- Instalando librerías a Visual Studio
+
+- Creando un proyecto en Node con NPM
+
+- Leer Cadenas en consultas
+
+- El error 404 y el código 200
+
+- Módulo de archivos.
+
+---
+
+## :star: 2. Web Services - Concepto
+
+### Web services: servicios de máquina a máquina
+
+A día de hoy, usar diferentes servicios a través de la web es una actividad habitual. Comprar online, leer el periódico, reservar una mesa en un restaurante o ver películas son solo algunos ejemplos de las muchas interacciones que se producen a diario entre el usuario y la máquina. Pero, además, y aunque pueda pasar desapercibido, estas interacciones también tienen lugar entre máquinas: el cliente y el servidor se están enviando continuamente solicitudes y respuestas, transmisión que se produce gracias a los web services o servicios web.
+
+
+###  ¿Qué es un web service?
+
+ 
+
+Un web service facilita un servicio a través de Internet: se trata de una interfaz mediante la que dos máquinas (o aplicaciones) se comunican entre sí. Esta tecnología se caracteriza por estos dos rasgos:
+
+ 
+
+- **Multiplataforma**: cliente y servidor no tienen por qué contar con la misma configuración para comunicarse. El servicio web se encarga de hacerlo posible.
+
+ 
+
+- **Distribuida**: por lo general, un servicio web no está disponible para un único cliente, sino que son diferentes los que acceden a él a través de Internet.
+
+Cuando se utiliza un web service, un cliente manda una solicitud a un servidor, desencadenando una acción por parte de este. A continuación, el servidor devuelve una respuesta al cliente.
+
+ 
+
+### La tecnología detrás de un servicio web con ejemplo
+
+Todos los web services cuentan con un Uniform Resource Identifier (URI) unívoco, esto es, la dirección del servicio web. Es similar al Uniform Resource Locator (URL) que permite acceder a páginas web. El catálogo UDDI debía desempeñar también un papel importante, pues permitía encontrar los servicios web, pero este servicio nunca logró imponerse y sus mayores partidarios terminaron retirándose del proyecto.
+
+ 
+
+Más importancia tiene el lenguaje Web Service Description Language (WSDL). Un servicio web contiene un archivo en WSDL en el que se describe el servicio de forma detallada. Con esta información, el cliente puede comprender qué funciones puede ejecutar en el servidor a través del servicio web. La comunicación funciona exclusivamente mediante diferentes protocolos y arquitecturas. Entre ellos, son muy populares el protocolo de red SOAP en combinación con el estándar de Internet HTTP o los servicios web basados en una arquitectura REST.
+
+ 
+
+Con estas tecnologías se posibilita el intercambio de peticiones y respuestas a menudo utilizando el lenguaje de marcado extensible (XML). Este lenguaje, relativamente simple, puede ser interpretado en igual medida por personas y ordenadores, y además es adecuado para unir sistemas con requisitos diferentes. Con todo, REST también admite otros formatos, como JSON.
+
+ 
+
+Veamos cómo funciona la mecánica de esta tecnología con un ejemplo de web service. Partamos de un software escrito en Visual Basic que se ejecuta en una máquina con sistema Windows. El programa necesita el servicio de un servidor web Apache. Para ello, el cliente envía una solicitud SOAP en forma de mensaje HTTP al servidor. El web service interpreta el contenido de la solicitud y se encarga de que el servidor lleve a cabo una acción. Finalmente, el servicio web formula una respuesta y la envía de vuelta al cliente (de nuevo con SOAP y HTTP), que vuelve a interpretarla. La información se envía entonces al software, donde será procesada.
+
+
+### Ventajas y desventajas de los servicios web
+
+La ventaja principal de los servicios web es que la comunicación no depende de una plataforma determinada, por lo que el cliente y el servidor apenas han de presentar rasgos en común para poder comunicarse. Para ello, la tecnología web service recurre a formatos estandarizados que interpretan todos los sistemas.
+
+ 
+
+Pero en estos formatos es donde encontramos una de las desventajas. Precisamente, XML es un formato más bien voluminoso que genera grandes paquetes de datos, lo que puede crear problemas en las conexiones de red lentas. Otra posibilidad que permite conectar a dos sistemas a través de Internet son las API web. Aunque, por lo general, son más rápidas, someten a cliente y servidor a especificaciones más concretas, con lo que la interoperabilidad se ve limitada.
+
+---
+
+## :star: 3. Funcionamiento y objetivos
+
+## Web Services
+
+
+### Funcionamiento y Objetivo
+
+#### 1. Introducción
+
+Un Web Service, o Servicio Web, es un método de comunicación entre dos aparatos electrónicos en una red. Es una colección de protocolos abiertos y estándares usados para intercambiar datos entre aplicaciones o sistemas. Las aplicaciones escritas en varios lenguajes de programación que funcionan en plataformas diferentes pueden utilizar web services para intercambiar información a través de una red. La interoperatividad, por ejemplo entre Java y Python o Windows y Linux se debe al uso de estándares abiertos.
+
+Como sistema de mensajes se utiliza XML estandarizado. El protocolo más simple para el intercambio de información entre ordenadores es XML-RPC, que emplea XML para llevar a cabo RPCs. RPC, Remote Procedure Call, es un protocolo de red que permite a un programa a ejecutar código en una máquina remota. Los XML-RPC requests son una combinación entre contenido XML y headers HTTP. La simpleza de los XML-RPC hizo que el estándar evolucionase a SOAP, uno de los componentes básicos de los Web Services.
+
+La base de comunicación entre web services es por tanto el lenguaje XML y el protocolo HTTP.
+
+## 2. Componentes de los Web Services
+
+---
 ---
 
 ## :book: UNIDAD 6
