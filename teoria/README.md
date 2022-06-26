@@ -2500,11 +2500,112 @@ Modifica para pasar los parámetros y haz click en “Go”, para ver el Respons
 
 ---
 
-:star:
+## :star:  7. Métodos de petición HTTP
+
+
+### Métodos de petición HTTP
+
+HTTP define un conjunto de métodos de petición para indicar la acción que se desea realizar para un recurso determinado. Aunque estos también pueden ser sustantivos, estos métodos de solicitud a veces son llamados HTTP verbs. Cada uno de ellos implementan una semántica diferente, pero algunas características similares son compartidas por un grupo de ellos: ej. un request method puede ser safe, idempotent (en-US), o cacheable.
+
+
+#### GET
+
+El método GET  solicita una representación de un recurso específico. Las peticiones que usan el método GET sólo deben recuperar datos.
+
+#### HEAD
+
+El método HEAD pide una respuesta idéntica a la de una petición GET, pero sin el cuerpo de la respuesta.
+
+POST
+
+El método POST se utiliza para enviar una entidad a un recurso en específico, causando a menudo un cambio en el estado o efectos secundarios en el servidor.
+
+#### PUT
+
+El modo PUT reemplaza todas las representaciones actuales del recurso de destino con la carga útil de la petición.
+
+#### DELETE
+
+El método DELETE borra un recurso en específico.
+
+#### CONNECT
+
+El método CONNECT establece un túnel hacia el servidor identificado por el recurso.
+
+#### OPTIONS
+
+El método OPTIONS es utilizado para describir las opciones de comunicación para el recurso de destino.
+
+#### TRACE
+
+El método TRACE  realiza una prueba de bucle de retorno de mensaje a lo largo de la ruta al recurso de destino.
+
+#### PATCH
+
+El método PATCH  es utilizado para aplicar modificaciones parciales a un recurso.
 
 ---
 
-:star: 
+## :star:  8. Nodemoon
+
+
+### Configurando Nodemon
+
+ 
+
+En los siguientes pasos veremos como instalar y configurar Nodemon en tu proyecto y como poner a correr un servidor Node.js.
+
+Paso 1
+
+ 
+
+Organizar el directorio de origen src y iniciar el servidor en un archivo server.js, el archivo puede llevar cualquier convención que se utilice para arrancar un servidor Node.js (index.js o app.js )
+
+Actualizar el package.json agregando un script start
+
+Paso 2
+
+Agregar express el cual nos va a permitir arrancar un mínimo servidor para realizar esta prueba
+
+server.js
+
+Iniciá una terminal nueva en la cual iniciaremos el servidor corriendo el script npm start luego de ejecutarlo nos retornara un mensaje como el siguiente node src/index.js
+
+ 
+Abrir una nueva terminal y ejecutaremos el siguiente código curl -X GET http://localhost:3000/ el cual nos permitirá comprobar que la API este funcionando de manera correcta.
+
+ 
+
+
+
+Si nos retorna el mensaje La API funciona correctamente quiere decir que vamos bien!
+
+Ahora, si cambiamos el mensaje de respuesta en el archivo server.js, debo reiniciar el servidor para obtener el resultado deseado:
+
+ 
+Utilizar Ctrl + C para detener el servidor que se está ejecutando actualmente y volver a iniciarlo usando el mismo comando antes: npm run start.
+
+Usando el comando curl nuevamente desde la ventana de terminal obtenemos el resultado deseado:
+
+ 
+Paso 3
+
+Agrega nodemon como devDependency:
+
+Revisaremos el package.json
+
+Paso 4
+
+Agregar el comando dev en el archivo package.json
+
+
+Ahora ejecute npm run dev y solicite el uso nuevamente del comando curl, y veremos que el mensaje es el mismo que teníamos antes:
+
+
+Si cambio nuevamente el mensaje en el archivo server.js por cualquier otro, ya esta vez no tendré que reiniciar el servidor dado que Nodemon esta observando los cambios usando el directorio src, mediante su parámetro --watch.
+
+
+Vera que se actualiza solo sin tener que reiniciar el servidor, para cortarlo presionar CTRL + C
 
 ---
 
