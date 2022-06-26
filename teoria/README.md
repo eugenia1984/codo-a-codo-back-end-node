@@ -3,7 +3,7 @@
 
 ---
 
-## :star: TEORIA UNIDAD 1 - 1. Contenidos de la unidad
+## :book: TEORIA UNIDAD 1 - 1. Contenidos de la unidad
 
 - Node.JS
 
@@ -260,7 +260,7 @@ Vamos a analizar no sólo cómo estas ventajas son obtenidas, sino también por 
  
 
 ---
-### ¿Cómo funciona?
+### :star:  ¿Cómo funciona?
 
 La idea principal de Node.js: **uso no-bloqueante**, **event-driven I/O**, **permanecer ligero** y **eficiente** en la superficie del **uso intensivo de datos en tiempo real** de las aplicaciones que se ejecutan en dispositivos distribuidos.
 
@@ -268,7 +268,7 @@ La idea principal de Node.js: **uso no-bloqueante**, **event-driven I/O**, **per
 Y este entendimiento es absolutamente esencial. Definitivamente no tenés que usar Node.js para operaciones intensivas de CPU; de hecho, utilizándolo para el cálculo pesado anulará casi todas sus ventajas. Donde Node REALMENTE destaca es en la **construcción rápida y escalable de aplicaciones de red**, debido a que **es capaz de manejar un gran número de conexiones simultáneas con alto rendimiento**, lo que equivale a una **alta escalabilidad**.
 
 
-### ¿ Cómo funciona internamente?
+### :star:  ¿ Cómo funciona internamente?
 
 Es bastante interesante. Frente a las tradicionales técnicas de servicio web donde cada conexión (solicitud) genera un nuevo subproceso, retomando la RAM del sistema y finalmente a tope a la cantidad de RAM disponible, **Node.js opera en un solo subproceso**, **no utiliza el bloqueo de llamadas de E/S**, lo que le permite admitir decenas de miles de conexiones simultáneas (celebrada en el caso de **loop**).
 
@@ -285,7 +285,7 @@ La técnica utilizada para evitar excepciones transfiere los errores a la llamad
  
 
 ---
-### NPM: El Node Package Manager
+### :star:  NPM: El Node Package Manager
 
 
 Cuando hablamos de Node.js, una cosa que definitivamente no debe omitirse es integrarlo en el apoyo de la **gestión de paquetes utilizando la herramienta NPM que viene por defecto con cada instalación de Node.js**. 
@@ -390,7 +390,8 @@ Por ejemplo, si estás utilizando Rails, tendrías que convertir los datos de JS
  
 
 ---
-### Entradas en espera
+
+### :star:  Entradas en espera
 
 
 Si estás recibiendo una gran cantidad de datos concurrentes, tu base de datos puede ahogarse. Como se ha descrito más arriba, Node.js **puede manejar fácilmente las conexiones simultáneas al mismo tiempo**. Pero debido a que el acceso a la base de datos es una operación de bloqueo (en este caso), nos topamos con problemas. La solución es reconocer el comportamiento del cliente antes de que los datos se escriban en la verdadera base de datos.
@@ -404,7 +405,9 @@ Un comportamiento similar puede implementarse con otros lenguajes/frameworks, pe
 
 
 ---
-#### En resumen: con Node, podés empujar la base de datos escrita a un lado y tratar con ella más tarde, para proceder como que si esta hubiera sido exitosa.
+
+
+####  :star:  En resumen: con Node, podés empujar la base de datos escrita a un lado y tratar con ella más tarde, para proceder como que si esta hubiera sido exitosa.
 
 ---
 
@@ -438,7 +441,8 @@ Volvamos al nivel de aplicación. Otro ejemplo donde domina el software de escri
  
 
 ---
-### Panel de Supervisión de Aplicaciones
+
+### :star:  Panel de Supervisión de Aplicaciones
 
 
 Otro caso de uso común en qué el Node-con-web-sockets encaja perfectamente es el siguiente: el **seguimiento de los visitantes del sitio web** y la **visualización de sus interacciones a tiempo real**. (Si estás interesado, esta idea ya se produjo por Colibrí).
@@ -677,7 +681,7 @@ Todos los métodos de E / S en la biblioteca estándar de Node.js proporcionan v
 
 ---
 
-#### Comparación de código
+#### :star:  Comparación de código
 
 
 Los métodos de bloqueo se ejecutan de forma sincrónica y los métodos sin bloqueo se ejecutan de forma asincrónica.
@@ -749,7 +753,7 @@ El bucle de eventos es diferente a los modelos en muchos otros lenguajes donde s
 
 
 ---
-#### Peligros de mezclar código de bloqueo y no bloqueo
+#### :star:  Peligros de mezclar código de bloqueo y no bloqueo
 
 
 Hay algunos patrones que deben evitarse cuando se trabaja con E / S. 
@@ -826,7 +830,7 @@ var app = express();
 ---
  
 
-## :star: TEORIA - :star:  UNIDAD 2
+## :book: TEORIA - :star:  UNIDAD 2
 
 ---
 
@@ -877,7 +881,7 @@ El registro es una gran base de datos pública de software JavaScript y la meta-
 
 ---
 
-### Utilizá npm para. . .
+### :star:  Utilizá npm para. . .
 
 - Adaptar paquetes de código para tus aplicaciones o incorporar paquetes tal como están.
 
@@ -903,7 +907,7 @@ El registro es una gran base de datos pública de software JavaScript y la meta-
 
 ---
 
-## Empezando
+## :star:  Empezando
 
 - 1 - Para comenzar con npm, podés crear una cuenta , que estará disponible en http://www.npmjs.com/~*yourusername *.
 
@@ -912,7 +916,7 @@ El registro es una gran base de datos pública de software JavaScript y la meta-
 
 --
 
-### Compartir paquetes y colaborar con otros
+### :star:  Compartir paquetes y colaborar con otros
 
 Si eligís compartir tus paquetes públicamente, no hay ningún costo. Para usar y compartir paquetes privados, debes actualizar tu cuenta. Para compartir con otros, crear organizaciones llamadas organizaciones npm , o invite a otros a trabajar con vos, de forma privada (por una tarifa) o públicamente (gratis). O podés registrarte para obtener una instancia privada de npm para tu empresa, llamada npm Enterprise , para que puedas desarrollar paquetes internamente que no se comparten públicamente.
 
@@ -920,7 +924,7 @@ Para obtener más información sobre npm como producto, las próximas funciones 
 
 ---
 
-### Documentación de referencia de CLI
+### :star:  Documentación de referencia de CLI
 
 Si bien los comandos CLI relevantes se tratan a lo largo de esta cursada de Codo a Codo, también NPM pone a disposición su documentación del usuario, e incluye ayuda de línea de comandos, en su propia sección de documentación y ayuda instantánea (páginas de manual) .
 
@@ -965,7 +969,7 @@ Nota: Después de registrarte para obtener una cuenta npm, recibirá un correo e
 
 ---
 
-### Probando su nueva cuenta con npm login
+### :star:  Probando su nueva cuenta con npm login
 
 Utilizá el comando npm login para probar el inicio de sesión en su nueva cuenta.
 
@@ -1182,7 +1186,7 @@ Para ver la página de tu paquete privado, visitá [https://npmjs.com/package/*p
 
 
  
-## :star: TEORIA - UNIDAD 4:
+## :book: TEORIA - UNIDAD 4:
 
 ### Temas:
 
@@ -1580,9 +1584,8 @@ app.listen(3000);
 
 ---
 
-### :star: 
+### :star: 7. Archivos estáticos
 
-### 7. Archivos estáticos
 ### Sirviendo archivos estáticos
 
 Podés utilizar el **middleware express.static** para servir archivos estáticos, incluyendo sus imagenes, CSS y JavaScript (static() es la única función  middleware que es actualmente parte de Express). 
@@ -1628,7 +1631,7 @@ Ahora, Podés bajar los archivos que estan en el directorio publico del path con
 
 ---
 
-#### Manejando errores
+#### :star:  Manejando errores
 
 Los errores son manejados por una o más funciones especiales middleware que tienen cuatro argumentos, en lugar de las usuales tres: (err, req, res, next. Por ejemplo:
 
@@ -1710,7 +1713,7 @@ throw new UserException('Valor muy alto');
 ```
 
 
-### Declaración try...catch
+### :star:  Declaración try...catch
 
 **La declaración try...catch marca un bloque de expresiones para probar y especifica una o más respuestas en caso de que se produzca una excepción**. **Si se lanza una excepción, la declaración try...catch la detecta**.
 
@@ -1751,7 +1754,7 @@ try { // declaraciones para try
 }
 ```
 
-#### El bloque catch
+#### :star:  El bloque catch
 
 **Podés usar un bloque catch para manejar todas las excepciones que se puedan generar en el bloque try**.
 
@@ -1778,7 +1781,7 @@ try {
 ```
 
 
-### El bloque finally
+### :star:  El bloque finally
 
 **El bloque finally contiene instrucciones que se ejecutarán después que se ejecuten los bloques try y catch**. 
 
@@ -1861,7 +1864,7 @@ console.log('"falso" externo capturado');
 ```
 
 
-### Declaraciones try...catch anidadas
+### :star:  Declaraciones try...catch anidadas
 
 - Podés anidar una o más declaraciones try...catch.
 
@@ -1877,7 +1880,7 @@ Para obtener más información, consulta bloques try anidados en la una página 
 
 
 
-### Utilizar objetos Error
+### :star:  Utilizar objetos Error
 
 Dependiendo del tipo de error, es posible que puedas utilizar las propiedades name y message para obtener un mensaje más refinado.
 
