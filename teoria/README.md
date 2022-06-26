@@ -2162,6 +2162,124 @@ Web Service. Es el software o componente que realiza las operaciones. Si está e
 
 - **HTTP Server**. Algunos application servers incluyen funcionalidades HTTP, por lo que se pueden tener Web Services funcionando instalando simplemente un SOAP engine y un application server. Sin embargo cuando un application server carece de funcionalidad HTTP es necesario también un HTTP server, más comúnmente llamado Web Server. Es un software que sabe cómo manejar mensajes HTTP. Los dos más populares en la actualidad son Apache HTTP Server y Nginx.
 
+---
+
+## :star:  4. Api´s y servicios. Concepto y uso
+
+### Api´s y servicios. Concepto y uso.
+
+
+Una API es un conjunto de definiciones y protocolos que se utiliza para desarrollar e integrar el software de las aplicaciones. API significa interfaz de programación de aplicaciones.
+
+Las API permiten que sus productos y servicios se comuniquen con otros, sin necesidad de saber cómo están implementados. Esto simplifica el desarrollo de las aplicaciones y permite ahorrar tiempo y dinero. Las API le otorgan flexibilidad; simplifican el diseño, la administración y el uso de las aplicaciones, y proporcionan oportunidades de innovación, lo cual es ideal al momento de diseñar herramientas y productos nuevos (o de gestionar los actuales).
+
+
+A veces, las API se consideran como contratos, con documentación que representa un acuerdo entre las partes: si una de las partes envía una solicitud remota con cierta estructura en particular, esa misma estructura determinará cómo responderá el software de la otra parte.
+
+Debido a que simplifican la forma en que los desarrolladores integran los elementos de las aplicaciones nuevas en una arquitectura actual, las API permiten la colaboración entre el equipo comercial y el de TI. Las necesidades comerciales suelen cambiar rápidamente en respuesta a los mercados digitales en constante cambio, donde la competencia puede modificar un sector entero con una aplicación nueva. Para seguir siendo competitivos, es importante admitir la implementación y el desarrollo rápidos de servicios innovadores. El desarrollo de aplicaciones nativas de la nube es una forma identificable de aumentar la velocidad de desarrollo y se basa en la conexión de una arquitectura de aplicaciones de microservicios a través de las API.
+
+Las API son un medio simplificado para conectar su propia infraestructura a través del desarrollo de aplicaciones nativas de la nube, pero también le permiten compartir sus datos con clientes y otros usuarios externos. Las API públicas representan un valor comercial único porque simplifican y amplían la forma en que se conecta con sus partners y, además, pueden rentabilizar sus datos (un ejemplo conocido es la API de Google Maps).
+
+```                                      |-----  
+                                         |   Apps
+                 <-->      API        <--|   IoT devices
+BACKEND    APIS  <-->    managment    <--|   Mobile
+SYSTEMS          <-->      system     <--|
+                                         |-----
+```
+
+Por ejemplo, imagínese una empresa distribuidora de libros. Podría ofrecer a los clientes una aplicación que les permita a los empleados de la librería verificar la disponibilidad de los libros con el distribuidor. El desarrollo de esta aplicación podría ser costoso, estar limitado por la plataforma y requerir mucho tiempo de desarrollo y mantenimiento continuo.
+
+Otra opción es que la distribuidora de libros proporciona una API para verificar la disponibilidad en inventario. Existen varios beneficios de este enfoque:
+
+
+- Permite que los clientes accedan a los datos con una API que les ayude a añadir información sobre su inventario en un solo lugar.
+
+- La distribuidora de libros podría realizar cambios en sus sistemas internos sin afectar a los clientes, siempre y cuando el comportamiento de la API fuera el mismo.
+
+- Con una API disponible de forma pública, los desarrolladores que trabajan para la distribuidora de libros, los vendedores o los terceros podrían desarrollar una aplicación para ayudar a los clientes a encontrar los libros que necesiten. Esto podría dar como resultado mayores ventas u otras oportunidades comerciales.
+
+En resumen, las API le permiten habilitar el acceso a sus recursos y, al mismo tiempo, mantener la seguridad y el control. Cómo habilitar el acceso y a quiénes depende de usted. Seguridad de las API. Para conectarse a las API y crear aplicaciones que utilicen los datos o las funciones que estas ofrecen, se puede utilizar una plataforma de integración distribuida que conecte todos los elementos, incluidos los sistemas heredados y el Internet de las cosas (IoT).
+
+Existen tres enfoques respecto a las políticas de las versiones de las API.
+
+### Innovaciones con las API
+El acceso de los partners o el público a sus API permite:
+
+Crear nuevos canales de ingresos o ampliar los existentes.
+
+Expandir el alcance de su marca.
+
+Facilitar la innovación abierta o lograr mayor eficiencia, gracias al desarrollo y la colaboración externos.
+
+Suena maravilloso, ¿no? ¿Pero cómo lo logran las API?
+
+Volvamos al ejemplo de la empresa distribuidora de libros.
+
+Supongamos que uno de los partners de la empresa desarrolla una aplicación que ayuda a las personas a encontrar libros en los estantes de cierta librería. Esta experiencia mejorada atrae más compradores a la librería (que es cliente de la distribuidora) y expande un canal de ingresos existente.
+
+Es posible que un tercero use una API pública para desarrollar una aplicación que permita a las personas comprar libros directamente de la distribuidora, en lugar de hacerlo en una tienda, lo cual abre un nuevo canal de ingresos para la distribuidora de libros. Esto abre un nuevo canal de ingresos para la distribuidora de libros.
+
+Las API compartidas, ya sea con los partners elegidos o con todo el mundo, tienen efectos positivos. Mientras más se asocie con otros gracias a las API, mayor difusión obtendrá su marca, independientemente de los esfuerzos publicitarios de la empresa. Si usted utiliza una API pública, por ejemplo, para dar acceso a la tecnología a todo el mundo, alienta a los desarrolladores a crear un ecosistema de aplicaciones en torno a su API. Mientras más personas usen su tecnología, más personas estarán dispuestas a hacer negocios con usted.
+
+Hacer pública la tecnología da resultados novedosos e inesperados que a veces alteran sectores completos. Estos resultados, a veces, alteran sectores completos. En el caso de nuestra distribuidora de libros, las nuevas empresas (un servicio de préstamo de libros, por ejemplo) pueden cambiar la manera en que comercializa sus servicios. Los partners y las API públicas le permiten aprovechar los esfuerzos creativos de una comunidad más grande que su equipo de desarrolladores internos. Las nuevas ideas surgen de todas partes, y las empresas deben ser conscientes de los cambios en su mercado y estar listas para actuar en consecuencia. Las API son de gran ayuda.
+
+### Breve historia de las API
+
+Las API surgieron los primeros días de la informática, mucho antes que la computadora personal. En esa época, una API normalmente se usaba como biblioteca para los sistemas operativos. Casi siempre estaban habilitadas localmente en los sistemas en los que operaban, aunque a veces pasaban mensajes entre las computadoras centrales. Después de casi 30 años, las API se expandieron más allá de los entornos locales. A principios del año 2000, ya eran una tecnología importante para la integración remota de datos.
+
+
+###  Las API remotas
+
+Las API remotas están diseñadas para interactuar en una red de comunicaciones. Por "remoto" nos referimos a que los recursos que administran las API están, de alguna manera, fuera de la computadora que solicita alguno de dichos recursos. Debido a que la red de comunicaciones más usada es Internet, la mayoría de las API están diseñadas de acuerdo con los estándares web. No todas las API remotas son API web, pero se puede suponer que las API web son remotas.
+
+Las API web normalmente usan HTTP para solicitar mensajes y proporcionar una definición de la estructura de los mensajes de respuesta. Por lo general, estos mensajes de respuesta toman la forma de un archivo XML o JSON, que son los formatos preferidos porque presentan los datos en una manera fácil de manejar para otras aplicaciones.
+
+
+###  ¿Qué se ha hecho para mejorar las API?
+
+A medida que las API han evolucionado en las ahora generalizadas API web, se han realizado muchos esfuerzos 
+ para simplificar su diseño y facilitar su implementación.
+
+
+### Un poco de SOAP, mucho de REST
+
+A medida que se han difundido las API, se desarrolló una especificación de protocolo para permitir la estandarización del intercambio de información; se llama Protocolo de Acceso a Objetos Simples, más conocido como SOAP. Las API diseñadas con SOAP usan XML para el formato de sus mensajes y reciben solicitudes a través de HTTP o SMTP. Con SOAP, es más fácil que las aplicaciones que funcionan en entornos distintos o están escritas en diferentes lenguajes compartan información.
+
+Otra especificación es la Transferencia de Estado Representacional (REST). Las API web que funcionan con las limitaciones de arquitectura REST se llaman API de RESTful. La diferencia entre REST y SOAP es básica: SOAP es un protocolo, mientras que REST es un estilo de arquitectura. Esto significa que no hay ningún estándar oficial para las API web de RESTful. Las API son RESTful siempre que cumplan con las 6 limitaciones principales de un sistema RESTful:
+
+- Arquitectura cliente-servidor: la arquitectura REST está compuesta por clientes, servidores y recursos, y administra las solicitudes con HTTP.
+
+- Sin estado: el contenido de los clientes no se almacena en el servidor entre las solicitudes, sino que la información sobre el estado de la sesión se queda en el cliente. En su lugar, la información sobre el estado de la sesión está en posesión del cliente.
+
+- Capacidad de caché: el almacenamiento en caché puede eliminar la necesidad de algunas interacciones cliente-servidor.
+
+- Sistema en capas: las interacciones cliente-servidor pueden estar mediadas por capas adicionales, que pueden ofrecer otras funciones, como el equilibrio de carga, los cachés compartidos o la seguridad. Estas capas pueden ofrecer funcionalidades adicionales, como equilibrio de carga, cachés compartidos o seguridad.
+
+- Código de demanda (opcional): los servidores pueden extender las funciones de un cliente transfiriendo código ejecutable.
+
+- Interfaz uniforme: esta limitación es fundamental para el diseño de las API de RESTful e incluye 4 aspectos:
+
+- Identificación de recursos en las solicitudes: los recursos se identifican en las solicitudes y se separan de las representaciones que se devuelven al cliente.
+
+- Administración de recursos mediante representaciones: los clientes reciben archivos que representan los recursos. Estas representaciones deben tener la información suficiente como para poder ser modificadas o eliminadas.
+
+- Mensajes autodescriptivos: cada mensaje que se devuelve al cliente contiene la información suficiente para describir cómo debe procesar la información.
+
+- Hipermedios es el motor del estado de la aplicación: después de acceder a un recurso, el cliente REST debe ser capaz de descubrir mediante hipervínculos todas las otras acciones que están disponibles actualmente.
+
+Estas limitaciones pueden parecer demasiadas, pero son mucho más sencillas que un protocolo definido previamente. Por eso, las API de RESTful son cada vez más frecuentes que las de SOAP.
+
+En los últimos años, la especificación de OpenAPI se ha convertido en un estándar común para definir las API de REST. OpenAPI establece una forma independiente del lenguaje para que los desarrolladores diseñen interfaces API de REST, que permite a los usuarios entenderlas con el mínimo esfuerzo.
+
+
+### SOA frente a la arquitectura de microservicios
+
+Los dos enfoques de arquitectura que más se utilizan para las API remotas son la arquitectura orientada al servicio (SOA) y la arquitectura de microservicios. La SOA es el más antiguo de los dos, y comenzó como una mejora de las aplicaciones monolíticas. En lugar de usar una sola aplicación que haga todo, se pueden usar varias aplicaciones que proporcionen diferentes funciones y que no tengan conexión directa, todo gracias a un patrón de integración, como un bus de servicios empresariales (ESB).
+
+Aunque en muchos aspectos la SOA es más sencilla que una arquitectura monolítica, conlleva un riesgo de cambios en cascada en todo el entorno si las interacciones de los componentes no se comprenden claramente. Esta complejidad adicional vuelve a presentar algunos de los problemas que la SOA pretendía solucionar.
+
+Las arquitecturas de microservicios se parecen a los patrones SOA en que los servicios son especializados y no tienen conexión directa. Pero además, descomponen las arquitecturas tradicionales en partes más pequeñas. Los servicios de la arquitectura de microservicios usan un marco de mensajería común, como las API de RESTful. Utilizan API de RESTful para comunicarse entre sí, sin necesidad de operaciones complejas de conversión de datos ni capas de integración adicionales. Usar las API de RESTful permite e incluso fomenta una distribución más rápida de nuevas funciones y actualizaciones. Cada servicio es independiente. Un servicio se puede reemplazar, mejorar o abandonar, sin afectar los demás servicios de la arquitectura. Esta arquitectura liviana optimiza los recursos distribuidos o en la nube y admite la escalabilidad dinámica de los servicios individuales.
 
 ---
 ---
