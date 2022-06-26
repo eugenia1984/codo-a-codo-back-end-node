@@ -2132,8 +2132,36 @@ UDDI es un estándar XML para describir, publicar y encontrar servicios web. Es 
 
 - **5**. El cliente analiza el mensaje de respuesta SOAP y lo interpreta o genera un error si ha habido alguno.
 
+```
+|---------------------------------|
+|      HTTP Web Server            |
+|   |--------------------------|  |
+|   | Application Server       |  |
+|   |  |-------------------|   |  |
+|   |  |  Soap Enigne      |   |  |
+|   |  |  |-------------|  |   |  |
+|   |  |  | Web Service |  |   |  |
+|   |  |  | Web Service |  |   |  |
+|   |  |  | Web Service |  |   |  |
+|   |  |  |-------------|  |   |  |
+|   |  |-------------------|   |  |
+|   |--------------------------|  |
+|---------------------------------| 
+
+```
 
 ### 5. Componentes de los servidores en una aplicación Web Service
+
+
+Web Service. Es el software o componente que realiza las operaciones. Si está escrito en Java, estas operaciones se realizarán en lenguaje Java. Los clientes invocarán estas operaciones enviando mensajes SOAP.
+
+- **SOAP Engine**. El Web Service no sabe interpretar SOAP requests y crear SOAP responses. Para hacer esto hace falta un SOAP engine, un software que se encarga del manejo de estos mensajes. Apache Axis es un ejemplo.
+
+
+- **Application Server**. Para funcionar como un servidor que puede recibir requests desde diferentes clientes, el SOAP engine normalmente funciona dentro de un application server. Este es otro software que proporciona un espacio libre para aplicaciones que han de ser accedidas por múltiples clientes. El SOAP engine funciona como una aplicación dentro del application server. Ejemplos son Apache Tomcat server, Java Servlet y JSP container.
+
+- **HTTP Server**. Algunos application servers incluyen funcionalidades HTTP, por lo que se pueden tener Web Services funcionando instalando simplemente un SOAP engine y un application server. Sin embargo cuando un application server carece de funcionalidad HTTP es necesario también un HTTP server, más comúnmente llamado Web Server. Es un software que sabe cómo manejar mensajes HTTP. Los dos más populares en la actualidad son Apache HTTP Server y Nginx.
+
 
 ---
 ---
