@@ -3627,6 +3627,10 @@ Puedes comprobar si el navegador soporta  la API de Fetch comprobando la existen
 }
  ```
  
- ---
+---
 ---
 
+ En [**material_teoria_practic**](https://github.com/eugenia1984/codo-a-codo-back-end-node/tree/main/teoria/material_teoria_practica) hay ejemplos en codigo
+ 
+ ---
+ ---
