@@ -2753,8 +2753,258 @@ function callOtherDomain(){
 }
 ```
 
+En el ejemplo de arriba, la línea 3 crea un cuerpo XML para enviar con la solicitud POST en la línea 8.  También, en la línea 9, se establece una cabecera HTTP de solicitud "personalizado" (no estándar X-PINGOTHER: pingpong).  Dichas cabeceras no son parte del protocolo HTTP/1.1, pero son útiles generalmente en aplicaciones web. Dado que la solicitud (POST) usa un Content-Type application/xml, y dado que se establece una cabecera personalizada, la solicitud es verificada.
+
+Veamos este intercambio completo entre un cliente y un servidor:
 
 
+```
+OPTIONS /resources/post-here/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Origin: http://foo.example
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-PINGOTHER
+
+HTTP/1.1 200 OK
+Date: Mon, 01 Dec 2008 01:15:39 GMT
+Server: Apache/2.0.61 (Unix)
+Access-Control-Allow-Origin: http://foo.example
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER
+Access-Control-Max-Age: 1728000
+Vary: Accept-Encoding, Origin
+Content-Encoding: gzip
+Content-Length: 0
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Content-Type: text/plain
+
+
+POST /resources/post-here/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+X-PINGOTHER: pingpong
+Content-Type: text/xml; charset=UTF-8
+Referer: http://foo.example/examples/preflightInvocation.html
+Content-Length: 55
+Origin: http://foo.example
+Pragma: no-cache
+Cache-Control: no-cache
+```
+
+```<?xml version="1.0"?><person><name>Arun</name></person>```
+
+ 
+```
+HTTP/1.1 200 OK
+Date: Mon, 01 Dec 2008 01:15:40 GMT
+Server: Apache/2.0.61 (Unix)
+Access-Control-Allow-Origin: http://foo.example
+Vary: Accept-Encoding, Origin
+Content-Encoding: gzip
+Content-Length: 235
+Keep-Alive: timeout=2, max=99
+Connection: Keep-Alive
+Content-Type: text/plain
+```
+ 
+
+[Some GZIP'd payload]
+
+Las líneas 1 - 12 arriba representan la solicitud verificada con los métodos OPTIONS. Firefox 3.1 determina lo que se necesita para enviar esto basándose en los parámetros de la solicitud que los fragmentos de JavaScript que se usaron arriba, para que el servidor pueda responder si es aceptable enviar la solicitud con los parámetros de la solicitud real. OPTIONS es un método HTTP/1.1 que se utiliza para determinar información adicional de los servidores, y es un método idempotente, esto significa que no puede ser utilizado para cambiar el recurso. Observe que, junto con la solicitud OPTIONS, se envían otras dos cabeceras de solicitud (líneas 11 y 12 respectivamente):
+
+Access-Control-Request-Method: POST
+
+Access-Control-Request-Headers: X-PINGOTHER
+
+La cabecera Access-Control-Request-Method notifica al servidor como parte de una solicitud verificada que cuándo se envíe la solicitud real, esta será enviada con un método de solicitud POST. La cabecera Access-Control-Request-Headers notifica al servidor que cuando la solicitud real sea enviada, será enviada con un encabezado X-PINGOTHER personalizado.  Ahora, el servidor tiene la oportunidad para determinar si desea aceptar la solicitud bajo estas circunstancias.
+
+Las líneas 15 - 27 de arriba corresponden con la respuesta que devuelve el servidor indicando que el método de la petición (POST) y la cabecera X-PINGOTHER son aceptadas. En particular, echemos un vistazo a las líneas 18-21:
+
+Access-Control-Allow-Origin: http://foo.example
+
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+
+Access-Control-Allow-Headers: X-PINGOTHER
+
+Access-Control-Max-Age: 1728000
+
+El servidor responde con Access-Control-Allow-Methods y dice que POST, GET, y OPTIONS son métodos viables para consultar el recurso en cuestión.  Observe que esta cabecera es similar al HTTP/1.1 Allow: encabezado de respuesta, pero usado estrictamente dentro del contexto del control de acceso.  El servidor también envía Access-Control-Allow-Headers con un valor de X-PINGOTHER, confirmando que es una cabecera permitida para ser usado en la solicitud real.  Como Access-Control-Allow-Methods, Access-Control-Allow-Headers es una lista separada por comas de cabeceras aceptables.  Finalmente, Access-Control-Max-Age da el valor en segundos de cuánto tarda la respuesta de la solicitud verificada en ser capturada sin enviar otra solicitud verificada. En este caso, 1728000 segundos son 20 días.
+
+---
+
+### Solicitudes con credenciales
+
+La capacidad más interesante expuesta tanto por XMLHttpRequest y Access Control es la habilidad para hacer solicitudes "con credenciales" que estén al tanto de Cookies HTTP e información de Autenticación HTTP.  Por defecto, en las invocaciones XMLHttpRequest de un sitio curzado, los exploradores no enviarán credenciales. Una bandera específica tiene que ser establecida en el objeto XMLHttpRequest cuando este es invocado.
+
+En este ejemplo, el contenido cargado originalmente desde http://foo.example hace una solicitud GET simple a un recurso en http://bar.other que establece Cookies. El contenido en foo.example puede contener un JavaScript como este:
+
+
+```JavaScript
+var invocation = new XMLHttpRequest();
+var url = 'http://bar.other/resources/credentialed-content/';
+
+function callOtherDomain() {
+ if(invocation) {
+  invocation.open('GET', url, true);
+  invocation.withCredentials = true;
+  invocation.onreadystatechange = handler;
+  invocation.send();
+ }
+}
+```
+
+La línea 7 muestra la bandera en XMLHttpRequest que tiene que ser establecida para poder hacer la invocación con Cookies, es decir, el valor booleano withCredentials.  Por defecto, la invocación es hecha sin Cookies. Dado que esta es una simple solicitud GET, no es verificada, pero el explorador rechazará cualquier respuesta que no tiene el encabezado Access-Control-Allow-Credentials: true,y no hará disponible la respuesta para invocar contenido web.
+
+A continuación se proporciona una muestra de intercambio entre un cliente y un servidor:
+
+```
+GET /resources/access-control-with-credentials/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+
+Referer: http://foo.example/examples/credential.html
+
+Origin: http://foo.example
+
+Cookie: pageAccess=2
+```
+ 
+```
+HTTP/1.1 200 OK
+Date: Mon, 01 Dec 2008 01:34:52 GMT
+Server: Apache/2.0.61 (Unix) PHP/4.4.7 mod_ssl/2.0.61 OpenSSL/0.9.7e mod_fastcgi/2.4.2 DAV/2 SVN/1.4.2
+X-Powered-By: PHP/5.2.6
+Access-Control-Allow-Origin: http://foo.example
+Access-Control-Allow-Credentials: true
+Cache-Control: no-cache
+Pragma: no-cache
+Set-Cookie: pageAccess=3; expires=Wed, 31-Dec-2008 01:34:53 GMT
+Vary: Accept-Encoding, Origin
+Content-Encoding: gzip
+Content-Length: 106
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Content-Type: text/plain
+```
+ 
+
+[text/plain payload]
+
+Pese a que la línea 11 contiene la Cookie destinada para el contenido en http://bar.other, si bar.other no responde con Access-Control-Allow-Credentials: true (línea 19) la respuesta será ignorada y no puesta a disposición para el contenido web. Nota Importante: cuando se responde a una solicitud con credeciales, el servidor debe especificar un dominio, y no puede usar comodines. El ejemplo de arriba fallará si la cabecera fuera un comodín como: Access-Control-Allow-Origin: *.  Dado que Access-Control-Allow-Origin menciona explícitamente http://foo.example, el contenido de credenciales competente es devuelto al contenido web invocador. Observe que, en la línea 22, se establece una cookie adicional.
+
+Todos estos ejemplos pueden verse funcionando aquí.  La siguiente sección se refiere a las verdaderas cabeceras HTTP.
+
+---
+
+### Las cabeceras HTTP de respuesta
+
+Esta sección lista las cabeceras HTTP de respuesta que los servidores envían de vuelta para las solicitudes de acceso de control definidas por la especificación del Intercambio de Recursos de Origen Cruzado. La sección anterior da un resumen de estos en acción.
+
+
+### Access-Control-Allow-Origin
+
+Un recurso devuelto puede tener una cabecera Access-Control-Allow-Origin, con la siguiente sintaxis:
+
+```Access-Control-Allow-Origin: <origin> | * ```
+
+El parámetro origin específica una URI que puede tener acceso al recurso.  El explorador debe asegurar esto. Para solicitudes sin credenciales, el servidor debe especificar "*" como un comodín permitiendo, de este modo, el acceso al recurso a cualquier origen.
+
+Por ejemplo, para permitir a http://mozilla.com acceder al recurso, usted puede especificar:
+
+Access-Control-Allow-Origin: http://mozilla.com
+
+Si el servidor especifica un host de origen en vez de "*", entonces se debe incluir Origin en el encabezado de respuesta Vary para indicar a los clientes que las respuestas del servidor difieren basándose en el valor del encabezado de respuesta Origin.
+
+### Access-Control-Expose-Headers
+
+Requires Gecko 2.0(Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)
+
+Esta cabecera permite una whitelist de cabeceras del servidor que los exploradores tienen permitido acceder. Por ejemplo:
+
+Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header
+
+Esto permite a las cabeceras X-My-Custom-Header y X-Another-Custom-Header ser expuestos al explorador.
+
+### Access-Control-Max-Age
+
+Esta cabecera indica durante cuánto tiempo los resultados de la solicitud verificada pueden ser capturados. Para un ejemplo de solicitudes verificadas, vea los ejemplos de arriba.
+
+Access-Control-Max-Age: <delta-seconds>
+
+El parámetro delta-seconds indica el número de segundos en que los resultados pueden ser capturados.
+
+ 
+###  Access-Control-Allow-Credentials
+ 
+Indica si la respuesta puede ser expuesta cuando la bandera credentials es verdadera. Cuando se usa como parte de una respuesta para una solicitud verficada, este indica si la solicitud verdadera puede realizarse usando credenciales. Note que las solicitudes GET simples no son verificadas, y por lo que si una solicitud es hecha para un recurso con credenciales, si la cabecera no es devuelta con el recurso, la respuesta es ignorada por el explorador y no devuelta al contenido web.
+
+Access-Control-Allow-Credentials: true | false
+ 
+ 
+ ### Access-Control-Allow-Methods
+ 
+Específica el método o los métodos permitidos cuando se asigna un recurso. Es usado en respuesta a la solicitud verificada. Las condiciones sobre cuándo una solicitud es verificada se discuten arriba.
+
+``` Access-Control-Allow-Methods: <method>[, <method>]* ```
+
+Un ejemplo de una solicitud verificada se muestra arriba, incluyendo un ejemplo donde se envía este encabezado al explorador.
+
+### Access-Control-Allow-Headers
+
+Usado en respuesta a una solicitud verificada para indicar qué encabezado HTTP puede ser usado cuando se realiza la solicitud real.
+
+```Access-Control-Allow-Headers: <field-name>[, <field-name>]*```
+
+Las Solicitudes con credenciales son discutidas arriba.
+ 
+ 
+ ## :star: Los encabezados HTTP de solicitud
+ 
+Esta sección lista las cabeceras que los clietnes deben utilizar cuando realizan solicitudes HTTP para usar la característica de intercambio de origen cruzado. Note que estas cabeceras son establecidas cuando se realizan realizan invocaciones a los servidores. Los desarrolladores usan la capacidad de sitios cruzados XMLHttpRequest para no tener que establecer ninguna solicitud de intercambio de origen cruzado programada.
+ 
+ 
+ ###  Origin
+ 
+Indica el origen de las solicitudes de acceso a sitios cruzados o solicitudes verificadas.
+
+Origin: ```<origin>```
+
+El origen es una URI indicando al servidor dónde se ha iniciado la solicitud. Este no incluye ninguna información de recorrido, sólo el nombre del servidor. 
+
+Nota: El origin puede ser un string vacío; esto es útil, por ejemplo, si el recurso es un data URL.
+
+Observe que en cualquier solicitud de acceso de control, la cabecera ORIGIN siempre se envía.
+ 
+ 
+ ### Access-Control-Request-Method
+Se usa cuando se emite una solicitud verificada, para indicarle al servidor qué método HTTP será usado cuando se haga la solicitud real.
+
+```Access-Control-Request-Method: <method>```
+
+Ejemplos de esta utilización pueden ser encontrados arriba.
+
+### Access-Control-Request-Headers
+ 
+Usada cuando se emite una solicitud verificada para indicarle al servidor qué cabecera HTTP será usada cuando se haga la solicitud real.
+
+```Access-Control-Request-Headers: <field-name>[, <field-name>]*```
 
 ---
 ---
