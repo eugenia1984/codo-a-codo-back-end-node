@@ -3007,5 +3007,259 @@ Usada cuando se emite una solicitud verificada para indicarle al servidor qué c
 ```Access-Control-Request-Headers: <field-name>[, <field-name>]*```
 
 ---
+ 
+## :star: 3. Enrutamiento con NodeJs
+ 
+### RUTAS / ROUTING CON NODEJS Y EXPRESS
+
+Para añadir más páginas a nuestro sitio, necesitamos más rutas. Podemos hacerlo usando Express Router, que ya viene integrado en Express. Esta entrada será un tanto bestia ya que el manejo de las rutas será una parte importante de todas las aplicaciones que hagamos de ahora en adelante.
+
+Esta es la manera de crear las rutas básicas para sitios web, y también la forma en la que finalmente construiremos nuestras APIs RESTful que utilizará una app frontend en Angular. Así que, sin más dilación procedemos a enrutar (que palabra más fea señores, usaremos routing a partir de ahora).
+ 
+ 
+## EXPRESS ROUTER
+
+¿Qué es exactamente Express Router? Puedes considerarlo como una mini aplicación de express sin tantas funcionalidades, solo routing. No incorpora vistas o configuraciones, pero nos proporciona una routing API con funciones como .use(), .get(), .param(), y route(). Echaremos un vistazo al significado de todo esto.
+
+Hay varias formas de usar routing. Ya usamos uno de sus métodos cuando creamos la página de inicio en la anterior entrada usando ‘app.get(‘/’, …). Veremos otros métodos para hacer más secciones de nuestro sitio y comentaremos el por qué y cuando usarlos.
+
+ 
+ ### EJEMPLO DE LAS CARACTERÍSTICAS DE UNA APLICACIÓN
+
+Estas son las principales características que añadiremos a nuestra aplicación actual:
+
+- Rutas básicas (ya hemos tenemos hecha la página principal)
+
+- Rutas de otras secciones del sitio (parte del Admin/Administrador con sus sub-rutas)
+
+- Middleware para registros de peticiones (log request) en consola
+
+- Ruta con Parámetros (http://localhost:1337/usuarios/darthvader)
+
+- Ruta Middleware para Parámetros, para validar parámetros específicos
+
+- Rutas de inicio de sesión (login routes) haciendo GET y POST
+
+- Validar un parámetro que se pasa a una ruta concreta
+
+ 
+### ¿Qué es el Middleware? 
+ 
+ El Middleware se invoca ente la petición de un usuario y la respuesta final. Es todo lo que ocurre desde que sale una solicitud en lado del cliente hasta que llega a nuestra lógica de la ruta en el servidor. Volveremos sobre este concepto cuando tengamos que registrar los datos de cada petición por la consola/terminal (log data). Un usuario solicitará la página, lo registramos en la consola (middleware) y después enviaremos la respuesta con la página solicitada. Próximamente, más sobre el middleware.
+
+ 
+Como hemos hecho hasta ahora, tendremos nuestras rutas en el archivo server.js. No necesitaremos hacer cambio alguno en nuestro package.json puesto que ya viene todo instalado con Express.
+  
+ 
+###   RUTAS BÁSICAS / BASIC ROUTES
+
+Ya definimos nuestra ruta básica en la página de inicio. Express nos deja definir las rutas con nuestro objeto app. También podemos manejar métodos HTTP como GET, POST, PUT/PATCH, y DELETE.
+
+Está es la forma más simple de definir rutas, pero a medida que nuestra aplicación crezca, necesitaremos más organización para nuestras rutas. Tan solo imagínate una app que tenga una parte de administrador y otra parte para el usuario, con muchas rutas cada una. Express router nos ayuda a regular todo esto.
+
+Para las rutas siguientes, no enviaremos vistas al navegador, solo mensajes. Así será más sencillo ya que quiero centrarme en los aspectos del routing.
+
+###  EXPRESS.ROUTER()
+
+express.Router() actúa como una mini aplicación. Puedes crear una instancia (como hicimos con Express) y luego definir rutas con ella. Vamos a ver un ejemplo.
+
+ 
+Debajo nuestro app.get() route dentro del server.js, añade lo siguiente. Vamos a 1. llamar una instancia del router 2. aplicarle rutas a esa instancia 3. y luego añadir estas rutas a nuestra app principal.
+
+```JavaScript
+//creamos las rutas para la parte de admin
+//instanciamos router
+var adminRouter = express.Router();
+
+//página principal del admin, panel de administración/dashboard (http://localhost:1337/admin)
+adminRouter.get('/', function(req, res) {
+ res.send('¡Soy el panel de administración!');
+});
+
+//users page (http://localhost:1337/admin/users)
+adminRouter.get('/users', function (req, res) {
+ res.send('¡Muestro todos los usuarios!');
+});
+
+//posts page (http://localhost:1337/admin/users)
+adminRouter.get('/posts', function(req, res) {
+ res.send('¡Muestro todos los posts!');
+});
+
+//aplicamos las rutas a nuestra aplicación, app
+app.use('/admin', adminRouter);
+```
+ 
+Llamaremos a una instancia de express.Router() y lo asignamos a la variable adminRouter, le aplicamos las rutas, y luego le decimos a nuestra app que use esas rutas.
+
+Ahora podemos acceder al panel de administración en http://localhost:1337/admin y a las sub-páginas en http://localhost:1337/admin/users y http://localhost:1337/admin/posts.
+
+
+Observa como podemos establecer una raíz/root por defecto usando estas rutas que acabamos de definir. Si hubiéramos cambiado la línea 22 por app.use(‘/app’, router), entonces nuestras rutas serían http://localhost:1337/app/ y http://localhost:1337/app/users.
+
+
+Esto es muy potente porque podemos creas varias express.Router() y luego aplicarlas a nuestra app. Podríamos tener un Router para las rutas básicas, rutas de autentificación, etc.
+ 
+
+Usar Router nos permite hacer nuestras aplicaciones más modulares y flexibles que nunca mediante la creación de instancias de Router y aplicándolas como corresponde. Ahora vamos a ver como usar middleware para manejar peticiones.
+ 
+ 
+ ### ROUTE MIDDLEWARE (ROUTER.USE())
+
+Route middleware en Express es una forma de hacer algo antes de que una petición se procese. Este algo podrían ser cosas como comprobar si un usuario se ha autentificado (logueado con su cuenta por ejemplo), en definitiva, cualquier cosa que gustemos hacer antes de mandarle información al usuario.
+
+El middleware registra un mensaje en nuestra consola cada vez que se realiza una petición / solicitud. Haremos una demostración de como crear middleware usando Express Router. Simplemente añadiremos el middleware al adminRouter que creamos en el último ejemplo. Asegúrate de ponerlo después de declarar tu adminRouter y antes de definir las rutas del admin, usuarios y posts.
+
+Te habrás fijado en el argumento ‘next’. Es el único modo que tiene Express de saber que la función se ha completado y puede proceder con la siguiente parte del middleware o continuar con el enrutamiento (routing).
+ 
+```JavaScript
+//middleware que nos dirá qué ocurre en cada petición
+adminRouter.use(function(req, res, next){
+ //registra cada petición en la consola
+ console.log(req.method, req.url);
+ //continúamos haciendo lo que sea que estábamos haciendo y vamos a la ruta
+ next();
+});
+```
+
+ adminRouter.use() se utiliza para definir el middleware. Ahora esto se aplicará a todas las peticiones que entran a nuestra aplicación por la instancia de Router. Vamos al navegador y entramos en por ejemplo en http://localhost:1337/admin/users y veremos la petición (request) en nuestra consola.
+
+Express Router petición en consola
+
+Express Router petición en consola
+
+Es muy importante el orden en que coloques tus middleware y las rutas. Todo ocurre en el orden en el que están. Significa que si colocas tus middleware después de una ruta, la ruta procedería antes que el middleware y la petición finalizará ahí mismo. Tu middleware no se ejecutaría en este caso.
+
+Ten en mente que puedes usar el route middleware para muchas cosas. Por ejemplo, puedes usarlo para comprobar si un usuario se ha logueado durante la sesión antes de dejarlo continuar.
+ 
+ 
+ ### ESTRUCTURANDO RUTAS
+
+Al usar Router(), somos capaces de dividir en partes de nuestro sitio. Significa que puedes crear un basicRouter para rutas de navegación básica del sitio. También podrías crear un adminRouter para las rutas como administrador que estarían protegidas por algún tipo de autentificación.
+
+Enrutar nuestra aplicación es un método que nos permite dividir las piezas que la componen. Nos proporciona la flexibilidad que necesitamos para aplicaciones complejas o APIs. También podemos mantener nuestra aplicación limpia y organizada ya que podemos trasladar cada router definido a su propio archivo individual y luego simplemente coger este archivo cuando lo llamamos con app.use(), de esta manera:
+ 
+ 
+ ```JavaScript
+app.use('/', basicRoutes);
+app.use('/admin', adminRoutes);
+app.use('/api', apiRoutes);
+```
+
+ ###  RUTAS CON PARÁMETROS (/HELLO/:NAME)
+
+ 
+Vamos a ver como añadir parámetros a las rutas, digamos que queremos tener una ruta llamada /admin/users/:name donde pasamos el nombre de una persona a la URL, y la aplicación lanza un **‘¡Hola :name!’**, añade esto debajo de donde definimos la ruta /admin/users:
+
+ 
+---------------------------------------------------------------------------------------------------
+
+```JavaScript
+//ruta con parámetros (http://localhost:1337/admin/users/:name)
+adminRouter.get('/users/:name', function(req, res){
+ res.send('hola ' + req.params.name + '!');
+});
+``` 
+ 
+Ahora visitamos por ejemplo http://localhost:1337/admin/users/darthvader y veremos que nuestro navegador nos lanza un ‘hola darth vader!’, req.params guarda todos los datos que provienen de la petición (request) del usuario. Muy sencillo.
+
+ 
+
+### Express Router con parámetros
+
+En el futuro, podríamos usar esto para coger todos los datos de usuario que coincidan con el nombre darthvader. Podríamos hacer un panel de administración para gestionar nuestros usuarios.
+
+Pongamos como ejemplo que queremos validar el nombre de alguna forma. Quizás queremos asegurarnos de que no es una palabra ofensiva o políticamente incorrecta. Haríamos esta validación dentro del middleware. Usaremos un middleware especial para esto.
+
+ 
+ ### MIDDLEWARE PARA PARÁMETROS (.PARAM())
+
+Usaremos Express .param() middleware. Esto crea un middleware que se ejecutará para cierto parámetro de la ruta. En nuestro caso, estamos usando :name en nuestra ruta de saludo. Una vez más, asegúrate de que el middleware está colocado antes que la ruta:
+ 
+ 
+ ```JavaScript
+ //middleware para validar :name
+adminRouter.param('name', function(req, res, next, name){
+ //haz aquí la validación de name
+ //blah blah blah, validación
+ //mostramos en consola para saber si funciona
+ console.log('haciendo validaciones de ' + name);
+ //una vez hecha la validación guardamos el nuevo objeto en la petición
+ req.name = name;
+ //pasamos al siguiente asunto
+ next();
+});
+```
+ 
+```JavaScript 
+//ruta con parámetros (http://localhost:1337/admin/hello/:name)
+adminRouter.get('/hello/:name', function(req, res){
+ res.send('hola ' + req.name + '!');
+});
+```
+ 
+
+Ahora cuando vamos a la ruta /hello/:name, nuestro middleware entrará en funcionamiento. Podemos hacer las validaciones y luego pasarle la nueva variable a nuestra ruta .get almacenándola dentro de req (request). Después accedemos a ella cambiando req.params.name por req.name.
+
+
+Si ponemos en el navegador http://localhost:1337/admin/hello/darthvader veremos nuestra petición mostrarse en la consola.
+
+
+### Express Router Parámetros Middleware
+
+
+Middleware para parámetros se puede usar para validar datos que se envían a tu aplicación. Si te da por hacer una API RESTful, puedes validar también un token y asegurarte de que el usuario es capaz de acceder a su información. Todo lo que hemos trabajado en Node hasta ahora dará lugar a la API RESTful que comentamos en la primera entrada cuando hablamos del modelo cliente-servidor.
+
+
+Ahora pasamos a ver la última característica de Express router, cómo usar app.route() para definir varias rutas de una sola vez.
+
+ 
+
+### RUTAS LOGIN (APP.ROUTE())
+
+Con esto definimos las rutas de nuestra aplicación de forma similar a usar app.get, pero usando app.route. Es básicamente un shortcut/atajo para llamar al Express Router. En lugar de llamar express.Router(), podemos llamar app.route y empezar a aplicar nuestras rutas ahí.
+
+Usar app.route() nos permite definir varias acciones en una sola ruta de login. Necesitaremos un GET route para mostrar el formulario de login o acceso y un POST route para procesar el formulario.
+
+```JavaScript 
+app.route('/login')
+//mostramos el formulario (GET http://localhost:1337/login)
+.get(function(req, res){
+ res.send('este es el formulario de login');
+})
+
+//procesamos el formulario (POST http://localhost:1337/login)
+.post(function(req, res){
+ res.send('procesando el formulario de login');
+});
+```
+ 
+
+Listo, ya hemos definido dos acciones diferentes en nuestra ruta /login. Limpio y sencillo. Esta vez hemos aplicado directamente la ruta a nuestro objeto app dentro del archivo server.js, pero también podemos definirlas en el objeto adminRouter que teníamos antes.
+
+Este es un buen método para crear rutas, ya que es limpio y facilita ver qué rutas hay y dónde se aplican. Pronto estaremos haciendo una API RESTful y una de las cosas que debemos hacer es usar los diferentes verbos de una petición HTTP para las acciones o funciones de nuestra aplicación. GET /login dará lugar al formulario de acceso (login) mientras que POST /login procesará los datos de login.
+
+ 
+
+### RESUMEN
+
+Express Router nos da mucha flexibilidad a la hora de definir rutas. En resumen, podemos:
+
+- Utilizar express.Router() varias veces para definir grupos de rutas
+
+- Aplicar express.Router() a una sección o parte de nuestra web usando app.use()
+
+- Usar route middleware para procesar peticiones (requests)
+
+- Usar route middleware para validar parámetros usando .param()
+
+- Usar app.route() como un atajo de Router para definir varias peticiones en una ruta
+ 
+---
+ 
+ 
+ 
+ 
+---
 ---
 
