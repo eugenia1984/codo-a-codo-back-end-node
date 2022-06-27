@@ -2621,6 +2621,140 @@ Todo el mundo, de verdad.
 
 Más específicamente, este artículo está dirigido a administradores web, desarrolladores de servidores y desarrolladores de interfaz. Los exploradores modernos manejan los componentes sobre el intercambio de origen cruzado del lado del cliente. Incluyendo cabeceras y políticas de ejecución. Pero, este nuevo estándar determina que los servidores tienen que manejar las nuevas solicitudes y las cabeceras de las respuestas. Se recomienda, como lectura suplementaria, otro artículo para desarrolladores de servidor que discute el [intercambio de origen cruzado desde una perspectiva de servidor (con fragmentos de código PHP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
+### ¿Qué peticiones utiliza CORS?
+
+
+Este [estándar de intercambio de origen cruzado](https://fetch.spec.whatwg.org/) es utilizado para habilitar solicitudes HTTP de sitios cruzados para:
+
+Invocaciones de las APIs XMLHttpRequest o  Fetch en una manera de sitio cruzado, como se discutió arriba.
+
+Fuentes Web (para usos de fuente en dominios cruzados @font-face dentro de CSS), [para que los servidores puedan mostrar fuentes TrueType que sólo puedan ser cargadas por sitios cruzados y usadas por sitios web que lo tengan permitido](https://www.w3.org/TR/css-fonts-3/#font-fetching-requirements).
+
+Texturas WebGL.
+
+Imágenes dibujadas en patrones usando [drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage).
+
+Hojas de estilo (para acceso [CSSOM](https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View)).
+
+Scripts (para excepciones inmutadas).
+
+Este artículo es una discusión general sobre Intercambio de Recursos de Origin Cruzado e incluye una discusión sobre las cabeceras HTTP.
+
+---
+
+### Resumen
+
+
+El estándar de Intercambio de Recursos de Origen Cruzado trabaja añadiendo nuevas cabeceras HTTP que permiten a los servidores describir el conjunto de orígenes que tienen permiso para leer la información usando un explorador web.  Adicionalmente, para métodos de solicitud HTTP que causan efectos secundarios en datos del usuario (y en particular, para otros métodos HTTP distintos a GET, o para la utilización de POST con algunos tipos MIME), la especificación sugiere que los exploradores "verifiquen" la solicitud, solicitando métodos soportados desde el servidor con un método de solicitud HTTP OPTIONS, y luego, con la "aprobación" del servidor, enviar la verdadera solicitud con el método de solicitud HTTP verdadero. Los servidores pueden también notificar a los clientes cuando sus "credenciales" (incluyendo Cookies y datos de autenticación HTTP) deben ser enviados con solicitudes.
+
+Las secciones siguientes discuten escenarios, así como el análisis de las cabeceras HTTP usados.
+
+---
+
+
+### Ejemplos de escenarios de control de accesos
+
+Aquí, presentamos tres escenarios que ilustran cómo funciona el Intercambio de Recursos de Origen Cruzado. Todos estos ejemplos utilizan el objeto XMLHttpRequest, que puede ser utilizado para hacer invocaciones de sitios cruzados en cualquier explorador soportado.
+
+Los fragmentos de JavaScript incluidos en estas secciones (y las instancias ejecutadas del código servidor que correctamente maneja las solicitudes de sitios cruzados) [pueden ser encontrados "en acción" aquí](http://arunranga.com/examples/access-control/), y pueden ser trabajados en exploradores que soportan XMLHttpRequest de sitios cruzados. Una discusión de Intercambio de Recursos de Origen Cruzado desde una [perspectiva de servidor (incluyendo fragmentos de código PHP) puede ser encontrada aquí](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+
+
+---
+
+### Solicitudes simples
+
+Una solicitud de sitio cruzado es aquella que cumple las siguientes condiciones:
+
+- Los únicos métodos aceptados son: **GET**, **HEAD**, **POST**.
+
+Aparte de las cabeceras establecidas automáticamente por el agente usuario (ej. Connection, User-Agent,etc.), las únicas cabeceras que están permitidas para establecer manualmente son: **Accept**, **Accept-Language**, **Content-Language**, **Content-Type**.
+
+Los únicos valores permitidos de la cabecera Content-Type son: **application/x-www-form-urlencoded**, **multipart/form-data**, **text/plain**.
+
+Nota: Estos son los mismos tipos de solicitud de sitios cruzados que un contenido web ya puede emitir, y ninguna respuesta de datos es liberada a menos que el servidor envíe la cabecera apropiada. Por lo tanto, los sitios que prevengan solicitudes falsas de sitios cruzados no tienen nada nuevo que temer sobre el control de acceso HTTP.
+
+Por ejemplo, suponga que el contenido web en el dominio [http://foo.example](http://foo.example) desea invocar contenido en el dominio [http://bar.other](http://bar.other). Código de este tipo puede ser utilizado dentro de JavaScript desplegado en foo.example:
+
+```JavaSCript
+var invocation = new XMLHttpRequest();
+var url = 'http://bar.other/resources/public-data/';
+
+function callOtherDomain() {
+
+ if(invocation) {
+  invocation.open('GET', url, true);
+  invocation.onreadystatechange = handler;
+  invocation.send();
+ }
+}
+```
+
+Dejándonos ver lo que el explorador enviará al servidor en este caso, y veamos como responde el servidor:
+
+```
+GET /resources/public-data/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Referer: http://foo.example/examples/access-control/simpleXSInvocation.html
+Origin: http://foo.example
+HTTP/1.1 200 OK
+Date: Mon, 01 Dec 2008 00:23:53 GMT
+Server: Apache/2.0.61
+Access-Control-Allow-Origin: *
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: application/xml
+```
+ 
+
+[XML Data]
+
+Las líneas 1 - 10 son las cabeceras enviadas por Firefox 3.5.  Observe que la cabecera de solicitud HTTP principal aquí es la cabecera Origin:  en la línea 10 de arriba, lo que muestra que la invocación proviene del contenido en el dominio http://foo.example.
+
+Las líneas 13 - 22  muestran la respuesta HTTP del servidor en el dominio http://bar.other.  En respuesta, el servidor envía de vuelta una cabecera Access-Control-Allow-Origin:, mostrado arriba en la línea 16.  El uso de la cabecera Origin: y Access-Control-Allow-Origin: muestran el protocolo de control de acceso en su uso más simple.  En este caso, el servidor responde con un Access-Control-Allow-Origin: * lo que significa que el recurso puede ser accedido por cualquier dominio en una forma de sitio cruzado. Si el dueño del recurso en http://bar.other deseara restringir el acceso al recurso solamente para http://foo.example, debería devolver lo siguiente:
+
+Access-Control-Allow-Origin: http://foo.example
+
+Note que ahora, ningún otro dominio aparte de http://foo.example (identificado por la cabecera ORIGIN: en la solicitud, como en la línea 10 arriba) puede acceder al recurso en una forma de sitio cruzado. La cabecera Access-Control-Allow-Origin debe contener el valor que fue enviado en la solicitud del encabezado Origin.
+
+---
+
+## Solicitudes Verificadas
+
+
+
+A diferencia de las solicitudes simples (discutidas arriba), las solicitudes "verificadas" envían primero una solicitud HTTP por el método OPTIONS al recurso en el otro dominio, para determinar si es seguro enviar la verdadera solicitud. Las solicitudes de sitios cruzados son verificadas así ya que pueden tener implicaciones en la información de usuario.  En particular, una solicitud es verificada sí:
+
+Usa métodos distintos a GET, HEAD o POST.  También, si POST es utilizado para enviar solicitudes de información con Content-Type distinto a application/x-www-form-urlencoded, multipart/form-data, o text/plain, ej. si la solicitud POST envía una carga XML al servidor utilizando application/xml or text/xml, entonces la solicitud es verificada.
+
+Se establecen encabezados personalizados (ej. la solicitud usa un encabezado como X-PINGOTHER)
+
+Nota: Empezando en Gecko 2.0, las codificaciones de datos text/plain, application/x-www-form-urlencoded, y multipart/form-data pueden ser enviadas en sitios cruzados sin verificación. Anteriormente, solo text/plain podía ser enviado sin verificación.
+
+```JavaScript
+var invocation = new XMLHttpRequest();
+var url = 'http://bar.other/resources/post-here/';
+var body = '<?xml version="1.0"?><person><name>Arun</name></person>';
+
+function callOtherDomain(){
+ if(invocation) {
+  invocation.open('POST', url, true);
+  invocation.setRequestHeader('X-PINGOTHER', 'pingpong');
+  invocation.setRequestHeader('Content-Type', 'application/xml');
+  invocation.onreadystatechange = handler;
+  invocation.send(body);
+ }
+}
+```
+
+
+
 
 ---
 ---
