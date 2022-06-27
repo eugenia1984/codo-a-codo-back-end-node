@@ -3257,9 +3257,376 @@ Express Router nos da mucha flexibilidad a la hora de definir rutas. En resumen,
  
 ---
  
+### :star:  4. Fetch contra la API que creamos
+ 
+
+La API Fetch proporciona una interfaz JavaScript para acceder y manipular partes del canal HTTP, tales como peticiones y respuestas. También provee un método global fetch() (en-US) que proporciona una forma fácil y lógica de obtener recursos de forma asíncrona por la red.
+
+Este tipo de funcionalidad se conseguía previamente haciendo uso de XMLHttpRequest. Fetch proporciona una alternativa mejor que puede ser empleada fácilmente por otras tecnologías como Service Workers (en-US). Fetch también aporta un único lugar lógico en el que definir otros conceptos relacionados con HTTP como CORS y extensiones para HTTP.
+
+La especificación fetch difiere de JQuery.ajax() en dos formas principales:
  
  
+- El objeto Promise devuelto desde fetch() no será rechazado con un estado de error HTTP incluso si la respuesta es un error HTTP 404 o 500. En cambio, este se resolverá normalmente (con un estado ok configurado a false), y  este solo sera rechazado ante un fallo de red o si algo impidió completar la solicitud.
+
+- Por defecto, fetch no enviará ni recibirá cookies del servidor, resultando en peticiones no autenticadas si el sitio permite mantentener una sesión de usuario (para mandar cookies, credentials de la opción init deberan ser configuradas). Desde el 25 de agosto de 2017. La especificación cambió la politica por defecto de las credenciales a same-origin. Firefox cambió desde la versión 61.0b13.
+
+Una petición básica de fetch es realmente simple de realizar. Eche un vistazo al siguente código:
  
----
+```JavaScript
+ fetch('http://example.com/movies.json')
+  .then(response => response.json())
+  .then(data => console.log(data));
+ ```
+ 
+ Aquí estamos recuperando un archivo JSON a través de red e imprimiendo en la consola. El uso de fetch() más simple toma un argumento (la ruta del recurso que quieres obtener) y devuelve un objeto Promise conteniendo la respuesta, un objeto Response.
+
+Esto es, por supuesto, una respuesta HTTP no el archivo JSON. Para extraer el contenido en el cuerpo del JSON desde la respuesta, usamos el método json() (definido en el mixin de Body, el cual está implementado por los objetos Request y Response).
+
+Nota: El mixin de Body tambien tiene metodos parecidos para extraer otros tipos de contenido del cuerpo. Vease Body para más información.
+
+Las peticiones de Fetch son controladas por la directiva de connect-src de Content Security Policy en vez de la directiva de los recursos que se han devuelto.
+ 
+ ### Suministrando opciones de petición
+ 
+El método fetch() puede aceptar opcionalmente un segundo parámetro, un objeto init que permite controlar un numero de diferentes ajustes:
+
+Vea fetch() (en-US), para ver todas las opciones disponibles y más detalles.
+ 
+```JavaScript 
+// Ejemplo implementando el metodo POST:
+async function postData(url = '', data = {}) {
+  // Opciones por defecto estan marcadas con un *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+
+postData('https://example.com/answer', { answer: 42 })
+  .then(data => {
+    console.log(data); // JSON data parsed by `data.json()` call
+  }); 
+```
+ 
+ Tenga en cuenta que  mode: "no-cors" solo permite un conjunto limitado de encabezados en la solicitud:
+
+•     Accept
+
+•     Accept-Language
+
+•     Content-Language
+
+•     Content-Type with a value of application/x-www-form-urlencoded, multipart/form-data, or text/plain
+ 
+ 
+### Comprobando que la petición es satisfactoria
+ 
+Una petición promise fetch() (en-US) será rechazada con TypeError cuando se encuentre un error de red, aunque esto normalmente significa problemas de permisos o similares — por ejemplo, un 404 no constituye un error de red. Una forma precisa de comprobar que la petición fetch() es satisfactoria pasa por comprobar si la promesa ha sido resuelta, además de comprobar que la propiedad Response.ok tiene el valor true que indica que el estado de la petición HTTP es OK (código 200-299). El código sería algo así:
+ 
+```JavaSCript
+ fetch('flores.jpg').then(function(response) {
+  if(response.ok) {
+    response.blob().then(function(miBlob) {
+      var objectURL = URL.createObjectURL(miBlob);
+      miImagen.src = objectURL;
+    });
+  } else {
+    console.log('Respuesta de red OK pero respuesta HTTP no OK');
+  }
+})
+
+.catch(function(error) {
+  console.log('Hubo un problema con la petición Fetch:' + error.message);
+});
+```
+
+ 
+ ### Proporcionando tu propio objeto Request
+ 
+En lugar de pasar la ruta al recurso que deseas solicitar a la llamada del método fetch(), puedes crear un objeto de petición utilizando el constructor Request() (en-US), y pasarlo como un argumento del método fetch():
+ 
+ 
+```JavaScript
+var myHeaders = new Headers();
+
+var myInit = { method: 'GET',
+               headers: myHeaders,
+               mode: 'cors',
+               cache: 'default' };
+
+var myRequest = new Request('flowers.jpg', myInit);
+
+fetch(myRequest)
+.then(function(response) {
+  return response.blob();
+})
+.then(function(myBlob) {
+  var objectURL = URL.createObjectURL(myBlob);
+  myImage.src = objectURL;
+});
+```
+ 
+Request() acepta exactamente los mismos parámetros que el método fetch(). Puedes incluso pasar un objeto de petición existente para crear una copia del mismo:
+var anotherRequest = new Request(myRequest, myInit);
+ 
+Esto es muy útil ya que el cuerpo de las solicitudes y respuestas son de un sólo uso. Haciendo una copia como esta te permite utilizar la petición/respuesta de nuevo, y al mismo tiempo, si lo deseas, modificar las opciones de init. La copia debe estar hecha antes de la lectura del <body>, y leyendo el <body> en la copia, se marcará como leido en la petición original.
+Nota: Existe también un método clone() (en-US) que crea una copia. Este tiene una semántica ligeramente distinta al otro método de copia — el primero fallará si el cuerpo de la petición anterior ya ha sido leído (lo mismo para copiar una respuesta), mientras que clone() no.
+ 
+ 
+### Enviar una petición con credenciales incluido
+ 
+Para producir que los navegadores envien una petición con las credenciales incluidas, incluso para una llamada de origen cruzado, añadimos credentials: 'include' en el el objeto init que se pasa al método fetch().
+ 
+ ```JavaScript
+ fetch('https://example.com', {
+  credentials: 'include'
+})
+ ```
+ 
+ Si solo quieres enviar la credenciales si la URL de la petición está en el mismo origen desde donde se llamada el script, añade credentials: 'same-origin'.
+ 
+ 
+```JavaScript
+ // El script fué llamado desde el origen 'https://example.com'
+fetch('https://example.com', {
+  credentials: 'same-origin'
+})
+```
+
+Sin embargo para asegurarte que el navegador no incluye las credenciales en la petición, usa credentials: 'omit'.
+
+ ```JavaScript
+ fetch('https://example.com', {
+  credentials: 'omit'
+})
+```
+ 
+### Enviando datos JSON
+ 
+Usa fetch() (en-US) para enviar una petición POST con datos codificados en JSON . 
+ 
+ 
+```JavaScript
+var url = 'https://example.com/profile';
+var data = {username: 'example'};
+
+fetch(url, {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify(data), // data can be `string` or {object}!
+  headers:{
+    'Content-Type': 'application/json'
+  }
+}).then(res => res.json())
+.catch(error => console.error('Error:', error))
+.then(response => console.log('Success:', response));
+```
+
+### Enviando un archivo
+ 
+Los archivos pueden ser subido mediante el HTML de un elemento input ``` <input type="file" />```, **FormData()** (en-US) y **fetch()** (en-US). 
+
+ 
+```JavaScript
+var formData = new FormData();
+var fileField = document.querySelector("input[type='file']");
+
+formData.append('username', 'abc123');
+formData.append('avatar', fileField.files[0]);
+
+fetch('https://example.com/profile/avatar', {
+  method: 'PUT',
+  body: formData
+})
+.then(response => response.json())
+.catch(error => console.error('Error:', error))
+.then(response => console.log('Success:', response)); 
+```
+
+### Cabeceras
+ 
+La interfaz Headers te permite crear tus propios objetos de headers mediante el constructor Headers() (en-US). Un objeto headers es un simple multi-mapa de nombres y valores: 
+ 
+ 
+ ```JavaScript
+var content = "Hello World";
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "text/plain");
+myHeaders.append("Content-Length", content.length.toString());
+myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+```
+
+Lo mismo se puede lograr pasando un "array de arrays" o un objeto literal al constructor:
+ 
+```JavaScript
+myHeaders = new Headers({
+  "Content-Type": "text/plain",
+  "Content-Length": content.length.toString(),
+  "X-Custom-Header": "ProcessThisImmediately",
+});
+```
+
+Los contenidos pueden ser consultados o recuperados: 
+ 
+```JavaScript
+console.log(myHeaders.has("Content-Type")); // true
+console.log(myHeaders.has("Set-Cookie")); // false
+myHeaders.set("Content-Type", "text/html");
+myHeaders.append("X-Custom-Header", "AnotherValue");
+console.log(myHeaders.get("Content-Length")); // 11
+console.log(myHeaders.getAll("X-Custom-Header")); // ["ProcessThisImmediately", "AnotherValue"]
+myHeaders.delete("X-Custom-Header");
+console.log(myHeaders.getAll("X-Custom-Header")); // [ ]
+```
+Algunas de estas operaciones solo serán utiles en  ServiceWorkers (en-US), pero estas disponen de una mejor API  para manipular headers.
+Todos los métodosde de headers lanzan un TypeError si un nombre de cabecera no es un nombre de cabecera HTTP válido. Las operaciones de mutación lanzarán un TypeError si hay un guarda inmutable (ver más abajo). Si no, fallan silenciosamente. Por ejemplo:
+ 
+ ```JavaScript
+var myResponse = Response.error();
+
+try {
+  myResponse.headers.set("Origin", "http://mybank.com");
+} catch(e) {
+  console.log("Cannot pretend to be a bank!");
+}
+```
+
+Un buen caso de uso para headers es comprobar cuando el tipo de contenido es correcto antes de que se procese:
+ 
+ 
+```JavaScript
+fetch(myRequest).then(function(response) {
+  var contentType = response.headers.get("content-type");
+  if(contentType && contentType.indexOf("application/json") !== -1) {
+    return response.json().then(function(json) {
+      // process your JSON further
+    });
+  } else {
+    console.log("Oops, we haven't got JSON!");
+  }
+});
+```
+
+### Guarda (Guard)
+ 
+Desde que las cabeceras pueden ser enviadas  en peticiones y recibidas en respuestas, y tienen limitaciones sobre que información puede y debería ser mutable, los objeto headers tienen una propierdad de guarda. Este no está expuesto a la Web, pero puede afectar a que operaciones de mutación son permitidas sobre el objeto headers.
+
+Los valores posibles de guarda (guard) son:
+
+•     none: valor por defecto.
+
+•     request: Guarda para el objeto headers obtenido de la petición (Request.headers).
+
+•     request-no-cors: Guarda para un objeto headers obtenido desde una petición creada con Request.mode (en-US) a no-cors.
+
+•     response: Guarda para una cabecera obetenida desde un respuesta (Response.headers (en-US)).
+
+•     immutable: Mayormente utilizado para ServiceWorkers, produce un objeto headers de solo lectura.
+
+Nota:  No se debería añadir o establecer una petición a un objeto headers guardado con la cabecera Content-Length. De igual manera, insertar Set-Cookie en la respuesta de la cabecera no esta permitido: ServiceWorkers no estan autorizados a establecer cookies a través de respuestas sintéticas. 
+ 
+ 
+ ### Objetos Response
+Cómo has visto anteriormente, las instancias de Response son devueltas cuando fetch() es resuelto.
+
+Las propiedades de response que usarás son:
+
+•     Response.status — Entero (por defecto con valor 200) que contiene el código de estado de las respuesta.
+
+•     Response.statusText (en-US) — Cadena (con valor por defecto "OK"), el cual corresponde al mensaje del estado de código HTTP.
+
+•     Response.ok — Visto en uso anteriormente, es una clave para comprobar que el estado está dentro del rango 200-299 (ambos incluidos). Este devuelve un valor Boolean (en-US), siendo true si lo anterior se cumple y false en otro caso.
+
+Estos pueden también creados programáticamente a través de JavaScript, pero esto solamente es realmete útil en ServiceWorkers (en-US),  cuando pones un objeto response personalizado a una respuesta recibida usando un método respondWith() (en-US):
+ 
+ 
+ ```JavaScript
+var myBody = new Blob();
+
+addEventListener('fetch', function(event) {
+  event.respondWith(
+    new Response(myBody, {
+      headers: { "Content-Type" : "text/plain" }
+    })
+  );
+});
+```
+
+El constructor Response() toma dos argurmentos opcionales, un cuerpo para la respuesta y un objeto init (similar al que acepta Request() (en-US)).
+
+ Nota: El método estático error() (en-US) simplemente devuelve un error en la respuesta. De igual manera que redirect() (en-US) devuelve una respuesta que resulta en un redirección a una URL especificada. Estos son solo relevantes tambien a ServiceWorkers.
+ 
+ 
+###  Body
+ 
+Tanto las peticiones como las respuestas pueden contener datos body. Body es una instancia de cualquiera de los siguientes tipos:
+
+•     ArrayBuffer (en-US)
+
+•     ArrayBufferView (en-US) (Uint8Array y amigos)
+
+•     Blob/File
+
+•     string
+
+•     URLSearchParams
+
+•     FormData
+
+El mixin de Body define los siguientes metodos para extraer un body (implementado por Request and Response). Todas ellas devuelven una promesa que es eventualmente resuelta con el contenido actual.
+
+•     arrayBuffer() (en-US)
+
+•     blob() (en-US)
+
+•     json()
+
+•     text() (en-US)
+
+•     formData()
+
+Este hace uso de los datos no texttuales mucho mas facil que si fuera con XHR.
+
+Las peticiones body pueden ser establecidas pasando el parametro body:
+ 
+ 
+  ```JavaScript
+ var form = new FormData(document.getElementById('login-form'));
+
+fetch("/login", {
+  method: "POST",
+  body: form
+});
+ ```
+ 
+Tanto peticiones y respuestas (y por extensión la function fetch()), intentaran inteligentemente determinar el tipo de contenido. Una petición tambien establecerá automáticamente la propiedad Context-Type de la cabecera si no es ha establecido una.
+ 
+ 
+ ### Detectar característica
+ 
+Puedes comprobar si el navegador soporta  la API de Fetch comprobando la existencia de Headers, Request, Response o fetch() (en-US) sobre el ámbito de Window o Worker. Por ejemplo:
+ 
+  ```JavaScript
+ if (self.fetch) {
+    // run my fetch request here
+} else {
+    // do something with XMLHttpRequest?
+}
+ ```
+ 
+ ---
 ---
 
