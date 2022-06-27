@@ -1423,6 +1423,7 @@ module.exports = {
 ```
 
 ---
+
 ### :star: 6. Api´s Asincrónicas
 
 
@@ -2204,13 +2205,16 @@ En resumen, las API le permiten habilitar el acceso a sus recursos y, al mismo t
 Existen tres enfoques respecto a las políticas de las versiones de las API.
 
 ### Innovaciones con las API
+
 El acceso de los partners o el público a sus API permite:
 
-Crear nuevos canales de ingresos o ampliar los existentes.
+- Crear nuevos canales de ingresos o ampliar los existentes.
 
-Expandir el alcance de su marca.
+- Expandir el alcance de su marca.
 
-Facilitar la innovación abierta o lograr mayor eficiencia, gracias al desarrollo y la colaboración externos.
+- Facilitar la innovación abierta o lograr mayor eficiencia, gracias al desarrollo y la colaboración externos.
+
+
 
 Suena maravilloso, ¿no? ¿Pero cómo lo logran las API?
 
@@ -2374,23 +2378,18 @@ Aprende las bases del testing y cómo aplicarlas para probar APIs REST con Postm
 
 Los servicios web son un estándar en lo que se refiere al diseño y desarrollo de interfaces API entre aplicaciones de software empresarial, es por ello que existen diversas herramientas de testing de servicios web que brindan la capacidad a los testers de diseñar y ejecutar pruebas de software.
 
-
 En este artículo te presentamos 5 herramientas para probar servicios web, específicamente SoapUI, JMeter, Postman, SoapSonar y Wizdler.
-
 
 Estas herramientas proporcionan diversas capacidades para abarcar todos los tipos de pruebas de servicios web que se pueden realizar, tales como las pruebas funcionales, simulación de servicios (Mocking), evaluación de seguridad, pruebas de carga y de rendimiento.
 
+
 ## SoapUI
-
-
 
 SoapUI es una de las herramientas para probar servicios web que permite diseñar pruebas de web services de Arquitecturas SOA y REST. Está en el mercado desde 2005.
 
 Con SoapUI puedes probar web services en los protocolos SOAP, REST, JMS y AMF, además, puedes realizar llamadas HTTP(S) para aplicaciones web y JDBC para bases de datos.
 
-
 Posee una versión gratuita y una versión profesional (esta última tiene un costo).
-
 
 SoapUI permite la creación y ejecución automatizada de distintos tipos de pruebas de software sobre servicios web, incluyendo:
 
@@ -2405,17 +2404,14 @@ SoapUI permite la creación y ejecución automatizada de distintos tipos de prue
 - Evaluación de seguridad.
 
 
+
 ## JMeter
 
 Apache JMeter es una aplicación de código abierto diseñada para la ejecución de pruebas de carga y mediciones de desempeño en aplicaciones.
 
 Es una herramienta desarrollada por la fundación de software Apache 100% en Java. Fue diseñada originalmente para probar aplicaciones web pero desde entonces se ha expandido para abarcar otras funcionalidades.
 
-
-
 JMeter posee capacidades para realizar pruebas de carga y desempeño en diferentes aplicaciones, servidores y protocolos, incluyendo:
-
- 
 
 - Web - HTTP, HTTPS (Java, NodeJS, PHP, ASP.NET, …).
 
@@ -2435,17 +2431,16 @@ JMeter posee capacidades para realizar pruebas de carga y desempeño en diferent
 
 - Native commands or shell scripts.
 
--Transmission Control Protocol (TCP).
+- Transmission Control Protocol (TCP).
 
 - Objetos Java.
+
 
 ### Postman
 
 Postman es una herramienta para probar web services e interfaces de aplicación (API) en arquitectura REST. En términos generales, te permite enviar solicitudes post a cualquier servidor web y te proporciona y cataloga la respuesta.
 
 Comenzó como un plugin del navegador Chrome, pero luego fue lanzada como versión nativa tanto para Windows como Mac.
-
-
 
 Posee una versión gratuita, versión profesional y versión empresarial a diferentes costos.
 
@@ -2459,7 +2454,7 @@ Entre sus funcionalidades se encuentran:
 
 - Funcionalidades para ejecutar, probar, documentar y monitorear las pruebas.
 
--No requiere aprender nuevos lenguajes de programación.
+- No requiere aprender nuevos lenguajes de programación.
 
 
 ### SoapSonar
@@ -2469,8 +2464,7 @@ SOAPSonar es una herramienta que ofrece facilidades para pruebas web services pa
 
 Desarrollada por Cross Check Networks, está disponible en una edición personal (gratuita), edición profesional y edición de servidor, a distintos costos.
 
- 
- Entre sus funcionalidades están las siguientes:
+Entre sus funcionalidades están las siguientes:
 
 - Puede realizar pruebas de vulnerabilidad con mutación XSD.
 
@@ -2487,13 +2481,11 @@ Desarrollada por Cross Check Networks, está disponible en una edición personal
 
 ### Wizdler
 
-
 Si no necesitas todas las funcionalidades avanzadas, y más bien buscas algo sencillo, puedes probar Wizdler, una herramienta de testing de web services que soporta únicamente arquitectura SOA, presentada como extensión de navegador y disponible para Google Chrome y Mozilla Firefox.
 
 Usarla es muy sencillo, luego de instalado el plugin, ingresa la dirección WSDL en la dirección de página del navegador, Wizdler la reconoce y lista todas las operaciones y servicios.
 
 Luego haces click sobre cualquier operación y el XML de request se mostrará en el editor SOAP.
-
 
 Modifica para pasar los parámetros y haz click en “Go”, para ver el Response en el editor. Wizdler puede de esta forma generar el XML de Request Soap.
 
@@ -2515,8 +2507,8 @@ El método GET  solicita una representación de un recurso específico. Las peti
 #### HEAD
 
 El método HEAD pide una respuesta idéntica a la de una petición GET, pero sin el cuerpo de la respuesta.
-
-POST
+ 
+#### POST
 
 El método POST se utiliza para enviar una entidad a un recurso en específico, causando a menudo un cambio en el estado o efectos secundarios en el servidor.
 
@@ -2555,59 +2547,28 @@ El método PATCH  es utilizado para aplicar modificaciones parciales a un recurs
 
 En los siguientes pasos veremos como instalar y configurar Nodemon en tu proyecto y como poner a correr un servidor Node.js.
 
-Paso 1
+**Paso 1** : Organizar el directorio de origen src y iniciar el servidor en un archivo server.js, el archivo puede llevar cualquier convención que se utilice para arrancar un servidor Node.js (index.js o app.js ). Actualizar el package.json agregando un script start
+
+**Paso 2**: Agregar express el cual nos va a permitir arrancar un mínimo servidor para realizar esta prueba **server.js**. Iniciá una terminal nueva en la cual iniciaremos el servidor corriendo el script npm start luego de ejecutarlo nos retornara un mensaje como el siguiente node src/index.js
+
+Abrir una nueva terminal y ejecutaremos el siguiente código ```curl -X GET http://localhost:3000/``` el cual nos permitirá comprobar que la API este funcionando de manera correcta.
+
+ Si nos retorna el mensaje La API funciona correctamente quiere decir que vamos bien!
+
+Ahora, si cambiamos el mensaje de respuesta en el archivo **server.js**, debo reiniciar el servidor para obtener el resultado deseado:
+
+Utilizar ```Ctrl + C``` para detener el servidor que se está ejecutando actualmente y volver a iniciarlo usando el mismo comando antes: ```npm run start```.
+
+Usando el comando ```curl``` nuevamente desde la ventana de terminal obtenemos el resultado deseado:
 
  
+**Paso 3**: Agrega nodemon como devDependency. Revisaremos el package.json
 
-Organizar el directorio de origen src y iniciar el servidor en un archivo server.js, el archivo puede llevar cualquier convención que se utilice para arrancar un servidor Node.js (index.js o app.js )
-
-Actualizar el package.json agregando un script start
-
-Paso 2
-
-Agregar express el cual nos va a permitir arrancar un mínimo servidor para realizar esta prueba
-
-server.js
-
-Iniciá una terminal nueva en la cual iniciaremos el servidor corriendo el script npm start luego de ejecutarlo nos retornara un mensaje como el siguiente node src/index.js
-
- 
-Abrir una nueva terminal y ejecutaremos el siguiente código curl -X GET http://localhost:3000/ el cual nos permitirá comprobar que la API este funcionando de manera correcta.
-
- 
-
-
-
-Si nos retorna el mensaje La API funciona correctamente quiere decir que vamos bien!
-
-Ahora, si cambiamos el mensaje de respuesta en el archivo server.js, debo reiniciar el servidor para obtener el resultado deseado:
-
- 
-Utilizar Ctrl + C para detener el servidor que se está ejecutando actualmente y volver a iniciarlo usando el mismo comando antes: npm run start.
-
-Usando el comando curl nuevamente desde la ventana de terminal obtenemos el resultado deseado:
-
- 
-Paso 3
-
-Agrega nodemon como devDependency:
-
-Revisaremos el package.json
-
-Paso 4
-
-Agregar el comando dev en el archivo package.json
-
-
-Ahora ejecute npm run dev y solicite el uso nuevamente del comando curl, y veremos que el mensaje es el mismo que teníamos antes:
-
+**Paso 4**: Agregar el comando dev en el archivo **package.json**. Ahora ejecute npm run dev y solicite el uso nuevamente del comando curl, y veremos que el mensaje es el mismo que teníamos antes:
 
 Si cambio nuevamente el mensaje en el archivo server.js por cualquier otro, ya esta vez no tendré que reiniciar el servidor dado que Nodemon esta observando los cambios usando el directorio src, mediante su parámetro --watch.
 
-
-Vera que se actualiza solo sin tener que reiniciar el servidor, para cortarlo presionar CTRL + C
-
----
+Vera que se actualiza solo sin tener que reiniciar el servidor, para cortarlo presionar ```CTRL + C```
 
 
 
@@ -2615,3 +2576,52 @@ Vera que se actualiza solo sin tener que reiniciar el servidor, para cortarlo pr
 ---
 
 ## :book: UNIDAD 6
+
+---
+
+## Temas:
+
+- Ajustando el puerto de escucha de Node.Js en forma automática con process.enc.PORT
+
+- Haciendo Routes para definir diferentes carpetas para cada servicio.
+
+- Implementando un Crud con persistencia de datos.
+
+- Repasando las sentencias SQL a utilizar.
+
+- Creando el Front End para el Crud
+
+- Conectando el Front y el Back con JavaScript y Json
+
+- Creando un web service para: Nuevo dato | Modificar un dato | Listar datos | Eliminar un dato
+
+- Buscar un dato
+
+---
+
+## :star: 2. Control de Acceso Cors
+
+
+### Control de acceso HTTP (CORS)
+
+
+El Intercambio de Recursos de Origen Cruzado [**CORS (en-US)**](https://developer.mozilla.org/en-US/docs/Glossary/CORS) es un mecanismo que utiliza cabeceras [HTTP](https://developer.mozilla.org/es/docs/Glossary/HTTP) adicionales para permitir que un  [user agent (en-US)](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) obtenga permiso para acceder a recursos seleccionados desde un servidor, en un origen distinto (dominio) al que pertenece. Un agente crea una petición HTTP de origen cruzado cuando solicita un recurso desde un dominio distinto, un protocolo o un puerto diferente al del documento que lo generó.
+
+Un ejemplo de solicitud de origen cruzado: el código JavaScript frontend de una aplicación web que es localizada en http://domain-a.com utiliza [XMLHttpRequest](https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest) para cargar el recurso http://api.domain-b.com/data.json.
+
+Por razones de seguridad, los exploradores restringen las solicitudes HTTP de origen cruzado iniciadas dentro de un script. Por ejemplo, [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) y la [API Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) siguen la [política de mismo-origen](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy). Ésto significa que una aplicación que utilice esas [APIs XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) sólo puede hacer solicitudes HTTP a su propio dominio, a menos que se utilicen cabeceras CORS.
+
+
+El [W3C Grupo de Trabajo de Aplicaciones Web](https://www.w3.org/groups/wg/webapps) recomienda el nuevo mecanismo de [Intercambio de Recursos de Origen Cruzado](https://fetch.spec.whatwg.org/) (CORS, por sus siglas en inglés). CORS da controles de acceso a dominios cruzados para servidores web y transferencia segura de datos en dominios cruzados entre navegadores y servidores Web. Los exploradores modernos utilizan CORS en un  contenedor API (como [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) o [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)) para ayudar a mitigar los riesgos de solicitudes HTTP de origen cruzado.
+
+
+### ¿Quién debería leer este artículo?
+
+Todo el mundo, de verdad.
+
+Más específicamente, este artículo está dirigido a administradores web, desarrolladores de servidores y desarrolladores de interfaz. Los exploradores modernos manejan los componentes sobre el intercambio de origen cruzado del lado del cliente. Incluyendo cabeceras y políticas de ejecución. Pero, este nuevo estándar determina que los servidores tienen que manejar las nuevas solicitudes y las cabeceras de las respuestas. Se recomienda, como lectura suplementaria, otro artículo para desarrolladores de servidor que discute el [intercambio de origen cruzado desde una perspectiva de servidor (con fragmentos de código PHP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+
+
+---
+---
+
