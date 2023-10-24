@@ -17,7 +17,7 @@ Thanks a lot 🤓.
 
 ---
 ## Notes
-I appreciate your interest in this Project ⌨️ with ❤️ [María Eugenia Costa](https://github.com/eugenia1984) follow me on [LinkedIn](http://www.linkedin.com/in/maríaeugeniacosta)
+I appreciate your interest in this Project ⌨️ with ❤️ [María Eugenia Costa](https://github.com/eugenia1984) follow me on [LinkedIn - maria-eugenia-costa](https://www.linkedin.com/in/maria-eugenia-costa/)
 
 
 ---
@@ -240,7 +240,7 @@ npm run dev
 
 ## Notas
 
-Agradezco su interés en este Proyecto ⌨️ con ❤️ de [María Eugenia Costa](https://github.com/eugenia1984) 😊 y síganme en [LinkedIn](http://www.linkedin.com/in/maríaeugeniacosta)
+Agradezco su interés en este Proyecto ⌨️ con ❤️ de [María Eugenia Costa](https://github.com/eugenia1984) 😊 y síganme en[LinkedIn - maria-eugenia-costa](https://www.linkedin.com/in/maria-eugenia-costa/)
 
 
 ---
